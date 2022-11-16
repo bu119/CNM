@@ -11,12 +11,12 @@ class Movie(models.Model):
     poster_path = models.CharField(max_length=200)
     adult = models.BooleanField(default=False)
     overview = models.TextField()
-    release_date = models.DateField()
+    released_date = models.DateField()
     original_language = models.CharField(max_length=50)
     title = models.CharField(max_length=100)
     popularity = models.FloatField()
     vote_count = models.IntegerField()
-    vote_average = models.FloatField()
+    vote_avg = models.FloatField()
     genres = models.ManyToManyField(Genre)
 
 
