@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-zthvq2m61s=1ihg6y4c*p(%vtvgg9=4ybu*nquw@vixrj&0e#&'
+SECRET_KEY = 'django-insecure-ly$y-g1dl*dj4n0q+)mj!-s*0x7kmor7-z70mw-@b**^w$n1%_'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -123,5 +123,3 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-AUTH_USER_MODEL = 'accounts.User'
