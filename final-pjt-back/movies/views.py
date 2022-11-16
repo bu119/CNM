@@ -1,12 +1,17 @@
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
+# permission Decorators
+from rest_framework.decorators import permission_classes
+from rest_framework.permissions import IsAuthenticated
+
 from django.shortcuts import get_object_or_404, get_list_or_404
 from .models import Movie
 from .serializers import MovieListSerializer, MovieSerializer
 
 # Create your views here.
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def movie_list(request):
     if request.method == 'GET':
         movies = get_list_or_404(Movie)
