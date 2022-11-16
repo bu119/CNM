@@ -77,6 +77,7 @@ export default new Vuex.Store({
         url: `${API_URL}/accounts/signup/`,
         data: {
           username: payload.username,
+          email: payload.email,
           password1: payload.password1,
           password2: payload.password2,
         }
