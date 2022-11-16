@@ -1,11 +1,11 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-from ..movies.models import Genre
+# from ..movies.models import Genre
 
 # Create your models here.
 class User(AbstractUser):
     password = models.CharField(max_length=128)
-    username = models.CharField(max_length=150)
+    # username = models.CharField(max_length=150)
     email = models.CharField(max_length=254)
     is_superuser = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
@@ -17,4 +17,4 @@ class User(AbstractUser):
     birth_date = models.DateTimeField()
 
     followings = models.ManyToManyField('self', symmetrical=False, related_name='followers')
-    genres = models.ManyToManyField(Genre)
+    # genres = models.ManyToManyField(Genre)
