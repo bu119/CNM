@@ -8,6 +8,7 @@
       </nav>
       <!-- 로그인 후 -->
       <nav v-else>
+        <router-link :to="{ name: 'ProfileView' }">Profile</router-link>
         <span>Hello, {{ userName }}</span>
         <button @click="logoutUser">Logout</button>
       </nav>
