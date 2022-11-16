@@ -3,7 +3,7 @@ from rest_framework.decorators import api_view
 
 from django.shortcuts import get_object_or_404, get_list_or_404
 from .models import Movie
-from .serializers import MovieListSerializer
+from .serializers import MovieListSerializer, MovieSerializer
 
 # Create your views here.
 @api_view(['GET'])

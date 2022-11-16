@@ -1,6 +1,6 @@
 <template>
   <div>
-    <!-- 여기에 carousel 들어갈 영화 넣기 -->
+    <!-- carousel 들어갈 영화 -->
     <p>{{ movie.title }}</p>
   </div>
 </template>
@@ -9,7 +9,7 @@
 export default {
   name: 'SlideCardListItem',
   props: {
-    movie: Object
+    movie: Object,
   },
 }
 </script>

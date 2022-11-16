@@ -1,6 +1,11 @@
 <template>
   <div>
-    <RecommendMovieListItem/>
+    <h1>추천영화 ver.1 리스트</h1>
+    <RecommendMovieListItem
+      v-for="movie in movies"
+      :key="movie.id"
+      :movie="movie"
+    />
   </div>
 </template>
 
@@ -10,7 +15,12 @@ import RecommendMovieListItem from '@/components/RecommendMovieListItem'
 export default {
   name: 'RecommendMovieList',
   components: {
-    RecommendMovieListItem
+    RecommendMovieListItem,
+  },
+  computed: {
+    movies() {
+      return this.$store.state.movies
+    }
   }
 
 }

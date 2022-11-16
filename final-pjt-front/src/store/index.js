@@ -10,12 +10,13 @@ const API_URL = 'http://127.0.0.1:8000'
 
 export default new Vuex.Store({
   plugins: [
-    createPersistedState()
+    createPersistedState(),
   ],
 
   state: {
-    recentpopularmovies: [],
     movies: [],
+    recentpopularmovies: [],
+    recommendmovies1: [],
     token: null,
     username: null,
   },
@@ -25,7 +26,11 @@ export default new Vuex.Store({
       return state.token ? true : false
     }
   },
+
   mutations: {
+    GET_MOVIES(state, movies) {
+      state.movies = movies
+    },
     GET_RECENT_POPULAR_MOVIES(state, movies) {
       let released_date_ver = movies.sort((a, b) => {
         return new Date(b.released_date) - new Date(a.released_date)
@@ -43,7 +48,18 @@ export default new Vuex.Store({
       router.push({name: 'LogInView'})
     },
   },
+
   actions: {
+    getMovies(context) {
+      axios({
+        method: 'get', 
+        url: `${API_URL}/movies/`,
+      })
+        .then(res => {
+          context.commit('GET_MOVIES', res.data)
+        })
+        .catch(err => console.log(err))
+    },
     getRecentPopularMovies(context) {
       axios({
         method: 'get',

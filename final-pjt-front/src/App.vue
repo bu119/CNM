@@ -11,6 +11,11 @@
         <span>Hello, {{ userName }}</span>
         <button @click="logoutUser">Logout</button>
       </nav>
+      <nav>
+        <router-link :to="{ name: 'MovieView' }">Home</router-link> | 
+        <!-- 좀있다지움 -->
+        <router-link :to="{ name: 'DetailView' }">DetailPage</router-link>
+      </nav>
     </nav>
     <router-view/>
   </div>

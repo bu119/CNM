@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>최신 인기 영화</h2>
+    <h1>최신 인기 영화</h1>
     <SlideCardListItem
       v-for="movie in movies"
       :key="movie.id"
