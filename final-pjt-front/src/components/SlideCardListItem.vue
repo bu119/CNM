@@ -1,8 +1,12 @@
 <template>
   <div>
     <!-- carousel 들어갈 영화 -->
-    <p>{{ movie.title }}</p>
-    <img :src="movieImgURL" alt="...">
+    <router-link
+      :to="{ 
+        name: 'DetailView',
+        params: { id: movie.id }
+      }"  
+    ><img :src="movieImgURL" alt="..." width=250></router-link>
   </div>
 </template>
 
