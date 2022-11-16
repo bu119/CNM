@@ -1,8 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-
-import MovieView from '../views/MovieView.vue'
-import DetailView from '../views/DetailView.vue'
+import SignUpView from '@/views/SignUpView'
+import LogInView from '@/views/LogInView'
+import MovieView from '@/views/MovieView'
+import DetailView from '@/views/DetailView'
 
 Vue.use(VueRouter)
 
@@ -16,7 +17,18 @@ const routes = [
     path: '/:id',
     name: 'DetailView',
     component: DetailView,
-  }
+  },
+  {
+    path: '/signup',
+    name: 'SignUpView',
+    component: SignUpView
+  },
+
+  {
+    path: '/login',
+    name: 'LogInView',
+    component: LogInView
+  },
 ]
 
 const router = new VueRouter({
