@@ -31,11 +31,8 @@ export default new Vuex.Store({
     GET_MOVIES(state, movies) {
       state.movies = movies
     },
-    GET_RECENT_POPULAR_MOVIES(state, movies) {
-      let released_date_ver = movies.sort((a, b) => {
-        return new Date(b.released_date) - new Date(a.released_date)
-      })
-      state.recentpopularmovies = released_date_ver.slice(0, 10)
+    GET_RECENT_POPULAR_MOVIES(state, recent_movies) {
+      state.recentpopularmovies = recent_movies
     },
     // 회원가입 && 로그인
     SAVE_TOKEN(state, name_token) {
@@ -64,6 +61,9 @@ export default new Vuex.Store({
       axios({
         method: 'get',
         url: `${API_URL}/movies/`,
+        data: {
+          recent_movies: context['recent_movies']
+        }
       })
         .then(res => {
           console.log(res)

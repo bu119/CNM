@@ -16,7 +16,17 @@ def movie_list(request):
     if request.method == 'GET':
         movies = get_list_or_404(Movie)
         serializer = MovieListSerializer(movies, many=True)
-        return Response(serializer.data)
+
+        ## 데이터 처리 작업
+        recent_movies = Movie.objects.all().order_by('released_date, vote_avg')
+        
+
+        context = {
+            movies : serializer.data,
+            recent_movies : recent_movies,
+
+        }
+        return Response(context)
 
 
 @api_view(['GET'])
