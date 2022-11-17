@@ -24,12 +24,7 @@ def movie_list(request):
         steady_seller = Movie.objects.all().order_by('popularity')
         serializer2 = MovieListSerializer(steady_seller, many=True)
 
-        context = {
-            movies : serializer.data,
-            recent_movies : serializer1.data,
-            steady_seller : serializer2.data,
-        }
-        return Response(context)
+        return Response(serializer.data)
 
 
 @api_view(['GET'])
