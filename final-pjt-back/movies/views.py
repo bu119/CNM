@@ -12,17 +12,10 @@ from .serializers import MovieListSerializer, MovieSerializer
 # Create your views here.
 @api_view(['GET'])
 # @permission_classes([IsAuthenticated])
-def movie_list(request):
+def recent_popular_movie_list(request):
     if request.method == 'GET':
-        movies = get_list_or_404(Movie)
-        serializer = MovieListSerializer(movies, many=True)
-
-        ## 데이터 처리 작업
-        recent_movies = Movie.objects.all().order_by('released_date', 'vote_avg')
-        serializer1 = MovieListSerializer(recent_movies, many=True)
-        
-        steady_seller = Movie.objects.all().order_by('popularity')
-        serializer2 = MovieListSerializer(steady_seller, many=True)
+        recent_movies = Movie.objects.all().order_by('-released_date', '-vote_avg')[:5]
+        serializer = MovieListSerializer(recent_movies, many=True)
 
         return Response(serializer.data)
 

@@ -3,6 +3,8 @@ from . import views
 
 app_name = 'movies'
 urlpatterns = [
-    path('', views.movie_list),
+    path('r_popular/', views.recent_popular_movie_list),
     path('<int:movie_pk>/', views.movie_detail),
+    path('steady/', views.recent_popular_movie_list),
+
 ]
