@@ -17,15 +17,11 @@ export default {
   },
   created() {
     this.getMovies()
-    this.getRecentPopularMovies()
   },
   methods: {
     getMovies() {
       this.$store.dispatch('getMovies')
     },
-    getRecentPopularMovies() {
-      this.$store.dispatch('getRecentPopularMovies')
-    }
   }
 }
 </script>

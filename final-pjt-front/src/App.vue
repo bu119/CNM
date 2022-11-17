@@ -8,8 +8,8 @@
       </nav>
       <!-- 로그인 후 -->
       <nav v-else>
-        <router-link :to="{ name: 'ProfileView' }">Profile</router-link>
-        <span>Hello, {{ userName }}</span>
+        <router-link :to="{ name: 'ProfileView', params: {username:username} }">Profile</router-link>
+        <span>Hello, {{ username }}</span>
         <button @click="logoutUser">Logout</button>
       </nav>
       <nav>
@@ -23,7 +23,7 @@
 <script>
 export default {
   computed: {
-    userName() {
+    username() {
       return this.$store.state.username
     },
     // 로그인 유무 확인

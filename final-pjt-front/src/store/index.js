@@ -16,7 +16,6 @@ export default new Vuex.Store({
   state: {
     movies: [],
     recentpopularmovies: [],
-    recommendmovies1: [],
     token: null,
     username: null,
   },
@@ -28,11 +27,9 @@ export default new Vuex.Store({
   },
 
   mutations: {
-    GET_MOVIES(state, movies) {
-      state.movies = movies
-    },
-    GET_RECENT_POPULAR_MOVIES(state, recent_movies) {
-      state.recentpopularmovies = recent_movies
+    GET_MOVIES(state, context) {
+      state.movies = context['movies']
+      state.recentpopularmovies = context['recent_movies']
     },
     // 회원가입 && 로그인
     SAVE_TOKEN(state, name_token) {
@@ -51,23 +48,14 @@ export default new Vuex.Store({
       axios({
         method: 'get', 
         url: `${API_URL}/movies/`,
-      })
-        .then(res => {
-          context.commit('GET_MOVIES', res.data)
-        })
-        .catch(err => console.log(err))
-    },
-    getRecentPopularMovies(context) {
-      axios({
-        method: 'get',
-        url: `${API_URL}/movies/`,
-        data: {
+        data : {
+          //////여기에 데이터 다 넣어!!
+          movies: context['movies'],
           recent_movies: context['recent_movies']
         }
       })
         .then(res => {
-          console.log(res)
-          context.commit('GET_RECENT_POPULAR_MOVIES', res.data)
+          context.commit('GET_MOVIES', res.data)
         })
         .catch(err => console.log(err))
     },
