@@ -48,13 +48,14 @@ export default new Vuex.Store({
       axios({
         method: 'get', 
         url: `${API_URL}/movies/`,
-        data : {
-          //////여기에 데이터 다 넣어!!
-          movies: context['movies'],
-          recent_movies: context['recent_movies']
-        }
+        // data : {
+        //   //////여기에 데이터 다 넣어!!
+        //   movies: context['movies'],
+        //   recent_movies: context['recent_movies']
+        // }
       })
         .then(res => {
+          console.log(res)
           context.commit('GET_MOVIES', res.data)
         })
         .catch(err => console.log(err))
