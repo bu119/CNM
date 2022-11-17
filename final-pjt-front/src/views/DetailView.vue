@@ -3,7 +3,14 @@
     <h1>영화 상세 페이지</h1>
     <p>제목: {{ movie?.title }}</p>
     <img :src="poster_path" alt="..." width=250>
-    <p>장르: {{ movie?.genre }}</p>
+    <p>장르: 
+      <span 
+        v-for="(genre, idx) in movie.genres"
+        :key="idx"
+      >
+        {{ genre }}
+      </span>
+    </p>
     <p>줄거리: {{ movie?.overview }}</p>
     <p>개봉일: {{ movie?.released_date }}</p>
     <p>평점: {{ movie?.vote_avg }}</p>
@@ -37,13 +44,9 @@ export default {
           this.poster_path = `https://image.tmdb.org/t/p/w600_and_h900_bestv2${res.data.poster_path}`
           })
         .catch(err => console.log(err))
-    }
+    },
+
   },
-  computed: {
-  //   movieImgURL() {
-  //     return `https://image.tmdb.org/t/p/w600_and_h900_bestv2${this.movie.poster_path}`
-  //   }
-  }
 }
 </script>
 

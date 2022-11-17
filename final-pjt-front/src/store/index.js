@@ -16,6 +16,7 @@ export default new Vuex.Store({
   state: {
     movies: [],
     recentpopularmovies: [],
+    genres: [],
     token: null,
     username: null,
   },
@@ -30,6 +31,10 @@ export default new Vuex.Store({
     // 슬라이드 카드
     GET_RECENT_POPULAR_MOVIES(state, recentpopularmovies) {
       state.recentpopularmovies = recentpopularmovies
+    },
+    // 장르
+    GET_GENRES(state, genres) {
+      state.genres = genres
     },
     // 회원가입 && 로그인
     SAVE_TOKEN(state, name_token) {
@@ -55,6 +60,18 @@ export default new Vuex.Store({
         })
         .catch(err => console.log(err))
     },
+
+    // 장르
+    // getGenres(context) {
+    //   axios({
+    //     method: 'get', 
+    //     url: `${API_URL}/genres/r_popular/`,
+    //   })
+    //     .then(res => {
+    //       context.commit('GET_RECENT_POPULAR_MOVIES', res.data)
+    //     })
+    //     .catch(err => console.log(err))
+    // },
 
     // 회원가입 && 로그인
     signUp(context, payload) {

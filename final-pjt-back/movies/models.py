@@ -17,7 +17,7 @@ class Movie(models.Model):
     popularity = models.FloatField()
     vote_count = models.IntegerField()
     vote_avg = models.FloatField()
-    genres = models.ManyToManyField(Genre)
+    genres = models.ManyToManyField(Genre, related_name='genres')
 
 
 class Comment(models.Model):
