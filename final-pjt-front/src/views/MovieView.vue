@@ -1,8 +1,8 @@
 <template>
   <div>
     <RecentPopularMovieList/><br>
-    <RecentMovieList/>
-    <SteadySellerList/>
+    <RecentMovieList/><br>
+    <SteadySellerList/><br>
   </div>
 </template>
 
@@ -16,7 +16,7 @@ export default {
   components: {
     RecentPopularMovieList,
     RecentMovieList,
-    SteadySellerList
+    SteadySellerList,
   },
   created() {
     this.getRecentPopularMovies(),

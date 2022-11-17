@@ -14,16 +14,27 @@
     <p>줄거리: {{ movie?.overview }}</p>
     <p>개봉일: {{ movie?.released_date }}</p>
     <p>평점: {{ movie?.vote_avg }}</p>
+
+    <h1>Community List</h1>
+    <CommunityList/>
+    <CommunityForm/>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
 
+import CommunityList from '@/components/CommunityList'
+import CommunityForm from '@/components/CommunityForm'
+
 const API_URL = 'http://127.0.0.1:8000'
 
 export default {
   name: 'DetailView',
+  components: {
+    CommunityList,
+    CommunityForm,
+  },
   data() {
     return {
       movie: null,
@@ -45,6 +56,11 @@ export default {
           })
         .catch(err => console.log(err))
     },
+
+    // Community
+    loadCommunitys() {
+      this.$store.dispatch('loadCommunitys')
+    }
 
   },
 }
