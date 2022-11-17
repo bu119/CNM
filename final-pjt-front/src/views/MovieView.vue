@@ -21,7 +21,7 @@ export default {
   },
   methods: {
     getMovies() {
-      this.$store.dispatch('getmovies')
+      this.$store.dispatch('getMovies')
     },
     getRecentPopularMovies() {
       this.$store.dispatch('getRecentPopularMovies')
