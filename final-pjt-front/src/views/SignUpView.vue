@@ -2,18 +2,10 @@
   <div>
     <h1>Sign Up Page</h1>
     <form @submit.prevent="signUp">
-      <label for="username">username : </label>
-      <input type="text" id="username" v-model="username"><br>
-
-      <label for="email">email : </label>
-      <input type="text" id="email" v-model="email"><br>
-
-      <label for="password1"> password : </label>
-      <input type="password" id="password1" v-model="password1"><br>
-
-      <label for="password2"> password confirmation : </label>
-      <input type="password" id="password2" v-model="password2">
-      
+      <input type="text" id="username" v-model="username" placeholder="user-name"><br>
+      <input type="text" id="email" v-model="email" placeholder="e-mail"><br>    
+      <input type="password" id="password1" v-model="password1" placeholder="password"><br>
+      <input type="password" id="password2" v-model="password2" placeholder="password confirmation">
       <input type="submit" value="SignUp">
     </form>
   </div>

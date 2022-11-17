@@ -14,9 +14,24 @@ from .serializers import MovieListSerializer, MovieSerializer
 # @permission_classes([IsAuthenticated])
 def recent_popular_movie_list(request):
     if request.method == 'GET':
-        recent_movies = Movie.objects.all().order_by('-released_date', '-vote_avg')[:5]
-        serializer = MovieListSerializer(recent_movies, many=True)
+        recent_popular_movies = Movie.objects.all().order_by('-released_date', '-vote_avg')[:5]
+        serializer = MovieListSerializer(recent_popular_movies, many=True)
+        return Response(serializer.data)
 
+
+@api_view(['GET'])
+def recent_movie_list(request):
+    if request.method == 'GET':
+        recent_movies = Movie.objects.all().order_by('-released_date')[:20]
+        serializer = MovieListSerializer(recent_movies, many=True)
+        return Response(serializer.data)
+
+
+@api_view(['GET'])
+def steady_seller_movie_list(request):
+    if request.method == 'GET':
+        steady_seller_movies = Movie.objects.all().order_by('-vote_count')[:20]
+        serializer = MovieListSerializer(steady_seller_movies, many=True)
         return Response(serializer.data)
 
 

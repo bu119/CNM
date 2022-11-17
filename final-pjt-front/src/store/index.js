@@ -10,13 +10,15 @@ const API_URL = 'http://127.0.0.1:8000'
 
 export default new Vuex.Store({
   plugins: [
-    createPersistedState(),
+    createPersistedState({
+      storage: window.sessionStorage // store를 session storage 에 유지
+    }),
   ],
 
   state: {
-    movies: [],
     recentpopularmovies: [],
-    genres: [],
+    recentmovies: [],
+    steadysellers: [],
     token: null,
     username: null,
   },
@@ -28,14 +30,21 @@ export default new Vuex.Store({
   },
 
   mutations: {
-    // 슬라이드 카드
+    // 슬라이드 카드(최신 인기 영화 추천)
     GET_RECENT_POPULAR_MOVIES(state, recentpopularmovies) {
       state.recentpopularmovies = recentpopularmovies
     },
-    // 장르
-    GET_GENRES(state, genres) {
-      state.genres = genres
+
+    // 최신영화 추천
+    GET_RECENT_MOVIES(state, recentmovies) {
+      state.recentmovies = recentmovies
     },
+
+    // 스테디셀러 추천
+    GET_STEADY_SELLERS(state, steadysellers) {
+      state.steadysellers = steadysellers
+    },
+
     // 회원가입 && 로그인
     SAVE_TOKEN(state, name_token) {
       state.token = name_token.token
@@ -49,29 +58,40 @@ export default new Vuex.Store({
   },
 
   actions: {
-    // 슬라이드 카드
+    // 최신 인기 영화
     getRecentPopularMovies(context) {
       axios({
         method: 'get', 
-        url: `${API_URL}/movies/r_popular/`,
+        url: `${API_URL}/movies/recent_popular/`,
       })
         .then(res => {
           context.commit('GET_RECENT_POPULAR_MOVIES', res.data)
         })
         .catch(err => console.log(err))
     },
+    // 최신 영화
+    getRecentMovies(context) {
+      axios({
+        method: 'get', 
+        url: `${API_URL}/movies/recent/`,
+      })
+        .then(res => {
+          context.commit('GET_RECENT_MOVIES', res.data)
+        })
+        .catch(err => console.log(err))
+    },
 
-    // 장르
-    // getGenres(context) {
-    //   axios({
-    //     method: 'get', 
-    //     url: `${API_URL}/genres/r_popular/`,
-    //   })
-    //     .then(res => {
-    //       context.commit('GET_RECENT_POPULAR_MOVIES', res.data)
-    //     })
-    //     .catch(err => console.log(err))
-    // },
+    // 스테디셀러
+    getSteadySellers(context) {
+      axios({
+        method: 'get', 
+        url: `${API_URL}/movies/steady_seller/`,
+      })
+        .then(res => {
+          context.commit('GET_STEADY_SELLERS', res.data)
+        })
+        .catch(err => console.log(err))
+    },
 
     // 회원가입 && 로그인
     signUp(context, payload) {

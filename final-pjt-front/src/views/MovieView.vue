@@ -1,27 +1,38 @@
 <template>
   <div>
-    <SlideCardList/><br>
-    <RecommendMovieList/>
+    <RecentPopularMovieList/><br>
+    <RecentMovieList/>
+    <SteadySellerList/>
   </div>
 </template>
 
 <script>
-import SlideCardList from '@/components/SlideCardList'
-import RecommendMovieList from '@/components/RecommendMovieList'
+import RecentPopularMovieList from '@/components/RecentPopularMovieList'
+import RecentMovieList from '@/components/RecentMovieList'
+import SteadySellerList from '@/components/SteadySellerList'
 
 export default {
   name: 'MovieView',
   components: {
-    SlideCardList,
-    RecommendMovieList,
+    RecentPopularMovieList,
+    RecentMovieList,
+    SteadySellerList
   },
   created() {
-    this.getRecentPopularMovies()
+    this.getRecentPopularMovies(),
+    this.getRecentMovies()
+    this.getSteadySellers()
   },
   methods: {
     getRecentPopularMovies() {
       this.$store.dispatch('getRecentPopularMovies')
     },
+    getRecentMovies() {
+      this.$store.dispatch('getRecentMovies')
+    },
+    getSteadySellers() {
+      this.$store.dispatch('getSteadySellers')
+    }
   }
 }
 </script>

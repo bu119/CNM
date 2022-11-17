@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>최신 인기 영화</h1>
-    <SlideCardListItem
+    <RecentPopularMovieListItem
       v-for="movie in movies"
       :key="movie.id"
       :movie="movie"/>
@@ -9,12 +9,12 @@
 </template>
 
 <script>
-import SlideCardListItem from '@/components/SlideCardListItem'
+import RecentPopularMovieListItem from '@/components/RecentPopularMovieListItem'
 
 export default {
-  name: 'SlideCardList',
+  name: 'RecentPopularMovieList',
   components: {
-    SlideCardListItem,
+    RecentPopularMovieListItem,
   },
   computed: {
     movies() {
