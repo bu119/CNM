@@ -15,7 +15,6 @@
       <nav>
         <router-link :to="{ name: 'MovieView' }">Home</router-link> |
         <router-link :to="{ name: 'CategoryView' }">Category</router-link> |
-        <router-link :to="{ name: 'testView' }">test</router-link> | 
       </nav>
     </nav>
     <router-view/>
