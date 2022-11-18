@@ -8,8 +8,13 @@
         v-for="(genre, idx) in movie.genres"
         :key="idx"
       >
-        {{ genre }}
+        {{ genre['name'] }}
+        <span
+          v-if="movie.genres.length !== (idx + 1)">
+          ,
+        </span>
       </span>
+      <!-- {{ movie.genres[0] }} -->
     </p>
     <p>줄거리: {{ movie?.overview }}</p>
     <p>개봉일: {{ movie?.released_date }}</p>
@@ -34,6 +39,17 @@ export default {
   components: {
     CommunityList,
     CommunityForm,
+  },
+  filters: {
+    lengthCheck(object, idx) {
+      if (object === idx) {
+        console.log(object)
+        return 
+      } else {
+        console.log(object)
+        return ','
+      }
+    }
   },
   data() {
     return {
