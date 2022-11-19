@@ -1,13 +1,14 @@
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
+from rest_framework import status
 
 # permission Decorators
 # from rest_framework.decorators import permission_classes
 # from rest_framework.permissions import IsAuthenticated
 
 from django.shortcuts import get_object_or_404, get_list_or_404
-from .models import Movie
-from .serializers import MovieListSerializer, MovieSerializer
+from .models import Movie, Comment
+from .serializers import MovieListSerializer, MovieSerializer, CommentSerializer
 
 import random
 
@@ -70,3 +71,42 @@ def movie_detail(request, movie_pk):
     if request.method == 'GET':
         serializer = MovieSerializer(movie)
         return Response(serializer.data)
+
+
+# 리뷰
+@api_view(['POST'])
+def create_comment(request,movie_pk):
+    movie= get_object_or_404(Movie, pk=movie_pk)
+    if movie.comments.filter(user=request.user).exists():
+        return Response(status=status.HTTP_400_BAD_REQUEST)
+    else:
+        serializer = CommentSerializer(data = request.data)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save(user=request.user, movie=movie)
+
+            comments = movie.comments.all()
+            serializer = CommentSerializer(comments, many=True)
+            return Response(serializer.data , status=status.HTTP_201_CREATED)
+    
+
+@api_view(['GET', 'DELETE', 'PUT'])
+def comment_detail(request, comment_pk):
+    comment = get_object_or_404(Comment, pk=comment_pk)
+
+    if request.method == 'GET':
+        serializer = CommentSerializer(comment)
+        return Response(serializer.data)
+    
+    elif request.method == 'DELETE':
+        if comment.user == request.user:
+            comment.delete()
+            data = {
+                'data' : f'{comment_pk}번 리뷰가 삭제되었습니다.'
+            }
+            return Response(data, status=status.HTTP_204_NO_CONTENT)
+    
+    elif request.method == 'PUT':
+        serializer = CommentSerializer(comment, request.data)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+            return Response(serializer.data)

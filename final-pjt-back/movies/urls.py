@@ -8,4 +8,7 @@ urlpatterns = [
     path('recent/', views.recent_movie_list),
     path('steady_seller/', views.steady_seller_movie_list),
     path('genre_ver/', views.genre_recommend),
+    # 리뷰
+    path('<int:movie_pk>/comments/', views.create_comment),
+    path('comments/<int:comment_pk>/', views.comment_detail),
 ]
