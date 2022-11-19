@@ -40,17 +40,6 @@ export default {
     CommunityList,
     CommunityForm,
   },
-  filters: {
-    lengthCheck(object, idx) {
-      if (object === idx) {
-        console.log(object)
-        return 
-      } else {
-        console.log(object)
-        return ','
-      }
-    }
-  },
   data() {
     return {
       movie: null,

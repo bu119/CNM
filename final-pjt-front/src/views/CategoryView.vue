@@ -15,6 +15,14 @@ export default {
     GenreRecommendList,
     LanguageRecommendList,
   },
+  created() {
+    this.getGenreRecommend()
+  },
+  methods: {
+    getGenreRecommend() {
+      this.$store.dispatch('getGenreRecommend')
+    },
+  }
 }
 </script>
 

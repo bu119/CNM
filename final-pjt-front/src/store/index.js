@@ -19,6 +19,7 @@ export default new Vuex.Store({
     recentpopularmovies: [],
     recentmovies: [],
     steadysellers: [],
+    genrerecommend: [],
     token: null,
     username: null,
     communitys: [],
@@ -34,6 +35,11 @@ export default new Vuex.Store({
     // 슬라이드 카드(최신 인기 영화 추천)
     GET_RECENT_POPULAR_MOVIES(state, recentpopularmovies) {
       state.recentpopularmovies = recentpopularmovies
+    },
+
+    // 장르별 추천
+    GET_GENRE_RECOMMEND(state, genrerecommend) {
+      state.genrerecommend = genrerecommend
     },
 
     // 최신영화 추천
@@ -90,6 +96,18 @@ export default new Vuex.Store({
   },
 
   actions: {
+    // 장르별 추천
+    getGenreRecommend(context) {
+      axios({
+        method: 'get', 
+        url: `${API_URL}/movies/genre_ver/`,
+      })
+        .then(res => {
+          context.commit('GET_GENRE_RECOMMEND', res.data)
+        })
+        .catch(err => console.log(err))
+    },
+
     // 최신 인기 영화
     getRecentPopularMovies(context) {
       axios({
@@ -101,6 +119,7 @@ export default new Vuex.Store({
         })
         .catch(err => console.log(err))
     },
+
     // 최신 영화
     getRecentMovies(context) {
       axios({

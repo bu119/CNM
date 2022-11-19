@@ -19,7 +19,7 @@ export default {
     SteadySellerList,
   },
   created() {
-    this.getRecentPopularMovies(),
+    this.getRecentPopularMovies()
     this.getRecentMovies()
     this.getSteadySellers()
   },

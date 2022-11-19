@@ -9,6 +9,8 @@ from django.shortcuts import get_object_or_404, get_list_or_404
 from .models import Movie
 from .serializers import MovieListSerializer, MovieSerializer
 
+import random
+
 # 최신 인기영화 추천
 @api_view(['GET'])
 # @permission_classes([IsAuthenticated])
@@ -38,9 +40,27 @@ def steady_seller_movie_list(request):
 @api_view(['GET'])
 def genre_recommend(request):
     if request.method == 'GET':
-        genre_recommend_movies = Movie.objects.all()
-        serializer = MovieListSerializer(genre_recommend_movies, many=True)
-        return Response(serializer.data)
+        movies = Movie.objects.all()
+        serializer = MovieListSerializer(movies, many=True)
+        genre_recommend_movies = {
+            'Action': [],
+            'Animation': [],
+            'Comedy': [],
+            'Romance': [],
+            'Fantasy': [],
+            'Horror': [],
+            'Mystery': [],
+            'SF': []
+        }
+        # 데이터 정제
+        for movie in serializer.data:
+            for genre in movie['genres']:
+                if genre['name'] == 'Science Fiction' and len(genre_recommend_movies['SF']) <= 14:
+                    genre_recommend_movies['SF'].append(movie)
+                if genre['name'] in genre_recommend_movies.keys() and len(genre_recommend_movies[genre['name']]) <= 14:
+                    genre_recommend_movies[genre['name']].append(movie)
+
+        return Response(genre_recommend_movies)
 
 # 상세정보
 @api_view(['GET'])

@@ -37,7 +37,7 @@ const routes = [
     component: ProfileView
   },
   {
-    path: '/:id',
+    path: '/',
     name: 'CategoryView',
     component: CategoryView
   },
