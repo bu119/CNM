@@ -23,6 +23,9 @@
     <h1>Community List</h1>
     <CommunityList/>
     <CommunityForm/>
+    <br>
+    <CommentForm/>
+    {{movie?.comments}}
   </div>
 </template>
 
@@ -31,6 +34,7 @@ import axios from 'axios'
 
 import CommunityList from '@/components/CommunityList'
 import CommunityForm from '@/components/CommunityForm'
+import CommentForm from '@/components/CommentForm'
 
 const API_URL = 'http://127.0.0.1:8000'
 
@@ -39,6 +43,7 @@ export default {
   components: {
     CommunityList,
     CommunityForm,
+    CommentForm,
   },
   data() {
     return {

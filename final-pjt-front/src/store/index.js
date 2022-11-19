@@ -23,6 +23,7 @@ export default new Vuex.Store({
     token: null,
     username: null,
     communitys: [],
+    comments: [],
   },
 
   getters: {
@@ -63,6 +64,14 @@ export default new Vuex.Store({
       state.token = !state.token
       router.push({name: 'LogInView'})
     },
+
+
+    // 리뷰 -----------------
+    CREATE_COMMENT(state, commentsItem) {
+      state.comments = commentsItem
+      router.go(0)
+    },
+
     // 커뮤니티
     CREATE_COMMUNITY(state, communityItem) {
       state.communitys.push(communityItem)
@@ -73,13 +82,6 @@ export default new Vuex.Store({
     },
     UPDATE_COMMUNITY_STATUS(state, communityItem) {
       console.log(communityItem)
-      // communitys 배열에서 선택된 community의 is_completed값만 토글한 후
-      // 업데이트 된 communitys 배열로 되어야 함
-
-      // made by 승태
-      // const index = state.communitys.indexOf(communityItem)
-      // state.communitys[index].isCompleted = !state.communitys[index].isCompleted
-
       state.communitys = state.communitys.map((community) => {
         if (community === communityItem) {
           community.isCompleted = !community.isCompleted
@@ -87,12 +89,6 @@ export default new Vuex.Store({
         return community
       })
     },
-    // LOAD_communityS(state) { 
-    //   const localStoragecommunitys = localStorage.getItem('communitys')
-    //   const parsedcommunitys = JSON.parse(localStoragecommunitys)
-    //   // console.log(parsedcommunitys)
-    //   state.communitys = parsedcommunitys
-    // },
   },
 
   actions: {
@@ -186,10 +182,10 @@ export default new Vuex.Store({
     },
 
     // 커뮤니티
-    createcommunity(context, communityContent) {
+    createCOmmunity(context, community_content) {
       // community 객체 만들기
       const communityItem = {
-        content: communityContent,
+        content: community_content,
         isCompleted: false,
       }
       // console.log(communityItem)
@@ -203,14 +199,7 @@ export default new Vuex.Store({
     updateCommunityStatus(context, communityItem) {
       context.commit('UPDATE_COMMUNITY_STATUS', communityItem)
       // context.dispatch('savecommunitysToLocalStorage')
-    },
-    // savecommunitysToLocalStorage(context) {
-    //   const jsoncommunitys = JSON.stringify(context.state.communitys)
-    //   localStorage.setItem('communitys', jsoncommunitys)
-    // },
-    // loadcommunitys(context) {
-    //   context.commit('LOAD_communityS')
-    // }
+    }
   },
   modules: {
   }
