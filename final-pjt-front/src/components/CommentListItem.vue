@@ -1,7 +1,5 @@
 <template>
   <div>
-    {{ comment }}
-    <br>
     {{ comment.username }} : {{ comment.content }}
     <button @click="deleteComment" class="btn btn-primary" type="button">Delete</button>
     <form>
