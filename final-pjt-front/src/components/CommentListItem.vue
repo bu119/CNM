@@ -3,10 +3,13 @@
     {{ comment.username }} : {{ comment.content }}
     <button @click="deleteComment" class="btn btn-primary" type="button">Delete</button>
     <div v-if="comment.username===this.username">
-      <form>
-        <input @click="checkLogin" type="text" v-model="update_comment_content">
-        <button @click="updateComment" class="btn btn-warning" type="button">수정</button>
-      </form>
+      <button @click="toggleBtn" class="btn btn-warning" >수정하기</button>
+      <div id='update_bnt'>
+        <form>
+          <input @click="checkLogin" type="text" v-model="update_comment_content">
+          <button @click="updateComment" class="btn btn-warning" type="button">수정</button>
+        </form>
+      </div>
     </div>
 
     <!-- Button trigger modal -->
@@ -119,10 +122,26 @@ export default {
       }
       this.update_comment_content = null
     },
+    toggleBtn() {
+      // 토글 할 버튼 선택 (update_bnt)
+      const update_bnt = document.getElementById('update_bnt');
+      
+      // update_bnt 숨기기 (display: none)
+      if(update_bnt.style.display === 'none') {
+        update_bnt.style.display = 'block';
+      }
+      // update_bnt` 보이기 (display: block)
+      else {
+        update_bnt.style.display = 'none';
+      }
+    }
+
   }
 }
 </script>
 
 <style>
-
+#update_bnt {
+  display: none;
+}
 </style>
