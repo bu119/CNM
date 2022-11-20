@@ -1,8 +1,8 @@
 <template>
   <div>
     <form @submit.prevent="createComment">
-      <input type="text" v-model.trim="comment_content">
-      <button>제출</button>
+      <input @click="checkLogin" type="text" v-model.trim="comment_content">
+      <button>작성하기</button>
     </form>
   </div>
 </template>
@@ -18,6 +18,9 @@ export default {
     username() {
       return this.$store.state.username
     },
+    isLogin() {
+      return this.$store.getters.isLogin
+    }
   },  
   data() {
     return {
@@ -25,16 +28,22 @@ export default {
     }
   },
   methods: {
-   createComment() {
+    checkLogin() {
+      if (this.isLogin === false) { 
+        alert('로그인이 필요한 서비스 입니다.')
+        this.$router.push({ name: 'LogInView'})
+      }
+    },
+
+    createComment() {
       const content = this.comment_content
       const movie_id = this.$route.params.id
       const username = this.username
       const score = 0
+      console.log(movie_id)
 
       if (!content) {
-        alert('내용을 입력해주세요')
-        // return
-        // console.log()
+        alert('내용을 입력해주세요.')
       } else {
         axios({
         method: 'post',
@@ -49,9 +58,15 @@ export default {
           Authorization: `Token ${this.$store.state.token}`
         },
         })
-        .then((res) => {
-          console.log(res)
-          this.$store.commit('CREATE_COMMENT', res.data)
+        .then(() => {
+          const payload = {
+            content,
+            movie_id,
+            username,
+            score
+          }
+          // console.log(payload)
+          this.$store.commit('CREATE_COMMENT', payload)
         })
         .catch((err) => {
           console.log(err)

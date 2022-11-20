@@ -68,8 +68,8 @@ export default new Vuex.Store({
 
     // 리뷰 -----------------
     CREATE_COMMENT(state, commentsItem) {
-      state.comments = commentsItem
-      router.go(0)
+      state.comments.push(commentsItem)
+      // router.go(0)
     },
 
     // 커뮤니티
