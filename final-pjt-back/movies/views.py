@@ -74,8 +74,16 @@ def movie_detail(request, movie_pk):
 
 
 # 리뷰
+@api_view(['GET'])
+def comment_list(request):
+    if request.method == 'GET':
+        # comments = Comment.objects.all()
+        comments = get_list_or_404(Comment)
+        serializer = CommentSerializer(comments, many=True)
+        return Response(serializer.data)
+
 @api_view(['POST'])
-def create_comment(request,movie_pk):
+def comment_create(request,movie_pk):
     movie= get_object_or_404(Movie, pk=movie_pk)
     if movie.comments.filter(user=request.user).exists():
         return Response(status=status.HTTP_400_BAD_REQUEST)

@@ -22,14 +22,20 @@ export default new Vuex.Store({
     genrerecommend: [],
     token: null,
     username: null,
-    communitys: [],
     comments: [],
+    movie_detail: [],
   },
 
   getters: {
     isLogin(state) {
       return state.token ? true : false
-    }
+    },
+    // movie_detail(state) {
+    //   return state.movie_detail
+    // },
+    // comments(state) {
+    //   return state.comments
+    // }
   },
 
   mutations: {
@@ -67,28 +73,34 @@ export default new Vuex.Store({
 
 
     // 리뷰 -----------------
-    CREATE_COMMENT(state, commentsItem) {
-      state.comments.push(commentsItem)
-      // router.go(0)
+    CREATE_COMMENT() {
+      // state.comments.push(commentsItem)
+      router.go(0)
     },
 
-    // 커뮤니티
-    CREATE_COMMUNITY(state, communityItem) {
-      state.communitys.push(communityItem)
+    GET_MOVIE_DETAIL(state, movie) {
+      state.movie_detail = movie
     },
-    DELETE_COMMUNITY(state, communityItem) {
-      const index = state.communitys.indexOf(communityItem)
-      state.communitys.splice(index, 1)
+
+    GET_COMMENTS(state, comments) {
+      state.comments = comments
     },
-    UPDATE_COMMUNITY_STATUS(state, communityItem) {
-      console.log(communityItem)
-      state.communitys = state.communitys.map((community) => {
-        if (community === communityItem) {
-          community.isCompleted = !community.isCompleted
-        } 
-        return community
-      })
+
+    DELETE_COMMENT(state, comment) {
+      const index = state.movie_detail.comments.indexOf(comment)
+      state.movie_detail.comments.splice(index, 1)
     },
+
+    // UPDATE_COMMENT(state, commentItem) {
+    //   console.log(commentItem)
+      
+    //   state.movie_detail.comments = state.movie_detail.comments.map((comment) => {
+    //     if (comment.id === commentItem.id) {
+    //       comment = commentItem
+    //     } 
+    //     return comment
+    //   })
+    // },
   },
 
   actions: {
@@ -181,25 +193,69 @@ export default new Vuex.Store({
         })
     },
 
-    // 커뮤니티
-    createCOmmunity(context, community_content) {
-      // community 객체 만들기
-      const communityItem = {
-        content: community_content,
-        isCompleted: false,
-      }
-      // console.log(communityItem)
-      context.commit('CREATE_COMMUNITY', communityItem)
-      // context.dispatch('savecommunitysToLocalStorage')
+    // 리뷰
+    getComments(context) {
+      axios({
+        method: 'get',
+        url: `${API_URL}/movies/comments/`,
+        headers: {
+          Authorization: `Token ${context.state.token}`
+        }
+      })
+        .then((res) => {
+          context.commit('GET_COMMENTS', res.data)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
     },
-    deleteCommunity(context, communityItem) {
-      context.commit('DELETE_COMMUNITY', communityItem)
-      // context.dispatch('savecommunitysToLocalStorage')
+    deleteComment(context, comment) {
+      axios({
+        method: 'delete',
+        url: `${API_URL}/movies/comments/${comment.id}`,
+        headers: {
+          Authorization: `Token ${context.state.token}`
+        }
+      })
+        .then(()=>{
+          context.commit('DELETE_COMMENT')
+          alert('리뷰가 삭제되었습니다.')
+        })        
+        .catch((err) => {
+          console.error(err);
+          alert('작성자가 아닙니다.')
+        });
+
     },
-    updateCommunityStatus(context, communityItem) {
-      context.commit('UPDATE_COMMUNITY_STATUS', communityItem)
-      // context.dispatch('savecommunitysToLocalStorage')
-    }
+
+    updateComment(context, payload) {
+      // const payload = {
+      //   id: commentItem.commentId,
+      //   content: commentItem.content,
+      //   score: commentItem.score,
+      // }
+      axios({
+        method: "put",
+        url: `${API_URL}/movies/comments/${payload.commentId}/`,
+        data: {
+          content: payload.content,
+          score: payload.score,
+        },
+        headers: {
+          Authorization: `Token ${context.state.token}`
+        },
+      })
+        .then((res) => {
+          console.log(res)
+          context.commit('UPDATE_COMMENT', res.data)
+          this.$router.push({ name: 'DetailView'})
+        })
+        .catch((err) => {
+          alert('작성자가 아닙니다.')
+          console.error(err);
+        });
+    },
+
   },
   modules: {
   }

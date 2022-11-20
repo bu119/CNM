@@ -9,6 +9,7 @@ urlpatterns = [
     path('steady_seller/', views.steady_seller_movie_list),
     path('genre_ver/', views.genre_recommend),
     # 리뷰
-    path('<int:movie_pk>/comments/', views.create_comment),
+    path('comments/', views.comment_list),
+    path('<int:movie_pk>/comments/', views.comment_create),
     path('comments/<int:comment_pk>/', views.comment_detail),
 ]

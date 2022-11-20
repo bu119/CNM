@@ -37,40 +37,29 @@ export default {
 
     createComment() {
       const content = this.comment_content
-      const movie_id = this.$route.params.id
-      const username = this.username
-      const score = 0
-      console.log(movie_id)
-
+      // const score = 0
+ 
       if (!content) {
         alert('내용을 입력해주세요.')
       } else {
         axios({
-        method: 'post',
-        url: `${API_URL}/movies/${this.$route.params.id}/comments/`,
-        data: {
-          content,
-          movie_id,
-          username,
-          score
-        },
-        headers: {
-          Authorization: `Token ${this.$store.state.token}`
-        },
-        })
-        .then(() => {
-          const payload = {
+          method: 'post',
+          url: `${API_URL}/movies/${this.$route.params.id}/comments/`,
+          data: {
             content,
-            movie_id,
-            username,
-            score
-          }
-          // console.log(payload)
-          this.$store.commit('CREATE_COMMENT', payload)
+            // score
+          },
+          headers: {
+            Authorization: `Token ${this.$store.state.token}`
+          },
         })
-        .catch((err) => {
-          console.log(err)
-        })
+          .then(() => {
+            this.$store.dispatch('getComments')
+            this.$store.commit('CREATE_COMMENT')
+          })
+          .catch((err) => {
+            console.log(err)
+          })
       }
     this.commentContent = null
     }

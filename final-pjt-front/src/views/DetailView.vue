@@ -21,28 +21,25 @@
     <p>평점: {{ movie?.vote_avg }}</p>
 
     <h1>Comment List</h1>
-    <!-- <CommunityList/>
-    <CommunityForm/> -->
     <CommentForm/>
-    {{movie?.comments}}
+    <CommentList/>
+    <!-- {{movie?.comments}} -->
   </div>
 </template>
 
 <script>
 import axios from 'axios'
 
-// import CommunityList from '@/components/CommunityList'
-// import CommunityForm from '@/components/CommunityForm'
 import CommentForm from '@/components/CommentForm'
+import CommentList from '@/components/CommentList'
 
 const API_URL = 'http://127.0.0.1:8000'
 
 export default {
   name: 'DetailView',
   components: {
-    // CommunityList,
-    // CommunityForm,
     CommentForm,
+    CommentList,
   },
   data() {
     return {
@@ -52,23 +49,28 @@ export default {
   },
   created() {
     this.getMovieDetail()
-  },
+    this.getComments()
+    },
   methods: {
     getMovieDetail() {
       axios({
         method: 'get',
-        url: `${API_URL}/movies/${this.$route.params.id}/`
+        url: `${API_URL}/movies/${this.$route.params.id}/`,
+        headers: {
+          Authorization: `Token ${this.$store.state.token}`
+        }
       })
         .then((res) => {
           this.movie = res.data
           this.poster_path = `https://image.tmdb.org/t/p/w600_and_h900_bestv2${res.data.poster_path}`
+          this.$store.commit('GET_MOVIE_DETAIL', res.data)
           })
         .catch(err => console.log(err))
     },
 
-    // Community
-    loadCommunitys() {
-      this.$store.dispatch('loadCommunitys')
+    // comments
+    getComments() {
+      this.$store.dispatch('getComments')
     }
 
   },
