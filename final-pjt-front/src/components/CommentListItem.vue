@@ -2,10 +2,13 @@
   <div>
     {{ comment.username }} : {{ comment.content }}
     <button @click="deleteComment" class="btn btn-primary" type="button">Delete</button>
-    <form>
-      <input @click="checkLogin" type="text" v-model="update_comment_content">
-      <button @click="updateComment" class="btn btn-warning" type="button">수정</button>
-    </form>
+    <div v-if="comment.username===this.username">
+      <form>
+        <input @click="checkLogin" type="text" v-model="update_comment_content">
+        <button @click="updateComment" class="btn btn-warning" type="button">수정</button>
+      </form>
+    </div>
+
     <!-- Button trigger modal -->
     <!-- <button @click="updateComment">Update</button> -->
 
@@ -85,9 +88,10 @@ export default {
         commentId,
         score
       }
-      if (this.comment.username !== this.username) {
-        alert('작성자가 아닙니다.')
-      } else if (!content) {
+      // if (this.comment.username !== this.username) {
+      //   alert('작성자가 아닙니다.')
+      // } else 
+      if (!content) {
         alert('내용을 입력해주세요.')
       } else {
         console.log(this.comment.id)

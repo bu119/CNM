@@ -91,8 +91,9 @@ export default new Vuex.Store({
       state.movie_detail.comments.splice(index, 1)
     },
 
-    // UPDATE_COMMENT(state, commentItem) {
-    //   console.log(commentItem)
+    UPDATE_COMMENT(state, commentItem) {
+      console.log(commentItem)
+      router.go(0)
       
     //   state.movie_detail.comments = state.movie_detail.comments.map((comment) => {
     //     if (comment.id === commentItem.id) {
@@ -100,7 +101,7 @@ export default new Vuex.Store({
     //     } 
     //     return comment
     //   })
-    // },
+    },
   },
 
   actions: {
@@ -248,7 +249,8 @@ export default new Vuex.Store({
         .then((res) => {
           console.log(res)
           context.commit('UPDATE_COMMENT', res.data)
-          this.$router.push({ name: 'DetailView'})
+          // this.$router.push({ name: 'DetailView'})
+          alert('리뷰가 수정되었습니다.')
         })
         .catch((err) => {
           alert('작성자가 아닙니다.')
