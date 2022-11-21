@@ -1,52 +1,23 @@
 <template>
   <div>
-    {{ comment.username }} : {{ comment.content }}
+    {{ comment.username }} : {{ comment.content }} : {{ comment.score}}
     <button @click="deleteComment" class="btn btn-primary" type="button">Delete</button>
     <div v-if="comment.username===this.username">
       <button @click="toggleBtn" class="btn btn-warning" >수정하기</button>
       <div id='update_bnt'>
+        <h2>평점</h2>
+        <star-rating :increment="0.5" v-model="update_comment_score"></star-rating>
         <form>
           <input @click="checkLogin" type="text" v-model="update_comment_content">
           <button @click="updateComment" class="btn btn-warning" type="button">수정</button>
         </form>
       </div>
     </div>
-
-    <!-- Button trigger modal -->
-    <!-- <button @click="updateComment">Update</button> -->
-
-    <!-- 모달 버튼  -->
-    <!-- <button @click="checkLogin" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-      수정하기
-    </button> -->
-    <!-- 모달 창 -->
-    <!-- <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="staticBackdropLabel">리뷰를 수정하세요.</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
- 
-          <div class="modal-body">
-            <form>
-              <input type="text" v-model="update_comment_content">
-            </form>
-          </div>
-
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-            <button @click="updateComment" type="button" class="btn btn-primary">수정</button>
-          </div>
-        </div>
-      </div>
-    </div> -->
-
   </div>
 </template>
 
 <script>
+import StarRating from 'vue-star-rating'
 // import axios from 'axios'
 
 // const API_URL = 'http://127.0.0.1:8000'
@@ -55,6 +26,7 @@ export default {
   data() {
     return {
       update_comment_content: null,
+      update_comment_score: 0,
     }
   },
   computed: {
@@ -64,6 +36,9 @@ export default {
     isLogin() {
       return this.$store.getters.isLogin
     },
+  },
+  components: {
+    StarRating
   },
   props: {
     comment: Object,
@@ -142,6 +117,6 @@ export default {
 
 <style>
 #update_bnt {
-  display: none;
+  display: block;
 }
 </style>
