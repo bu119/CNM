@@ -17,10 +17,14 @@ export default {
   },
   created() {
     this.getGenreRecommend()
+    this.getLanguageRecommend()
   },
   methods: {
     getGenreRecommend() {
       this.$store.dispatch('getGenreRecommend')
+    },
+    getLanguageRecommend() {
+      this.$store.dispatch('getLanguageRecommend')
     },
   }
 }

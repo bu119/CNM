@@ -20,6 +20,7 @@ export default new Vuex.Store({
     recentmovies: [],
     steadysellers: [],
     genrerecommend: [],
+    languagerecommend: [],
     token: null,
     username: null,
     comments: [],
@@ -47,6 +48,11 @@ export default new Vuex.Store({
     // 장르별 추천
     GET_GENRE_RECOMMEND(state, genrerecommend) {
       state.genrerecommend = genrerecommend
+    },
+
+    // 언어별 추천
+    GET_LANGUAGE_RECOMMEND(state, languagerecommend) {
+      state.languagerecommend = languagerecommend
     },
 
     // 최신영화 추천
@@ -116,6 +122,18 @@ export default new Vuex.Store({
         })
         .catch(err => console.log(err))
     },
+
+        // 언어별 추천
+        getLanguageRecommend(context) {
+          axios({
+            method: 'get', 
+            url: `${API_URL}/movies/language_ver/`,
+          })
+            .then(res => {
+              context.commit('GET_LANGUAGE_RECOMMEND', res.data)
+            })
+            .catch(err => console.log(err))
+        },
 
     // 최신 인기 영화
     getRecentPopularMovies(context) {

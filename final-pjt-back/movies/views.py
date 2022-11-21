@@ -63,6 +63,27 @@ def genre_recommend(request):
 
         return Response(genre_recommend_movies)
 
+# 언어별 추천
+@api_view(['GET'])
+def language_recommend(request):
+    if request.method == 'GET':
+        movies = Movie.objects.all().order_by('-vote_count')
+        serializer = MovieListSerializer(movies, many=True)
+        language_recommend_movies = {
+            'ko': [], #korean
+            'zh': [], #chinese
+            'ja': [], #japanese
+            'fr': [], #french
+            'es': [], #spanish
+            'en': [], #english
+        }
+        # 데이터 정제
+        for movie in serializer.data:
+            if movie['original_language'] in language_recommend_movies.keys() and len(language_recommend_movies[movie['original_language']]) <= 14:
+                language_recommend_movies[movie['original_language']].append(movie)
+
+        return Response(language_recommend_movies)
+
 # 상세정보
 @api_view(['GET'])
 def movie_detail(request, movie_pk):
