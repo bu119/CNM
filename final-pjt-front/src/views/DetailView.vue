@@ -49,7 +49,7 @@ export default {
   },
   created() {
     this.getMovieDetail()
-    this.getComments()
+    // this.getComments()
     },
   methods: {
     getMovieDetail() {
@@ -63,15 +63,27 @@ export default {
         .then((res) => {
           this.movie = res.data
           this.poster_path = `https://image.tmdb.org/t/p/w600_and_h900_bestv2${res.data.poster_path}`
-          this.$store.commit('GET_MOVIE_DETAIL', res.data)
+          // this.$store.commit('GET_MOVIE_DETAIL', res.data)
+
+          //  일단 무비 디테일 페이지 들고오는걸루
+          const movieId = this.$route.params.id
+          this.$store.dispatch('getMovieDetail', movieId)
+
+          // //  무비의 코멘트만 가져오기 (질문)--------------------------------------------------------
+          // console.log('디테일 겟코맨츠')
+          // const movieId = this.$route.params.id
+          // this.$store.dispatch('getComments', movieId)
+          
           })
         .catch(err => console.log(err))
     },
 
     // comments
-    getComments() {
-      this.$store.dispatch('getComments')
-    }
+    // getComments() {
+    //   console.log('디테일 겟코맨츠')
+    //   const movieId = this.$route.params.id
+    //   this.$store.dispatch('getComments', movieId)
+    // }
 
   },
 }

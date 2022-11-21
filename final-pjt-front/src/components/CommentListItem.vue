@@ -8,7 +8,7 @@
         <h2>평점</h2>
         <star-rating :increment="0.5" v-model="update_comment_score"></star-rating>
         <form>
-          <input @click="checkLogin" type="text" v-model="update_comment_content">
+          <input @click="checkLogin" type="text" v-model="update_comment_content" placeholder="리뷰를 수정해주세요.">
           <button @click="updateComment" class="btn btn-warning" type="button">수정</button>
         </form>
       </div>
@@ -60,11 +60,11 @@ export default {
       const content = this.update_comment_content
       // console./og(content)
       const commentId = this.comment.id
-      const score = 4
+      const score = this.update_comment_score
       const payload = {
         content,
         commentId,
-        score
+        score,
       }
       // if (this.comment.username !== this.username) {
       //   alert('작성자가 아닙니다.')

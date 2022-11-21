@@ -18,8 +18,10 @@ export default {
   },
   computed: {
     comments() {
-      // return this.$store.getters.movie_detail.comments
-      return this.$store.state.movie_detail.comments
+      // return this.$store.getters.comments
+
+      return this.$store.getters.movie_detail.comments
+      // return this.$store.state.movie_detail.comments
     }
   },
 }
