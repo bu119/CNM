@@ -1,6 +1,7 @@
 <template>
   <div>
     <h3>HI, {{ username }}</h3>
+    <router-link :to="{ name: 'EditProfile' }">EditProfile</router-link>
   </div>
 </template>
 

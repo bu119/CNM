@@ -181,6 +181,7 @@ export default new Vuex.Store({
           email: payload.email,
           password1: payload.password1,
           password2: payload.password2,
+          interested_genre: payload.interested_genre,
         }
       })
         .then((res) => {

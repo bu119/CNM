@@ -6,6 +6,7 @@ import MovieView from '@/views/MovieView'
 import DetailView from '@/views/DetailView'
 import ProfileView from '@/views/ProfileView'
 import CategoryView from '@/views/CategoryView'
+import EditProfileView from '@/views/EditProfileView'
 
 Vue.use(VueRouter)
 
@@ -35,6 +36,11 @@ const routes = [
     path: '/:username',
     name: 'ProfileView',
     component: ProfileView
+  },
+  {
+    path: '/:username',
+    name: 'EditProfileView',
+    component: EditProfileView
   },
   {
     path: '/',
