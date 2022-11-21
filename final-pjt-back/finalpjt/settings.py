@@ -155,13 +155,13 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'ko-KR'
 
-TIME_ZONE = 'Asia/Seoul'
+TIME_ZONE = 'Asia/Seoul'   # 한국 시간 적용 
 
 USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = False
+USE_TZ = False    # False 로 설정해야 DB에 변경 된 TIME_ZONE 이 반영 됨
 
 
 # Static files (CSS, JavaScript, Images)

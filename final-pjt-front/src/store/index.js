@@ -79,10 +79,10 @@ export default new Vuex.Store({
 
 
     // 리뷰 -----------------
-    CREATE_COMMENT() {
-      // state.comments.push(commentsItem)
-      router.go(0)
-    },
+    // CREATE_COMMENT() {
+    //   // state.comments.push(commentsItem)
+    //   router.go(0)
+    // },
 
     GET_MOVIE_DETAIL(state, movie) {
       state.movie_detail = movie
@@ -213,7 +213,7 @@ export default new Vuex.Store({
         })
     },
 
-    // 리뷰
+    // 리뷰 -------------------
     getComments(context) {
       axios({
         method: 'get',

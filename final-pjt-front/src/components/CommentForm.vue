@@ -61,11 +61,12 @@ export default {
           },
         })
           .then(() => {
-            this.$store.dispatch('getComments')
-            this.$store.commit('CREATE_COMMENT')
+            // this.$store.dispatch('getComments')
+            // this.$store.commit('CREATE_COMMENT')
           })
           .catch((err) => {
             console.log(err)
+            alert('이미 작성된 리뷰가 존재합니다.')
           })
       }
     this.commentContent = null

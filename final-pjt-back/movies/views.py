@@ -103,19 +103,36 @@ def comment_list(request):
         serializer = CommentSerializer(comments, many=True)
         return Response(serializer.data)
 
-@api_view(['POST'])
-def comment_create(request,movie_pk):
-    movie= get_object_or_404(Movie, pk=movie_pk)
-    if movie.comments.filter(user=request.user).exists():
+@api_view(['GET', 'POST'])
+def comment_create(request, movie_pk):
+    user = request.user
+    movie = get_object_or_404(Movie, pk=movie_pk)
+    if movie.comments.filter(user=user).exists():
         return Response(status=status.HTTP_400_BAD_REQUEST)
     else:
-        serializer = CommentSerializer(data = request.data)
-        if serializer.is_valid(raise_exception=True):
-            serializer.save(user=request.user, movie=movie)
-
+        if request.method == "GET":
             comments = movie.comments.all()
             serializer = CommentSerializer(comments, many=True)
-            return Response(serializer.data , status=status.HTTP_201_CREATED)
+            return Response(serializer.data)
+        elif request.method == "POST":
+            serializer = CommentSerializer(data = request.data)
+            if serializer.is_valid(raise_exception=True):
+                serializer.save(movie=movie, user=user)
+                return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+# @api_view(['POST'])
+# def comment_create(request,movie_pk):
+#     movie= get_object_or_404(Movie, pk=movie_pk)
+#     if movie.comments.filter(user=request.user).exists():
+#         return Response(status=status.HTTP_400_BAD_REQUEST)
+#     else:
+#         serializer = CommentSerializer(data = request.data)
+#         if serializer.is_valid(raise_exception=True):
+#             serializer.save(user=request.user, movie=movie)
+
+#             comments = movie.comments.all()
+#             serializer = CommentSerializer(comments, many=True)
+#             return Response(serializer.data , status=status.HTTP_201_CREATED)
     
 
 @api_view(['GET', 'DELETE', 'PUT'])
