@@ -32,10 +32,10 @@
                   <router-link :to="{ name: 'LogInView' }">LogInPage</router-link> |
                   <router-link :to="{ name: 'SignUpView' }">SignUpPage</router-link>
                 </div>
-                <div v-else>
+                <div v-else class="d-grid gap-2 d-md-flex justify-content-md-end">
                   <!-- <span @click="Logout()">로그아웃</span> -->
                   <router-link :to="{ name: 'ProfileView', params: {username:username} }">{{username}}</router-link>님
-                  <button @click="logoutUser">Logout</button>
+                  <button @click="logoutUser" class="btn" style="background-color: black; color: white;">Logout</button>
                 </div>
               </div>
             </div>
@@ -86,7 +86,8 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: white;
+  background-color: black;
 }
 
 nav {
