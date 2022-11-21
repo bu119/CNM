@@ -1,23 +1,51 @@
 <template>
   <div id="app">
-    <nav>      
-      <!-- 로그인 전 -->
-      <nav v-if="isUserLogin">
-        <router-link :to="{ name: 'LogInView' }">LogInPage</router-link> |
-        <router-link :to="{ name: 'SignUpView' }">SignUpPage</router-link>
-      </nav>
-      <!-- 로그인 후 -->
-      <nav v-else>
-        <router-link :to="{ name: 'ProfileView', params: {username:username} }">Profile</router-link>
-        <span>Hello, {{ username }}</span>
-        <button @click="logoutUser">Logout</button>
-      </nav>
-      <nav>
-        <router-link :to="{ name: 'MovieView' }">Home</router-link> |
-        <router-link :to="{ name: 'CategoryView' }">Category</router-link> |
-      </nav>
-    </nav>
-    <router-view/>
+    <nav>
+      <header>
+        <nav class="navbar navbar-expand-sm navbar-light bg-light">
+          <div class="container-fluid">
+            <router-link to="/" class="navbar-brand">
+              <img alt="Vue logo" src="./assets/logo.png" style="height:25px;" />
+            </router-link>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarContent">
+              <ul class="navbar-nav me-auto">
+                <!-- Home 
+                <li class="nav-item">
+                  <router-link :to="{ name: 'MovieView' }">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                  </router-link>
+                </li> -->
+                <!-- Category -->
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Category</a>
+                  <ul class="dropdown-menu">
+                    <li><router-link :to="{ name: 'CategoryGenreView' }"><a class="dropdown-item" href="#">Genre</a></router-link></li>
+                    <li><router-link :to="{ name: 'CategoryLanguageView' }"><a class="dropdown-item" href="#">Language</a></router-link></li>
+                  </ul>
+                </li>
+              </ul>
+              <div class="headmenu">
+                <div v-if="isUserLogin">
+                  <router-link :to="{ name: 'LogInView' }">LogInPage</router-link> |
+                  <router-link :to="{ name: 'SignUpView' }">SignUpPage</router-link>
+                </div>
+                <div v-else>
+                  <!-- <span @click="Logout()">로그아웃</span> -->
+                  <router-link :to="{ name: 'ProfileView', params: {username:username} }">{{username}}</router-link>님
+                  <button @click="logoutUser">Logout</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </header>
+      <main>
+        <router-view/>
+      </main>  
+    </nav>    
   </div>
 </template>
 
