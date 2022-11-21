@@ -4,7 +4,7 @@
       <header>
         <nav class="navbar navbar-expand-sm navbar-light bg-light">
           <div class="container-fluid">
-            <router-link to="/" class="navbar-brand">
+            <router-link :to="{ name: 'MovieView' }" class="navbar-brand">
               <img alt="Vue logo" src="./assets/logo.png" style="height:25px;" />
             </router-link>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
