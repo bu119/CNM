@@ -1,11 +1,59 @@
 <template>
   <div>
-    {{ comment.username }} : {{ comment.content }} : {{ comment.score}}
+    {{ comment.username }}
+    <br>
+
+    {{ comment.content }}
+    <!-- : {{ comment.score }} -->
+    <span id="start">
+      <span v-if="comment.score === 5">
+        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+      </span>
+
+      <span v-else-if="comment.score === 4.5">
+        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i>
+      </span>
+
+      <span v-else-if="comment.score === 4">
+        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star"></i>
+      </span>
+
+      <span v-else-if="comment.score === 3.5">
+        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i><i class="bi bi-star"></i>
+      </span>
+
+      <span v-else-if="comment.score === 3">
+        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star"></i><i class="bi bi-star"></i>
+      </span>
+
+      <span v-else-if="comment.score === 2.5">
+        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i><i class="bi bi-star"></i><i class="bi bi-star"></i>
+      </span>
+
+      <span v-else-if="comment.score === 2">
+        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i>
+      </span>
+
+      <span v-else-if="comment.score === 1.5">
+        <i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i>
+      </span>
+
+      <span v-else-if="comment.score === 1">
+        <i class="bi bi-star-fill"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i>
+      </span>
+
+      <span v-else-if="comment.score === 0.5">
+        <i class="bi bi-star-half"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i>
+      </span>
+
+      <span v-else>
+        <i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i>
+      </span>
+    </span>
     <button @click="deleteComment" class="btn btn-primary" type="button">Delete</button>
     <div v-if="comment.username===this.username">
       <button @click="toggleBtn" class="btn btn-warning" >수정하기</button>
       <div id='update_bnt'>
-        <h2>평점</h2>
         <star-rating :increment="0.5" v-model="update_comment_score"></star-rating>
         <form>
           <input @click="checkLogin" type="text" v-model="update_comment_content" placeholder="리뷰를 수정해주세요.">
@@ -119,4 +167,8 @@ export default {
 #update_bnt {
   display: block;
 }
+
+#start {
+    color: rgb(253, 215, 0);
+  }
 </style>

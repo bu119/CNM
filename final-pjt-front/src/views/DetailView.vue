@@ -20,6 +20,13 @@
     <p>개봉일: {{ movie?.released_date }}</p>
     <p>평점: {{ movie?.vote_avg }}</p>
 
+    <!-- 유투브 비디오 -->
+    <div v-if="YouTubeUrl">
+      <iframe width="560" height="315" :src='YouTubeUrl' title="YouTube video player" 
+        frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen
+      ></iframe>
+    </div>
+
     <!-- SNS 공유 버튼 -->
     <button @click="btnShareTw" type="button" id="twitter" class="btn_comm"><img src="./images/icon-twitter.png" alt=""></button>
     <button @click="btnShareFb" type="button" id="facebook" class="btn_comm"><img src="./images/icon-facebook.png" alt=""></button>
@@ -49,10 +56,12 @@ export default {
     return {
       movie: null,
       poster_path: null,
+      YouTubeUrl: null,
     }
   },
   created() {
     this.getMovieDetail()
+    this.getYouTubeAPI()
     // this.getComments()
     },
   methods: {
@@ -82,6 +91,24 @@ export default {
         .catch(err => console.log(err))
     },
 
+    //  유투브 영상 가져오기
+    getYouTubeAPI() {
+      axios({
+        method: 'get',
+        url: `https://api.themoviedb.org/3/movie/${this.$route.params.id}/videos?api_key=f954b5a3cfb8f0d9431c8d55eff3873c&language=ko-KR`,
+      })
+        .then((res) => {
+          // console.log(res)
+          const Video = res.data.results.find((video) => {
+            if (video.type === 'Trailer') {
+              return video
+            }
+          })
+          // console.log(Video.key)
+          this.YouTubeUrl = `https://www.youtube.com/embed/${Video.key}`
+        })
+    },
+    
     // // comments
     // getComments() {
     //   console.log('디테일 겟코맨츠')
