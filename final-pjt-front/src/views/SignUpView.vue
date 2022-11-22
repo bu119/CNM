@@ -10,7 +10,7 @@
       <h2>Interested Genre</h2>
       <form>1순위: 
         <select v-model="interested_genre1">
-          <option value="none">=== 선택 ===</option>
+          <option selected>=== 선택 ===</option>
           <option value="Action">Action</option>
           <option value="Animation">Animation</option>
           <option value="Comedy">Comedy</option>
@@ -27,7 +27,7 @@
       </form>
       <form>2순위: 
         <select v-model="interested_genre2">
-          <option value="none">=== 선택 ===</option>
+          <option selected>=== 선택 ===</option>
           <option value="Action">Action</option>
           <option value="Animation">Animation</option>
           <option value="Comedy">Comedy</option>
@@ -44,7 +44,7 @@
       </form>
       <form>3순위: 
         <select v-model="interested_genre3">
-          <option value="none">=== 선택 ===</option>
+          <option selected>=== 선택 ===</option>
           <option value="Action">Action</option>
           <option value="Animation">Animation</option>
           <option value="Comedy">Comedy</option>
@@ -107,3 +107,7 @@ export default {
   }
 }
 </script>
+
+<style>
+
+</style>
