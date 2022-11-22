@@ -273,6 +273,11 @@ export default new Vuex.Store({
           }
           context.commit('SAVE_TOKEN', name_token)
           context.commit('SAVE_INTERESTED_GENRE', interested_genres)
+          alert('CNM에 가입해주셔서 감사합니다.')
+        })
+        .catch((err) => {
+          console.log(err)
+          alert('개인정보를 확인해주세요.')
         })
     },
   
@@ -292,6 +297,11 @@ export default new Vuex.Store({
             token: res.data.key
           }
           context.commit('SAVE_TOKEN', name_token)
+          alert('CNM에 오신 것을 환영합니다.')
+        })
+        .catch((err) => {
+          console.log(err)
+          alert('다시 입력해주세요.')
         })
     },
 

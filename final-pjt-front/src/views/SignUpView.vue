@@ -2,9 +2,20 @@
   <div>
     <h1>Sign Up Page</h1>
     <form @submit.prevent="signUp">
-      <input type="text" id="username" v-model="username" placeholder="user-name"><br>
-      <input type="text" id="email" v-model="email" placeholder="e-mail"><br>    
+      <input type="text" id="username" v-model="username" placeholder="ID"><br>
+      <input type="email" id="email" v-model="email" placeholder="ssafy@example.com"><br>    
+      <p class="validation-text" v-if="!isEmailValid && email">
+        <!-- 이메일 형식 및 입력란 공백 확인 -->
+        <span class="warning" >
+          이메일 주소를 정확히 입력해주세요.
+        </span>
+      </p>
+
       <input type="password" id="password1" v-model="password1" placeholder="password"><br>
+      <!-- 비밀번호 형식 및 입력란 공백 확인 -->
+      <p class="warning" v-if="!isPasswordValid && password1">
+        영문, 숫자, 특수문자를 조합하여 8자 이상 입력해주세요.
+      </p>
       <input type="password" id="password2" v-model="password2" placeholder="password confirmation"><br>
       <br>
       <h2>Interested Genre</h2>
@@ -65,6 +76,9 @@
 </template>
 
 <script>
+import { validateEmail } from '@/utils/validation'
+import { validatePassword } from '@/utils/validation'
+
 export default {
   name: 'SignUpView',
   data() {
@@ -76,7 +90,17 @@ export default {
       interested_genre1: null,
       interested_genre2: null,
       interested_genre3: null,
+      logMessage: '',
     }
+  },
+  computed: {
+    isEmailValid() {
+      return validateEmail(this.email) 
+    },
+    isPasswordValid() {
+      return validatePassword(this.password1) 
+    },
+    
   },
   methods: {
     signUp() {
