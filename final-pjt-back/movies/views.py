@@ -107,14 +107,16 @@ def comment_list(request):
 def comment_create(request, movie_pk):
     user = request.user
     movie = get_object_or_404(Movie, pk=movie_pk)
-    if movie.comments.filter(user=user).exists():
-        return Response(status=status.HTTP_400_BAD_REQUEST)
-    else:
-        if request.method == "GET":
-            comments = movie.comments.all()
-            serializer = CommentSerializer(comments, many=True)
-            return Response(serializer.data)
-        elif request.method == "POST":
+    # print(movie.comments.filter(user=user).exists())
+    if request.method == "GET":
+        comments = movie.comments.all()
+        serializer = CommentSerializer(comments, many=True)
+        print(serializer)
+        return Response(serializer.data)
+    elif request.method == "POST":
+        if movie.comments.filter(user=user).exists():
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+        else:
             serializer = CommentSerializer(data = request.data)
             if serializer.is_valid(raise_exception=True):
                 serializer.save(movie=movie, user=user)

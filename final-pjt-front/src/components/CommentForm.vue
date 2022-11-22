@@ -60,15 +60,15 @@ export default {
             Authorization: `Token ${this.$store.state.token}`
           },
         })
-          .then((res) => {
+          .then(() => {
             // this.$store.commit('CREATE_COMMENT')
             // console.log('폼에 코멘트 잘들어옴')
             // console.log(this.$route.params.id)
-            console.log(res)
+            // console.log(res)
             const movieId = this.$route.params.id
-            this.$store.dispatch('getMovieDetail', movieId)
+            // this.$store.dispatch('getMovieDetail', movieId)
             // // 무비의 코멘트만 가져오기 (질문)--------------------------------------------------------
-            // this.$store.dispatch('getComments', this.$route.params.id)
+            this.$store.dispatch('getComments', movieId)
             // // 주석 해제 -----------------------------------------------------------------------------
           })
           .catch((err) => {
@@ -78,14 +78,6 @@ export default {
         this.comment_content = null
       }
     },    
-    
-    // getComments() {
-    //   console.log('코멘츠폼 겟코멘츠')
-    //   const movieId = this.$route.params.id
-    //   console.log(movieId)
-    //   this.$store.dispatch('getComments', movieId)
-    // }
-    
   }
 }
 </script>

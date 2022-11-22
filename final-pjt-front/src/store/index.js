@@ -23,8 +23,8 @@ export default new Vuex.Store({
     languagerecommend: [],
     token: null,
     username: null,
-    // comments: [],
-    movie_detail: [],
+    comments: [],
+    // movie_detail: [],
     // all_comments: [],
     user_comments: []
   },
@@ -35,13 +35,13 @@ export default new Vuex.Store({
     },
 
     // 리뷰---------------------------------------
-    movie_detail(state) {
-      return state.movie_detail
-    },
-
-    // comments(state) {
-    //   return state.comments
+    // movie_detail(state) {
+    //   return state.movie_detail
     // },
+
+    comments(state) {
+      return state.comments
+    },
 
     // 프로필 -----------------------------------
     user_comments(state) {
@@ -104,26 +104,45 @@ export default new Vuex.Store({
 
 
     // 리뷰 -------------------------------------------------------
-    GET_MOVIE_DETAIL(state, movie) {
-      state.movie_detail = movie
-    },
-    // // 무비코멘트만 가져오기 ------------------------------------------------------
-    // GET_COMMENTS(state, comments) {
-    //   state.comments = comments
+    // // 디테일 페이지 전체 가져오기------------------------------------------------
+    // GET_MOVIE_DETAIL(state, movie) {
+    //   state.movie_detail = movie
     // },
+    // CREATE_COMMENT(state, comment) {
+      //   state.movie_detail.comments.push(comment)
+      // },
+      
+    // DELETE_COMMENT(state, comment) {
+    //   const index = state.movie_detail.comments.indexOf(comment)
+    //   state.movie_detail.comments.splice(index, 1)
+    // },
+  
+    // UPDATE_COMMENT(state, newComment) {
+    //   state.movie_detail.comments = state.movie_detail.comments.map((comment) =>{
+    //     if (comment.username === newComment.username) {
+    //       return {
+    //         ...comment,
+    //         content: newComment.content,
+    //         score: newComment.score,
+    //       }
+    //     }
+    //     return comment
+    //   })
+    // },
+
+    // // 무비코멘트만 가져오기 ------------------------------------------------------
+    GET_COMMENTS(state, comments) {
+      state.comments = comments
+    },
     
 
-    CREATE_COMMENT(state, comment) {
-      state.movie_detail.comments.push(comment)
-    },
-
     DELETE_COMMENT(state, comment) {
-      const index = state.movie_detail.comments.indexOf(comment)
-      state.movie_detail.comments.splice(index, 1)
+      const index = state.comments.indexOf(comment)
+      state.comments.splice(index, 1)
     },
-
+  
     UPDATE_COMMENT(state, newComment) {
-      state.movie_detail.comments = state.movie_detail.comments.map((comment) =>{
+      state.comments = state.comments.map((comment) =>{
         if (comment.username === newComment.username) {
           return {
             ...comment,
@@ -149,17 +168,17 @@ export default new Vuex.Store({
         .catch(err => console.log(err))
     },
 
-        // 언어별 추천
-        getLanguageRecommend(context) {
-          axios({
-            method: 'get', 
-            url: `${API_URL}/movies/language_ver/`,
-          })
-            .then(res => {
-              context.commit('GET_LANGUAGE_RECOMMEND', res.data)
-            })
-            .catch(err => console.log(err))
-        },
+    // 언어별 추천
+    getLanguageRecommend(context) {
+      axios({
+        method: 'get', 
+        url: `${API_URL}/movies/language_ver/`,
+      })
+        .then(res => {
+          context.commit('GET_LANGUAGE_RECOMMEND', res.data)
+        })
+        .catch(err => console.log(err))
+    },
 
     // 최신 인기 영화
     getRecentPopularMovies(context) {
@@ -241,44 +260,44 @@ export default new Vuex.Store({
 
     // 리뷰 -------------------
     // // 무비의 코멘트만 가져오기 (질문)--------------------------------------------------------
-    // getComments(context, movieId) {
-    //   axios({
-    //     method: 'get',
-    //     url: `${API_URL}/movies/${movieId}/comments/`,
-    //     headers: {
-    //       Authorization: `Token ${context.state.token}`
-    //     }
-    //   })
-    //     .then((res) => {
-    //       console.log('엑시오스 겟 코멘츠')
-    //       console.log(res)
-    //       context.commit('GET_COMMENTS', res.data)
-    //     })
-    //     .catch((err) => {
-    //       console.log(err)
-    //     })
-    // },
-    // // 주석 해제----------------------------------------------------------------------------------
-
-
-
-    getMovieDetail(context, movieId) {
+    getComments(context, movieId) {
       axios({
         method: 'get',
-        url: `${API_URL}/movies/${movieId}/`,
+        url: `${API_URL}/movies/${movieId}/comments/`,
         headers: {
           Authorization: `Token ${context.state.token}`
         }
       })
         .then((res) => {
-          console.log('엑시오스 겟 무비디테일')
+          // console.log('엑시오스 겟 코멘츠')
           // console.log(res)
-          context.commit('GET_MOVIE_DETAIL', res.data)
+          context.commit('GET_COMMENTS', res.data)
         })
         .catch((err) => {
           console.log(err)
         })
     },
+
+
+    // // 디테일 페이지 가져오기----------------------------------------------------------------------------------
+
+    // getMovieDetail(context, movieId) {
+    //   axios({
+    //     method: 'get',
+    //     url: `${API_URL}/movies/${movieId}/`,
+    //     headers: {
+    //       Authorization: `Token ${context.state.token}`
+    //     }
+    //   })
+    //     .then((res) => {
+    //       console.log('엑시오스 겟 무비디테일')
+    //       // console.log(res)
+    //       context.commit('GET_MOVIE_DETAIL', res.data)
+    //     })
+    //     .catch((err) => {
+    //       console.log(err)
+    //     })
+    // },
     
 
 
@@ -292,7 +311,7 @@ export default new Vuex.Store({
         }
       })
         .then(()=>{
-          context.commit('DELETE_COMMENT')
+          context.commit('DELETE_COMMENT', comment)
           alert('리뷰가 삭제되었습니다.')
         })        
         .catch((err) => {
