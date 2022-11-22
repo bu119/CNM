@@ -4,7 +4,7 @@
       <span
         v-for="mov in movie.Action"
         :key="mov.id">
-         <router-link
+        <router-link
           :to="{ 
             name: 'DetailView',
             params: { id: mov.id }
@@ -17,7 +17,7 @@
       <span
         v-for="mov in movie.Animation"
         :key="mov.id">
-         <router-link
+        <router-link
           :to="{ 
             name: 'DetailView',
             params: { id: mov.id }
@@ -30,7 +30,7 @@
       <span
         v-for="mov in movie.Horror"
         :key="mov.id">
-         <router-link
+        <router-link
           :to="{ 
             name: 'DetailView',
             params: { id: mov.id }
@@ -43,7 +43,7 @@
       <span
         v-for="mov in movie.Romance"
         :key="mov.id">
-         <router-link
+        <router-link
           :to="{ 
             name: 'DetailView',
             params: { id: mov.id }
@@ -56,7 +56,7 @@
       <span
         v-for="mov in movie.Fantasy"
         :key="mov.id">
-         <router-link
+        <router-link
           :to="{ 
             name: 'DetailView',
             params: { id: mov.id }
@@ -69,7 +69,7 @@
       <span
         v-for="mov in movie.Mystery"
         :key="mov.id">
-         <router-link
+        <router-link
           :to="{ 
             name: 'DetailView',
             params: { id: mov.id }
@@ -82,7 +82,7 @@
       <span
         v-for="mov in movie.Comedy"
         :key="mov.id">
-         <router-link
+        <router-link
           :to="{ 
             name: 'DetailView',
             params: { id: mov.id }
@@ -95,7 +95,7 @@
       <span
         v-for="mov in movie.SF"
         :key="mov.id">
-         <router-link
+        <router-link
           :to="{ 
             name: 'DetailView',
             params: { id: mov.id }

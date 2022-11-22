@@ -317,7 +317,6 @@ export default new Vuex.Store({
         .then((res) => {
           console.log(res)
           context.commit('UPDATE_COMMENT', res.data)
-          // this.$router.push({ name: 'DetailView'})
           alert('리뷰가 수정되었습니다.')
         })
         .catch((err) => {

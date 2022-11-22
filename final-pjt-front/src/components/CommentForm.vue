@@ -45,7 +45,7 @@ export default {
     createComment() {
       const content = this.comment_content
       const score = this.comment_score
- 
+
       if (!content) {
         alert('내용을 입력해주세요.')
       } else {
