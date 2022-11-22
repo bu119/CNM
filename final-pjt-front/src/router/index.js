@@ -8,6 +8,7 @@ import ProfileView from '@/views/ProfileView'
 import CategoryLanguageView from '@/views/CategoryLanguageView'
 import CategoryGenreView from '@/views/CategoryGenreView'
 import EditProfileView from '@/views/EditProfileView'
+import SelectFaceView from '@/views/SelectFaceView'
 
 Vue.use(VueRouter)
 
@@ -27,7 +28,6 @@ const routes = [
     name: 'SignUpView',
     component: SignUpView
   },
-
   {
     path: '/',
     name: 'LogInView',
@@ -52,6 +52,11 @@ const routes = [
     path: '/',
     name: 'CategoryGenreView',
     component: CategoryGenreView
+  },
+  {
+    path: '/',
+    name: 'SelectFaceView',
+    component: SelectFaceView
   },
 ]
 

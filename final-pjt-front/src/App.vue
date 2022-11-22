@@ -34,6 +34,12 @@
                 </div>
                 <div v-else class="d-grid gap-2 d-md-flex justify-content-md-end">
                   <!-- <span @click="Logout()">로그아웃</span> -->
+                  <!-- Face -->
+                  <router-link :to="{ name: 'SelectFaceView' }">
+                    <button class="nav-item">
+                      <a class="nav-link" aria-current="page" href="#">Feeling</a>
+                    </button>
+                  </router-link>
                   <router-link :to="{ name: 'ProfileView', params: {username:username} }">{{username}}</router-link>님
                   <button @click="logoutUser" class="btn" style="background-color: black; color: white;">Logout</button>
                 </div>
