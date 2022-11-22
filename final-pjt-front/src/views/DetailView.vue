@@ -20,10 +20,14 @@
     <p>개봉일: {{ movie?.released_date }}</p>
     <p>평점: {{ movie?.vote_avg }}</p>
 
+    <!-- SNS 공유 버튼 -->
+    <button @click="btnShareTw" type="button" id="twitter" class="btn_comm"><img src="./images/icon-twitter.png" alt=""></button>
+    <button @click="btnShareFb" type="button" id="facebook" class="btn_comm"><img src="./images/icon-facebook.png" alt=""></button>
+    <button @click="btnShareKt" type="button" id="kakao" class="btn_comm"><img src="./images/icon-kakao.png" alt=""></button>
+
     <h1>Comment List</h1>
     <CommentForm/>
     <CommentList/>
-    <!-- {{movie?.comments}} -->
   </div>
 </template>
 
@@ -85,10 +89,37 @@ export default {
     //   this.$store.dispatch('getComments', movieId)
     // }
 
+    // SNS 공유
+    btnShareTw() {
+      const sendText = this.movie.title
+      const pageUrl = `${API_URL}/movies/${this.$route.params.id}/`;
+      window.open(`https://twitter.com/intent/tweet?text=${sendText}&url=${pageUrl}`);
+    },
+
+    btnShareFb() {
+      const pageUrl = `${API_URL}/movies/${this.$route.params.id}/`;
+      window.open(`http://www.facebook.com/sharer/sharer.php?u=${pageUrl}`);
+    },
+
+    btnShareKt() {
+      const sendText = this.movie.title
+      const pageUrl = `${API_URL}/movies/${this.$route.params.id}/`
+
+      window.Kakao.Link.sendDefault({
+        objectType: 'text',
+        text: sendText, 
+        link: {
+          webUrl: pageUrl
+        }
+      })
+    }
+
   },
 }
 </script>
 
 <style>
-
+.twitter { background-image: url(./images/icon-twitter.png); background-repeat: no-repeat; }
+.facebook { background-image: url(./images/icon-facebook.png); background-repeat: no-repeat; } 
+.kakao { background-image: url(./images/icon-kakao.png); background-repeat: no-repeat; }
 </style>

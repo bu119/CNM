@@ -21,6 +21,10 @@ export default new Vuex.Store({
     steadysellers: [],
     genrerecommend: [],
     languagerecommend: [],
+    interestedmovies: [],
+    interested_genre1: null,
+    interested_genre2: null,
+    interested_genre3: null,
     token: null,
     username: null,
     comments: [],
@@ -70,6 +74,11 @@ export default new Vuex.Store({
       state.languagerecommend = languagerecommend
     },
 
+    // 관심장르별 추천
+    GET_INTERESTED_RECOMMEND(state, interestedmovies) {
+      state.interestedmovies = interestedmovies
+    },
+
     // 최신영화 추천
     GET_RECENT_MOVIES(state, recentmovies) {
       state.recentmovies = recentmovies
@@ -90,6 +99,13 @@ export default new Vuex.Store({
     LOGOUT(state) {
       state.token = !state.token
       router.push({name: 'LogInView'})
+    },
+
+    // 관심장르 저장
+    SAVE_INTERESTED_GENRE(state, interested_genres) {
+      state.interested_genre1 = interested_genres.interested_genre1
+      state.interested_genre2 = interested_genres.interested_genre2
+      state.interested_genre3 = interested_genres.interested_genre3
     },
 
     // 프로필 -------------------------------------------------------
@@ -135,7 +151,6 @@ export default new Vuex.Store({
       state.comments = comments
     },
     
-
     DELETE_COMMENT(state, comment) {
       const index = state.comments.indexOf(comment)
       state.comments.splice(index, 1)
@@ -176,6 +191,18 @@ export default new Vuex.Store({
       })
         .then(res => {
           context.commit('GET_LANGUAGE_RECOMMEND', res.data)
+        })
+        .catch(err => console.log(err))
+    },
+
+    // 관심장르별 추천
+    getInterestedRecommend(context) {
+      axios({
+        method: 'get', 
+        url: `${API_URL}/movies/interested/`,
+      })
+        .then(res => {
+          context.commit('GET_INTERESTED_RECOMMEND', res.data)
         })
         .catch(err => console.log(err))
     },
@@ -226,7 +253,9 @@ export default new Vuex.Store({
           email: payload.email,
           password1: payload.password1,
           password2: payload.password2,
-          interested_genre: payload.interested_genre,
+          interested_genre1: payload.interested_genre1,
+          interested_genre2: payload.interested_genre2,
+          interested_genre3: payload.interested_genre3,
         }
       })
         .then((res) => {
@@ -235,7 +264,15 @@ export default new Vuex.Store({
             username: payload.username,
             token: res.data.key
           }
+          const interested_genres = {
+            username: payload.username,
+            token: res.data.key,
+            interested_genre1: payload.interested_genre1,
+            interested_genre2: payload.interested_genre2,
+            interested_genre3: payload.interested_genre3,
+          }
           context.commit('SAVE_TOKEN', name_token)
+          context.commit('SAVE_INTERESTED_GENRE', interested_genres)
         })
     },
   
@@ -318,7 +355,6 @@ export default new Vuex.Store({
           console.error(err);
           alert('작성자가 아닙니다.')
         });
-
     },
 
     updateComment(context, payload) {

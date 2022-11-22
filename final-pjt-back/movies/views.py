@@ -10,8 +10,6 @@ from django.shortcuts import get_object_or_404, get_list_or_404
 from .models import Movie, Comment
 from .serializers import MovieListSerializer, MovieSerializer, CommentSerializer
 
-import random
-
 # 최신 인기영화 추천
 @api_view(['GET'])
 # @permission_classes([IsAuthenticated])
@@ -84,6 +82,36 @@ def language_recommend(request):
 
         return Response(language_recommend_movies)
 
+# 관심장르 영화 추천
+@api_view(['GET'])
+def interested_recommend(request):
+    if request.method == 'GET':
+        movies = Movie.objects.all()
+        serializer = MovieListSerializer(movies, many=True)
+        genre_recommend_movies = {
+            'Action': [],
+            'Animation': [],
+            'Comedy': [],
+            'Crime': [],
+            'Documentary': [],
+            'Family': [],
+            'Fantasy': [],
+            'Horror': [],
+            'Romance': [],
+            'SF': [],
+            'Thriller': [],
+            'War': [],
+        }
+        # 데이터 정제
+        for movie in serializer.data:
+            for genre in movie['genres']:
+                if genre['name'] == 'Science Fiction' and len(genre_recommend_movies['SF']) <= 14:
+                    genre_recommend_movies['SF'].append(movie)
+                if genre['name'] in genre_recommend_movies.keys() and len(genre_recommend_movies[genre['name']]) <= 14:
+                    genre_recommend_movies[genre['name']].append(movie)
+
+        return Response(genre_recommend_movies)
+
 # 상세정보
 @api_view(['GET'])
 def movie_detail(request, movie_pk):
@@ -92,7 +120,6 @@ def movie_detail(request, movie_pk):
     if request.method == 'GET':
         serializer = MovieSerializer(movie)
         return Response(serializer.data)
-
 
 # 리뷰
 @api_view(['GET'])
