@@ -3,7 +3,7 @@
     <h1>최신 개봉 영화</h1>
     <swiper ref="filterSwiper" :options="swiperOption" role="tablist">
       <RecentMovieListItem
-        v-for="movie in recentmovies"
+        v-for="movie in recentmovies.presented"
         :key="movie.id"
         :movie="movie"
       />

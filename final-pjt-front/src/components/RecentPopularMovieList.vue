@@ -2,7 +2,7 @@
   <div>
     <h1>최신 인기 영화</h1>
     <RecentPopularMovieListItem
-      v-for="movie in movies.presented"
+      v-for="movie in movies.presented.slice(0, 7)"
       :key="movie.id"
       :movie="movie"/>
   </div>
