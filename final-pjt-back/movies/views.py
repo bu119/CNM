@@ -85,6 +85,7 @@ def genre_recommend(request):
         }
         # 데이터 정제
         for movie in serializer.data:
+            # if movie['genres']:
             for genre in movie['genres']:
                 if genre['name'] == 'Science Fiction' and len(genre_recommend_movies['SF']) <= 14:
                     genre_recommend_movies['SF'].append(movie)

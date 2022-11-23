@@ -38,9 +38,31 @@ export default new Vuex.Store({
     isLogin(state) {
       return state.token ? true : false
     },
+    // 영화 추천--------------------------------
+    recentpopularmovies(state) {
+      return state.recentpopularmovies
+    },
+    recentmovies(state) {
+      return state.recentmovies
+    },
+    steadysellers(state) {
+      return state.steadysellers
+    },
+    genrerecommend(state) {
+      // console.log(state)
+      return state.genrerecommend
+    },
+    languagerecommend(state) {
+      return state.languagerecommend
+    },
+    feelingmovies(state) {
+      return state.feelingmovies
+    },
     interestedmovies(state) {
       return state.interestedmovies
     },
+    
+
     // 리뷰---------------------------------------
     // movie_detail(state) {
     //   return state.movie_detail
@@ -186,6 +208,7 @@ export default new Vuex.Store({
         url: `${API_URL}/movies/genre_ver/`,
       })
         .then(res => {
+          console.log(res)
           context.commit('GET_GENRE_RECOMMEND', res.data)
         })
         .catch(err => console.log(err))
@@ -225,8 +248,8 @@ export default new Vuex.Store({
         }
       })
         .then(res => {
-          console.log(this.state.username)
-          console.log(res)
+          // console.log(this.state.username)
+          // console.log(res)
           context.commit('GET_INTERESTED_RECOMMEND', res.data)
         })
         .catch(err => console.log(err))

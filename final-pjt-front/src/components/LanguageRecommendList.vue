@@ -1,8 +1,5 @@
 <template>
   <div>
-    <h1>언어별 영화 추천 리스트</h1>
-    <br>
-    <br>
     <LanguageRecommendListItem
       :movie="languagerecommend"
     />

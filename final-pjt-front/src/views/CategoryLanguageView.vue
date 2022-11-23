@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h1>영화로 떠나는 세계 여행</h1>
     <LanguageRecommendList/><br>
   </div>
 </template>

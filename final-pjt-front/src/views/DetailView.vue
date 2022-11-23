@@ -45,6 +45,8 @@ import CommentForm from '@/components/CommentForm'
 import CommentList from '@/components/CommentList'
 
 const API_URL = 'http://127.0.0.1:8000'
+const BU_API_KEY = 'f954b5a3cfb8f0d9431c8d55eff3873c'
+// const JI_API_KEY = '0653b8b0e7a512864a2e86623f5d59bd'
 
 export default {
   name: 'DetailView',
@@ -97,7 +99,7 @@ export default {
     getYouTubeAPI() {
       axios({
         method: 'get',
-        url: `https://api.themoviedb.org/3/movie/${this.$route.params.id}/videos?api_key=f954b5a3cfb8f0d9431c8d55eff3873c&language=ko-KR`,
+        url: `https://api.themoviedb.org/3/movie/${this.$route.params.id}/videos?api_key=${BU_API_KEY}&language=ko-KR`,
       })
         .then((res) => {
           // console.log(res)

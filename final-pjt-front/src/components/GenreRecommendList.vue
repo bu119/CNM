@@ -1,7 +1,5 @@
 <template>
   <div>
-    <h1>장르별 영화 추천 리스트</h1>
-    <br>
     <GenreRecommendListItem
       :movie="genrerecommend"
     />
@@ -20,7 +18,7 @@ export default {
     genrerecommend() {
       return this.$store.state.genrerecommend
     }
-  }
+  },
 }
 </script>
 

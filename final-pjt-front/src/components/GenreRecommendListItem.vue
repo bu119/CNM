@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>액션</h2>
+    <h2># 액션</h2>
     <swiper ref="filterSwiper" :options="swiperOption" role="tablist">
       <swiper-slide role="tab">
         <span
@@ -20,7 +20,7 @@
     <br>
     <br>
     <br>
-    <h2>애니메이션</h2>
+    <h2># 애니메이션</h2>
     <swiper ref="filterSwiper" :options="swiperOption" role="tablist">
       <swiper-slide role="tab">
         <span
@@ -40,7 +40,7 @@
     <br>
     <br>
     <br>
-    <h2>호러</h2>
+    <h2># 호러</h2>
     <swiper ref="filterSwiper" :options="swiperOption" role="tablist">
       <swiper-slide role="tab">
         <span
@@ -60,7 +60,7 @@
     <br>
     <br>
     <br>
-    <h2>로맨스</h2>
+    <h2># 로맨스</h2>
     <swiper ref="filterSwiper" :options="swiperOption" role="tablist">
       <swiper-slide role="tab">
         <span
@@ -80,7 +80,7 @@
     <br>
     <br>
     <br>  
-    <h2>판타지</h2>
+    <h2># 판타지</h2>
     <swiper ref="filterSwiper" :options="swiperOption" role="tablist">
       <swiper-slide role="tab">
         <span
@@ -100,7 +100,7 @@
     <br>
     <br>
     <br>
-    <h2>미스터리</h2>
+    <h2># 미스터리</h2>
      <swiper ref="filterSwiper" :options="swiperOption" role="tablist">
       <swiper-slide role="tab">
         <span
@@ -120,7 +120,7 @@
     <br>
     <br>
     <br>
-    <h2>코미디</h2>
+    <h2># 코미디</h2>
      <swiper ref="filterSwiper" :options="swiperOption" role="tablist">
       <swiper-slide role="tab">
         <span
@@ -140,7 +140,7 @@
     <br>
     <br>
     <br>
-    <h2>SF</h2>
+    <h2># SF</h2>
      <swiper ref="filterSwiper" :options="swiperOption" role="tablist">
       <swiper-slide role="tab">
         <span

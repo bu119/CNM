@@ -1,6 +1,8 @@
 <template>
   <div>
-    <GenreRecommendList/><br>
+    <h1>지금! 어떤 감정을 느끼고 싶나요?</h1>
+    <GenreRecommendList/>
+    <br>
   </div>
 </template>
 

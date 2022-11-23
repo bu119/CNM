@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>한국어</h2>
+    <h2># 한국</h2>
     <swiper ref="filterSwiper" :options="swiperOption" role="tablist">
       <swiper-slide role="tab">
         <span
@@ -20,7 +20,7 @@
     <br>
     <br>
     <br>
-    <h2>중국어</h2>
+    <h2># 중국</h2>
     <swiper ref="filterSwiper" :options="swiperOption" role="tablist">
       <swiper-slide role="tab">
         <span
@@ -40,7 +40,7 @@
     <br>
     <br>
     <br>  
-    <h2>일본어</h2>
+    <h2># 일본</h2>
     <swiper ref="filterSwiper" :options="swiperOption" role="tablist">
       <swiper-slide role="tab">
         <span
@@ -60,7 +60,7 @@
     <br>
     <br>
     <br>
-    <h2>프랑스어</h2>
+    <h2># 프랑스</h2>
     <swiper ref="filterSwiper" :options="swiperOption" role="tablist">
       <swiper-slide role="tab">
         <span
@@ -80,7 +80,7 @@
     <br>
     <br>
     <br>
-    <h2>스페인어</h2>
+    <h2># 스페인</h2>
     <swiper ref="filterSwiper" :options="swiperOption" role="tablist">
       <swiper-slide role="tab">
         <span
@@ -100,7 +100,7 @@
     <br>
     <br>
     <br>
-    <h2>영어</h2>
+    <h2># 영어</h2>
     <swiper ref="filterSwiper" :options="swiperOption" role="tablist">
       <swiper-slide role="tab">
         <span
