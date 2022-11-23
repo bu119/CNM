@@ -10,7 +10,6 @@
       <div class="headmenu d-flex justify-content-end">
         <div v-if="isUserLogin">
           <router-link :to="{ name: 'LogInView' }"><button class="btn" style="color: white; height: 45px">Login</button></router-link>
-          <router-link :to="{ name: 'SignUpView' }"><button class="btn" style="color: white; height: 45px">Signup</button></router-link>
         </div>
         <div v-else class="wrap_padding2">
           <!-- <span @click="Logout()">로그아웃</span> -->
@@ -26,9 +25,10 @@
     <hr class="mainHr">
     <main>
       <router-view/>
-    </main>
+    </main>  
   </div>
 </template>
+
 
 <script>
 export default {

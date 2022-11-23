@@ -11,19 +11,20 @@
       <div class="form-floating">
         <input type="email" class="form-control" id="email" v-model="email" placeholder="ssafy@example.com">
         <label for="email" style="color: black;">이메일</label>
-        <p class="warning" v-if="!isEmailValid && email">
-          <!-- 이메일 형식 및 입력란 공백 확인 -->
+        <!-- <p class="warning" v-if="!isEmailValid && email">
+          이메일 형식 및 입력란 공백 확인
           이메일 주소를 정확히 입력해주세요.
-        </p>
+        </p> -->
       </div>  
 
       <div class="form-floating">
         <input type="password" class="form-control" id="password1" v-model="password1" placeholder="password">
         <label for="password1" style="color: black;">비밀번호</label>
+        <p>영문, 숫자, 특수문자를 조합하여 8자 이상 입력해주세요.</p>
         <!-- 비밀번호 형식 및 입력란 공백 확인 -->
-        <p class="warning" v-if="!isPasswordValid && password1">
+        <!-- <p class="warning" v-if="!isPasswordValid && password1">
           영문, 숫자, 특수문자를 조합하여 8자 이상 입력해주세요.
-        </p>
+        </p> -->
       </div>
       
       <div class="form-floating">
@@ -85,9 +86,9 @@
       <div class="custom-control custom-checkbox">
         <input type="checkbox" class="custom-control-input" id="aggrement" required>
         <label class="custom-control-label" for="aggrement">개인정보 수집 및 이용에 동의합니다.</label>
-        <p class="warning" v-if="!isPasswordValid && password1">
+        <!-- <p class="warning" v-if="!isPasswordValid && password1">
           영문, 숫자, 특수문자를 조합하여 8자 이상 입력해주세요.
-        </p>
+        </p> -->
       </div>
       <br>
       <input class="w-100 btn btn-lg btn-primary" type="submit" value="회원가입">
@@ -97,8 +98,8 @@
 </template>
 
 <script>
-import { validateEmail } from '@/utils/validation'
-import { validatePassword } from '@/utils/validation'
+// import { validateEmail } from '@/utils/validation'
+// import { validatePassword } from '@/utils/validation'
 
 export default {
   name: 'SignUpView',
@@ -115,12 +116,12 @@ export default {
     }
   },
   computed: {
-    isEmailValid() {
-      return validateEmail(this.email) 
-    },
-    isPasswordValid() {
-      return validatePassword(this.password1) 
-    },
+    // isEmailValid() {
+    //   return validateEmail(this.email) 
+    // },
+    // isPasswordValid() {
+    //   return validatePassword(this.password1) 
+    // },
     
   },
   methods: {
@@ -156,6 +157,15 @@ export default {
 <style>
   .form-signup {
     height: 100%;
+    display: flex;
+    align-items: bottom;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    /* background-color: #f5f5f5; */
+    width: 100%;
+    max-width: 450px;
+    padding: 8px;
+    height: 100%;
     align-items: center;
     padding-top: 40px;
     padding-bottom: 40px;
@@ -175,15 +185,35 @@ export default {
     color: black;
   }
 
+  #username {
+    padding: 3px;
+    margin-bottom: 7px;
+  }
+
+  #email {
+    padding: 3px;
+    margin-bottom: 7px;
+  }
+
+  #password1 {
+    padding: 3px;
+    margin-bottom: 7px;
+  }
+
+  #password2 {
+    padding: 3px;
+    margin-bottom: 7px;
+  }
+
   .form-signup input[type="email"] {
     margin-bottom: -1px;
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
   }
 
   .form-signup input[type="password"] {
     margin-bottom: 10px;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
   }
 </style>
