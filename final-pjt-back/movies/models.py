@@ -9,6 +9,7 @@ class Genre(models.Model):
 
 class Movie(models.Model):
     poster_path = models.CharField(max_length=200)
+    backdrop_path = models.CharField(max_length=200, null=True)
     adult = models.BooleanField(default=False)
     overview = models.TextField()
     released_date = models.DateField()

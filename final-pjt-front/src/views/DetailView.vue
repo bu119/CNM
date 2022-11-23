@@ -56,6 +56,7 @@ export default {
     return {
       movie: null,
       poster_path: null,
+      backdrop_path: null,
       YouTubeUrl: null,
     }
   },
@@ -76,6 +77,7 @@ export default {
         .then((res) => {
           this.movie = res.data
           this.poster_path = `https://image.tmdb.org/t/p/w600_and_h900_bestv2${res.data.poster_path}`
+          this.backdrop_path = `https://image.tmdb.org/t/p/w600_and_h900_bestv2${res.data.backdrop_path}`
           // this.$store.commit('GET_MOVIE_DETAIL', res.data)
 
           //  일단 무비 디테일 페이지 들고오는걸루---------------------------------------------------- 리스트에서 들고옴
