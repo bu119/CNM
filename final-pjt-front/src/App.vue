@@ -23,9 +23,10 @@
         </div>
       </div>
     </header>
+    <hr class="mainHr">
     <main>
       <router-view/>
-    </main>  
+    </main>
   </div>
 </template>
 
@@ -86,6 +87,7 @@ header {
   justify-content: space-between;
   align-items: center;
   background-color: #1b1b1b;
+  margin-top: 20px;
 }
 
 body {
@@ -156,6 +158,9 @@ body {
     transform: translate3d(0,0,0);
     -webkit-transition: opacity 0.1s;
     transition: opacity 0.1s;
+}
+.mainHr {
+  margin-bottom: 70px;
 }
 
 

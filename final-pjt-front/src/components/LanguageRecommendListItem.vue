@@ -1,91 +1,139 @@
 <template>
   <div>
     <h2>한국어</h2>
-      <span
-        v-for="mov in movie.ko"
-        :key="mov.id">
-         <router-link
-          :to="{ 
-            name: 'DetailView',
-            params: { id: mov.id }
-          }"  
-          >
-            <img :src="movieImgURL+mov.poster_path" alt="..." width=250>
-          </router-link>
-      </span>
+    <swiper ref="filterSwiper" :options="swiperOption" role="tablist">
+      <swiper-slide role="tab">
+        <span
+          v-for="mov in movie.ko"
+          :key="mov.id">
+          <router-link
+            :to="{ 
+              name: 'DetailView',
+              params: { id: mov.id }
+            }"  
+            >
+              <img :src="movieImgURL+mov.poster_path" alt="..." width=250 style="border-radius: 18px;">
+            </router-link>
+        </span>
+      </swiper-slide>
+    </swiper>
+
     <h2>중국어</h2>
-      <span
-        v-for="mov in movie.zh"
-        :key="mov.id">
-         <router-link
-          :to="{ 
-            name: 'DetailView',
-            params: { id: mov.id }
-          }"  
-          >
-            <img :src="movieImgURL+mov.poster_path" alt="..." width=250>
-          </router-link>
-      </span>
+    <swiper ref="filterSwiper" :options="swiperOption" role="tablist">
+      <swiper-slide role="tab">
+        <span
+          v-for="mov in movie.zh"
+          :key="mov.id">
+          <router-link
+            :to="{ 
+              name: 'DetailView',
+              params: { id: mov.id }
+            }"  
+            >
+              <img :src="movieImgURL+mov.poster_path" alt="..." width=250 style="border-radius: 18px;">
+            </router-link>
+        </span>
+      </swiper-slide>
+    </swiper>
+  
     <h2>일본어</h2>
-      <span
-        v-for="mov in movie.ja"
-        :key="mov.id">
-         <router-link
-          :to="{ 
-            name: 'DetailView',
-            params: { id: mov.id }
-          }"  
-          >
-            <img :src="movieImgURL+mov.poster_path" alt="..." width=250>
-          </router-link>
-      </span>
+    <swiper ref="filterSwiper" :options="swiperOption" role="tablist">
+      <swiper-slide role="tab">
+        <span
+          v-for="mov in movie.ja"
+          :key="mov.id">
+          <router-link
+            :to="{ 
+              name: 'DetailView',
+              params: { id: mov.id }
+            }"  
+            >
+              <img :src="movieImgURL+mov.poster_path" alt="..." width=250 style="border-radius: 18px;">
+            </router-link>
+        </span>
+      </swiper-slide>
+    </swiper>
+
     <h2>프랑스어</h2>
-      <span
-        v-for="mov in movie.fr"
-        :key="mov.id">
-         <router-link
-          :to="{ 
-            name: 'DetailView',
-            params: { id: mov.id }
-          }"  
-          >
-            <img :src="movieImgURL+mov.poster_path" alt="..." width=250>
-          </router-link>
-      </span>
+    <swiper ref="filterSwiper" :options="swiperOption" role="tablist">
+      <swiper-slide role="tab">
+        <span
+          v-for="mov in movie.fr"
+          :key="mov.id">
+          <router-link
+            :to="{ 
+              name: 'DetailView',
+              params: { id: mov.id }
+            }"  
+            >
+              <img :src="movieImgURL+mov.poster_path" alt="..." width=250 style="border-radius: 18px;">
+            </router-link>
+        </span>
+      </swiper-slide>
+    </swiper> 
+
     <h2>스페인어</h2>
-      <span
-        v-for="mov in movie.es"
-        :key="mov.id">
-         <router-link
-          :to="{ 
-            name: 'DetailView',
-            params: { id: mov.id }
-          }"  
-          >
-            <img :src="movieImgURL+mov.poster_path" alt="..." width=250>
-          </router-link>
-      </span>
+    <swiper ref="filterSwiper" :options="swiperOption" role="tablist">
+      <swiper-slide role="tab">
+        <span
+          v-for="mov in movie.es"
+          :key="mov.id">
+          <router-link
+            :to="{ 
+              name: 'DetailView',
+              params: { id: mov.id }
+            }"  
+            >
+              <img :src="movieImgURL+mov.poster_path" alt="..." width=250 style="border-radius: 18px;">
+            </router-link>
+        </span>
+      </swiper-slide>
+    </swiper>
+
     <h2>영어</h2>
-      <span
-        v-for="mov in movie.en"
-        :key="mov.id">
-         <router-link
-          :to="{ 
-            name: 'DetailView',
-            params: { id: mov.id }
-          }"  
-          >
-            <img :src="movieImgURL+mov.poster_path" alt="..." width=250>
-          </router-link>
-      </span>
+    <swiper ref="filterSwiper" :options="swiperOption" role="tablist">
+      <swiper-slide role="tab">
+        <span
+          v-for="mov in movie.en"
+          :key="mov.id">
+          <router-link
+            :to="{ 
+              name: 'DetailView',
+              params: { id: mov.id }
+            }"  
+            >
+              <img :src="movieImgURL+mov.poster_path" alt="..." width=250 style="border-radius: 18px;">
+            </router-link>
+        </span>
+      </swiper-slide>
+    </swiper>
   </div>
 </template>
 
 <script>
+import 'swiper/dist/css/swiper.css'
+import { swiper, swiperSlide } from 'vue-awesome-swiper'
+
 export default {
   name: 'LanguageRecommendListItem',
   props: {
     movie: Object,
+  },
+  components: {
+    swiper,
+    swiperSlide,
+  },
+  data () {
+    return {
+      swiperOption: {
+        slidesPerView: 'auto',
+        spaceBetween: 12, // swiper-slide 사이의 간격 지정
+        slidesOffsetBefore: 0, // slidesOffsetBefore는 첫번째 슬라이드의 시작점에 대한 변경할 때 사용
+        slidesOffsetAfter: 0, // slidesOffsetAfter는 마지막 슬라이드 시작점 + 마지막 슬라이드 너비에 해당하는 위치의 변경이 필요할 때 사용
+        freeMode: true, // freeMode를 사용시 스크롤하는 느낌으로 구현 가능
+        centerInsufficientSlides: true, // 컨텐츠의 수량에 따라 중앙정렬 여부를 결정함
+      }
+    }
   },
   computed: {
     movieImgURL() {
@@ -95,6 +143,19 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="scss" scoped>
+.swiper-slide {
+  width: auto; // auto 값을 지정해야 슬라이드의 width값이 텍스트 길이 기준으로 바뀜
+  min-width: 56px; // min-width를 지정하지 않을 경우 텍스트가 1개 내지는 2개가 들어갈 때 탭 모양이 상이할 수 있으므로 넣어준다.
+  padding: 0px 1px;
+  font-size: 14px;
+  line-height: 36px;
+  text-align: center;
+  color: #84868c;
+  border: 0;
+  // border-radius: 18px;
+  // background: #f3f4f7;
+  appearance: none;
+  cursor: pointer;
+}
 </style>

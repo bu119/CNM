@@ -96,4 +96,7 @@ export default {
   appearance: none;
   cursor: pointer;
 }
+
+
+
 </style>
