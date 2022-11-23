@@ -69,7 +69,7 @@ export default {
   text-align: center;
   color: white;
   background-color: #1b1b1b;
-  width: 1240px;
+  width: 1300px;
   margin: 0 auto;
 }
 

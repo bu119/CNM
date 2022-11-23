@@ -47,14 +47,13 @@ export default {
     },
     getSteadySellers() {
       this.$store.dispatch('getSteadySellers')
-    }
+    },
   }
 }
 </script>
 
 <style>
 .mainMovie {
-
-  padding-bottom: 100px;
+  padding-bottom: 80px;
 }
 </style>

@@ -1,24 +1,26 @@
 <template>
-  <swiper-slide role="tab">
-    <div>
-      <!-- movie에 interested_genre1, 2, 3 가져오면 됨! -->
-      <span>
-        <router-link
-          :to="{ 
-            name: 'DetailView',
-            params: { id: mov.id }
-          }"  
-        >
-          <img :src="movieImgURL+mov.poster_path" alt="..." width=250>
-        </router-link>
-      </span>
-    </div>
-  </swiper-slide>
+  <!-- <swiper-slide role="tab"> -->
+  
+  <div class="col">
+    <span>
+      <router-link
+        :to="{ 
+          name: 'DetailView',
+          params: { id: movie.id }
+        }"  
+      >
+        <img :src="movieImgURL+movie.poster_path" alt="movie_img" width=250 style="border-radius: 18px;">
+      </router-link>
+      <p>{{ movie.title }}</p>
+    </span>
+  </div>
+
+  <!-- </swiper-slide> -->
 </template>
 
 <script>
-import { swiperSlide } from 'vue-awesome-swiper'
-import 'swiper/dist/css/swiper.min.css'
+// import { swiperSlide } from 'vue-awesome-swiper'
+// import 'swiper/dist/css/swiper.min.css'
 
 
 export default {
@@ -27,7 +29,7 @@ export default {
     movie: Object,
   },
   components: {
-    swiperSlide
+    // swiperSlide
   },
   computed: {
     movieImgURL() {
@@ -38,18 +40,24 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.swiper-slide {
-  width: auto; // auto 값을 지정해야 슬라이드의 width값이 텍스트 길이 기준으로 바뀜
-  min-width: 56px; // min-width를 지정하지 않을 경우 텍스트가 1개 내지는 2개가 들어갈 때 탭 모양이 상이할 수 있으므로 넣어준다.
-  padding: 0px 1px;
-  font-size: 14px;
-  line-height: 36px;
-  text-align: center;
-  color: #84868c;
-  border: 0;
-  // border-radius: 18px;
-  // background: #f3f4f7;
-  appearance: none;
-  cursor: pointer;
+p {
+  padding: 0.327em 0 0 0.05em;
+  padding-left: 20px;
+  text-align: left;
 }
+
+// .swiper-slide {
+//   width: auto; // auto 값을 지정해야 슬라이드의 width값이 텍스트 길이 기준으로 바뀜
+//   min-width: 56px; // min-width를 지정하지 않을 경우 텍스트가 1개 내지는 2개가 들어갈 때 탭 모양이 상이할 수 있으므로 넣어준다.
+//   padding: 0px 1px;
+//   font-size: 14px;
+//   line-height: 36px;
+//   text-align: center;
+//   color: #84868c;
+//   border: 0;
+//   // border-radius: 18px;
+//   // background: #f3f4f7;
+//   appearance: none;
+//   cursor: pointer;
+// }
 </style>

@@ -12,8 +12,8 @@
               params: { id: mov.id }
             }"  
             >
-              <img :src="movieImgURL+mov.poster_path" alt="..." width=250 style="border-radius: 18px;">
-            </router-link>
+            <img :src="movieImgURL+mov.poster_path" alt="..." width=250 style="border-radius: 18px;">
+          </router-link>
         </span>
       </swiper-slide>
     </swiper>
@@ -137,7 +137,7 @@ export default {
     return {
       swiperOption: {
         slidesPerView: 'auto',
-        spaceBetween: 12, // swiper-slide 사이의 간격 지정
+        spaceBetween: 17, // swiper-slide 사이의 간격 지정
         slidesOffsetBefore: 0, // slidesOffsetBefore는 첫번째 슬라이드의 시작점에 대한 변경할 때 사용
         slidesOffsetAfter: 0, // slidesOffsetAfter는 마지막 슬라이드 시작점 + 마지막 슬라이드 너비에 해당하는 위치의 변경이 필요할 때 사용
         freeMode: true, // freeMode를 사용시 스크롤하는 느낌으로 구현 가능
@@ -160,8 +160,8 @@ export default {
   padding: 0px 1px;
   font-size: 14px;
   line-height: 36px;
-  text-align: center;
-  color: #84868c;
+  // text-align: center;
+  // color: #84868c;
   border: 0;
   // border-radius: 18px;
   // background: #f3f4f7;
@@ -170,5 +170,15 @@ export default {
 }
 .swiper {
   margin-bottom: 40px;
+}
+
+h2 {
+  padding-left: 20px;
+  text-align: left;
+  /* font-size: 24px; */
+  line-height: 36px;
+  display: block;
+  /* font-weight: bold; */
+  margin: 0 0 20px;
 }
 </style>

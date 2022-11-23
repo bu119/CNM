@@ -118,7 +118,7 @@ def language_recommend(request):
 @api_view(['GET'])
 def interested_recommend(request, username):
     if request.method == 'GET':
-        movies = Movie.objects.all().order_by('popularity')
+        movies = Movie.objects.all().order_by('-released_date', '-popularity')
         User = get_user_model()
         user = get_object_or_404(User, username=username)
         genre1 = user.interested_genre1
@@ -131,7 +131,8 @@ def interested_recommend(request, username):
             for genre in movie['genres']:
                 if (genre['name'] == genre1 or genre['name'] == genre2 or genre['name'] == genre3) and movie not in interested_movies:
                     interested_movies.append(movie)
-
+            if len(interested_movies) >= 10:
+                break
         return Response(interested_movies)
 
 # 기분별 영화 추천

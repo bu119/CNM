@@ -1,6 +1,7 @@
 <template>
   <div>
-    <h1>최신 개봉 영화</h1>
+    <!-- <h1>최신 개봉 영화</h1> -->
+    <h2>따끈따끈 업데이트 영화</h2>
     <swiper ref="filterSwiper" :options="swiperOption" role="tablist">
       <RecentMovieListItem
         v-for="movie in recentmovies.presented"
@@ -44,6 +45,14 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+h2 {
+  padding-left: 20px;
+  text-align: left;
+  /* font-size: 24px; */
+  line-height: 36px;
+  display: block;
+  /* font-weight: bold; */
+  margin: 0 0 20px;
+}
 </style>

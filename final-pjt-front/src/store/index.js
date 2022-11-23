@@ -38,7 +38,9 @@ export default new Vuex.Store({
     isLogin(state) {
       return state.token ? true : false
     },
-
+    interestedmovies(state) {
+      return state.interestedmovies
+    },
     // 리뷰---------------------------------------
     // movie_detail(state) {
     //   return state.movie_detail
@@ -215,12 +217,16 @@ export default new Vuex.Store({
 
     // 관심장르별 추천
     getInterestedRecommend(context) {
-      console.log(this.state.username)
       axios({
         method: 'get', 
-        url: `${API_URL}/movies/interested/${this.state.username}`,
+        url: `${API_URL}/movies/interested/${this.state.username}/`,
+        headers: {
+          Authorization: `Token ${context.state.token}`
+        }
       })
         .then(res => {
+          console.log(this.state.username)
+          console.log(res)
           context.commit('GET_INTERESTED_RECOMMEND', res.data)
         })
         .catch(err => console.log(err))

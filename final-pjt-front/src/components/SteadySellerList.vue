@@ -1,6 +1,7 @@
 <template>
   <div>
-    <h1>스테디셀러</h1>
+    <!-- <h1>스테디셀러</h1> -->
+    <h2>오랜시간 꾸준히 사랑받은 영화</h2>
     <swiper ref="filterSwiper" :options="swiperOption" role="tablist">
       
       <SteadySellerListItem
@@ -44,6 +45,14 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+h2 {
+  padding-left: 20px;
+  text-align: left;
+  /* font-size: 24px; */
+  line-height: 36px;
+  display: block;
+  /* font-weight: bold; */
+  margin: 0 0 20px;
+}
 </style>

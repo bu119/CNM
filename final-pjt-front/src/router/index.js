@@ -44,17 +44,17 @@ const routes = [
     component: EditProfileView
   },
   {
-    path: '/',
+    path: '/language',
     name: 'CategoryLanguageView',
     component: CategoryLanguageView
   },
   {
-    path: '/',
+    path: '/genre',
     name: 'CategoryGenreView',
     component: CategoryGenreView
   },
   {
-    path: '/',
+    path: '/feeling',
     name: 'SelectFaceView',
     component: SelectFaceView
   },
