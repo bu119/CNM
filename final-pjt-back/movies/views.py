@@ -2,6 +2,8 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework import status
 
+from datetime import datetime
+
 # permission Decorators
 # from rest_framework.decorators import permission_classes
 # from rest_framework.permissions import IsAuthenticated
@@ -22,10 +24,24 @@ def recent_popular_movie_list(request):
 # 최신 영화 추천
 @api_view(['GET'])
 def recent_movie_list(request):
+    timenow = datetime.now().date()
     if request.method == 'GET':
-        recent_movies = Movie.objects.all().order_by('-released_date')[:20]
+        recent_movies = Movie.objects.all().order_by('-released_date')[:30]
         serializer = MovieListSerializer(recent_movies, many=True)
-        return Response(serializer.data)
+        movies_per_date = {
+            'comingsoon': [],
+            'presented': [],
+        }
+
+        for movie in serializer.data:
+            timemovie = datetime.strptime(movie['released_date'], '%Y-%m-%d').date()
+            if timemovie > timenow:
+                movies_per_date['comingsoon'].append(movie)
+            else:
+                movies_per_date['presented'].append(movie)
+
+        return Response(movies_per_date)
+
 
 # 스테디셀러
 @api_view(['GET'])
