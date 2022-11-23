@@ -158,4 +158,7 @@ export default {
   appearance: none;
   cursor: pointer;
 }
+.swiper {
+  margin-bottom: 40px;
+}
 </style>
