@@ -17,9 +17,24 @@ from .serializers import MovieListSerializer, MovieSerializer, CommentSerializer
 # @permission_classes([IsAuthenticated])
 def recent_popular_movie_list(request):
     if request.method == 'GET':
-        recent_popular_movies = Movie.objects.all().order_by('-released_date', '-vote_avg')[:5]
+        timenow = datetime.now().date()
+        recent_popular_movies = Movie.objects.all().order_by('-popularity', '-released_date')[:30]
         serializer = MovieListSerializer(recent_popular_movies, many=True)
-        return Response(serializer.data)
+        
+        movies_per_date = {
+            'comingsoon': [],
+            'presented': [],
+        }
+
+        for movie in serializer.data:
+            timemovie = datetime.strptime(movie['released_date'], '%Y-%m-%d').date()
+            if timemovie > timenow:
+                movies_per_date['comingsoon'].append(movie)
+            else:
+                movies_per_date['presented'].append(movie)
+
+        return Response(movies_per_date)
+        
 
 # 최신 영화 추천
 @api_view(['GET'])
@@ -47,7 +62,7 @@ def recent_movie_list(request):
 @api_view(['GET'])
 def steady_seller_movie_list(request):
     if request.method == 'GET':
-        steady_seller_movies = Movie.objects.all().order_by('-vote_count')[:20]
+        steady_seller_movies = Movie.objects.all().order_by('-vote_count')[:30]
         serializer = MovieListSerializer(steady_seller_movies, many=True)
         return Response(serializer.data)
 
