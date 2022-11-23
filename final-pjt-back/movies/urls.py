@@ -9,7 +9,7 @@ urlpatterns = [
     path('steady_seller/', views.steady_seller_movie_list),
     path('genre_ver/', views.genre_recommend),
     path('language_ver/', views.language_recommend),
-    path('interested/', views.interested_recommend),
+    path('interested/<str:username>/', views.interested_recommend),
     path('feelings/', views.feeling_movie_list),
     # 리뷰
     path('comments/', views.comment_list),

@@ -215,9 +215,10 @@ export default new Vuex.Store({
 
     // 관심장르별 추천
     getInterestedRecommend(context) {
+      console.log(this.state.username)
       axios({
         method: 'get', 
-        url: `${API_URL}/movies/interested/`,
+        url: `${API_URL}/movies/interested/${this.state.username}`,
       })
         .then(res => {
           context.commit('GET_INTERESTED_RECOMMEND', res.data)

@@ -3,7 +3,9 @@
   <h1>{{ username }}님의 취향저격</h1>
     <swiper ref="filterSwiper" :options="swiperOption" role="tablist">
       <InterestedListItem
-        :movie="interestedmovies"
+        v-for="movie in interestedmovies"
+        :key="movie.id"
+        :movie="movie"
       />
     </swiper> 
   </div>
@@ -41,6 +43,11 @@ export default {
       return this.$store.state.username
     },
   },
+  methods: {
+    getInterestedRecommend() {
+      this.$store.dispatch("getInterestedRecommend")
+    }
+  }
 }
 </script>
 

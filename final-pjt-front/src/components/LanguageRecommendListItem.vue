@@ -17,7 +17,9 @@
         </span>
       </swiper-slide>
     </swiper>
-
+    <br>
+    <br>
+    <br>
     <h2>중국어</h2>
     <swiper ref="filterSwiper" :options="swiperOption" role="tablist">
       <swiper-slide role="tab">
@@ -35,7 +37,9 @@
         </span>
       </swiper-slide>
     </swiper>
-  
+    <br>
+    <br>
+    <br>  
     <h2>일본어</h2>
     <swiper ref="filterSwiper" :options="swiperOption" role="tablist">
       <swiper-slide role="tab">
@@ -53,7 +57,9 @@
         </span>
       </swiper-slide>
     </swiper>
-
+    <br>
+    <br>
+    <br>
     <h2>프랑스어</h2>
     <swiper ref="filterSwiper" :options="swiperOption" role="tablist">
       <swiper-slide role="tab">
@@ -71,7 +77,9 @@
         </span>
       </swiper-slide>
     </swiper> 
-
+    <br>
+    <br>
+    <br>
     <h2>스페인어</h2>
     <swiper ref="filterSwiper" :options="swiperOption" role="tablist">
       <swiper-slide role="tab">
@@ -89,7 +97,9 @@
         </span>
       </swiper-slide>
     </swiper>
-
+    <br>
+    <br>
+    <br>
     <h2>영어</h2>
     <swiper ref="filterSwiper" :options="swiperOption" role="tablist">
       <swiper-slide role="tab">

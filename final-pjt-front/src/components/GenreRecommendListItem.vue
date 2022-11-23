@@ -1,44 +1,58 @@
 <template>
   <div>
     <h2>액션</h2>
-      <span
-        v-for="mov in movie.Action"
-        :key="mov.id">
-        <router-link
-          :to="{ 
-            name: 'DetailView',
-            params: { id: mov.id }
-          }"  
-          >
-            <img :src="movieImgURL+mov.poster_path" alt="..." width=250>
-          </router-link>
-      </span>
+    <swiper ref="filterSwiper" :options="swiperOption" role="tablist">
+      <swiper-slide role="tab">
+        <span
+          v-for="mov in movie.Action"
+          :key="mov.id">
+          <router-link
+            :to="{ 
+              name: 'DetailView',
+              params: { id: mov.id }
+            }"  
+            >
+              <img :src="movieImgURL+mov.poster_path" alt="..." width=250>
+            </router-link>
+        </span>
+      </swiper-slide>
+    </swiper>
+
     <h2>애니메이션</h2>
-      <span
-        v-for="mov in movie.Animation"
-        :key="mov.id">
-        <router-link
-          :to="{ 
-            name: 'DetailView',
-            params: { id: mov.id }
-          }"  
-          >
-            <img :src="movieImgURL+mov.poster_path" alt="..." width=250>
-          </router-link>
-      </span>
+    <swiper ref="filterSwiper" :options="swiperOption" role="tablist">
+      <swiper-slide role="tab">
+        <span
+          v-for="mov in movie.Animation"
+          :key="mov.id">
+          <router-link
+            :to="{ 
+              name: 'DetailView',
+              params: { id: mov.id }
+            }"  
+            >
+              <img :src="movieImgURL+mov.poster_path" alt="..." width=250>
+            </router-link>
+        </span>
+      </swiper-slide>
+    </swiper>
     <h2>호러</h2>
-      <span
-        v-for="mov in movie.Horror"
-        :key="mov.id">
-        <router-link
-          :to="{ 
-            name: 'DetailView',
-            params: { id: mov.id }
-          }"  
-          >
-            <img :src="movieImgURL+mov.poster_path" alt="..." width=250>
-          </router-link>
-      </span>
+    <swiper ref="filterSwiper" :options="swiperOption" role="tablist">
+      <swiper-slide role="tab">
+        <span
+          v-for="mov in movie.Horror"
+          :key="mov.id">
+          <router-link
+            :to="{ 
+              name: 'DetailView',
+              params: { id: mov.id }
+            }"  
+            >
+              <img :src="movieImgURL+mov.poster_path" alt="..." width=250>
+            </router-link>
+        </span>
+      </swiper-slide>
+    </swiper>
+    
     <h2>로맨스</h2>
       <span
         v-for="mov in movie.Romance"

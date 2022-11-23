@@ -9,6 +9,7 @@ from datetime import datetime
 # from rest_framework.permissions import IsAuthenticated
 
 from django.shortcuts import get_object_or_404, get_list_or_404
+from django.contrib.auth import get_user_model
 from .models import Movie, Comment
 from .serializers import MovieListSerializer, MovieSerializer, CommentSerializer
 
@@ -115,39 +116,29 @@ def language_recommend(request):
 
 # 관심장르 영화 추천
 @api_view(['GET'])
-def interested_recommend(request):
+def interested_recommend(request, username):
     if request.method == 'GET':
-        movies = Movie.objects.all()
+        movies = Movie.objects.all().order_by('popularity')
+        User = get_user_model()
+        user = get_object_or_404(User, username=username)
+        genre1 = user.interested_genre1
+        genre2 = user.interested_genre2
+        genre3 = user.interested_genre3
         serializer = MovieListSerializer(movies, many=True)
-        genre_recommend_movies = {
-            'Action': [],
-            'Animation': [],
-            'Comedy': [],
-            'Crime': [],
-            'Documentary': [],
-            'Family': [],
-            'Fantasy': [],
-            'Horror': [],
-            'Romance': [],
-            'SF': [],
-            'Thriller': [],
-            'War': [],
-        }
+        interested_movies = []
         # 데이터 정제
         for movie in serializer.data:
             for genre in movie['genres']:
-                if genre['name'] == 'Science Fiction' and len(genre_recommend_movies['SF']) <= 14:
-                    genre_recommend_movies['SF'].append(movie)
-                if genre['name'] in genre_recommend_movies.keys() and len(genre_recommend_movies[genre['name']]) <= 14:
-                    genre_recommend_movies[genre['name']].append(movie)
+                if (genre['name'] == genre1 or genre['name'] == genre2 or genre['name'] == genre3) and movie not in interested_movies:
+                    interested_movies.append(movie)
 
-        return Response(genre_recommend_movies)
+        return Response(interested_movies)
 
 # 기분별 영화 추천
 @api_view(['GET'])
 def feeling_movie_list(request):
     if request.method == 'GET':
-        movies = Movie.objects.all().order_by('id').distinct()
+        movies = Movie.objects.all().order_by('-popularity').distinct()
         serializer = MovieListSerializer(movies, many=True)
         feeling_movies = {
             'happy': [],

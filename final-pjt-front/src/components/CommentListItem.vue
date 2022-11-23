@@ -165,7 +165,7 @@ export default {
 
 <style>
 #update_bnt {
-  display: block;
+  display: none;
 }
 
 #start {
