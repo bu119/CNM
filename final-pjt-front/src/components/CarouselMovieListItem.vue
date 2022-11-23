@@ -1,19 +1,21 @@
 <template>
-  <div>
+    
+  <div class="carousel-item">
     <router-link
       :to="{ 
         name: 'DetailView',
         params: { id: movie.id }
       }"  
     >
-      <img :src="movieImgURL" alt="movie_img" >
+      <img :src="movieImgURL" alt="movie_img" class="d-block w-100">
     </router-link>
   </div>
+
 </template>
 
 <script>
 export default {
-  name: 'RecentPopularMovieListItem',
+  name: 'CarouselMovieListItem',
   props: {
     movie: Object,
   },
