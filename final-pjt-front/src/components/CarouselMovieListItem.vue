@@ -1,6 +1,5 @@
 <template>
-    
-  <div class="carousel-item">
+  <div>
     <router-link
       :to="{ 
         name: 'DetailView',
@@ -10,7 +9,6 @@
       <img :src="movieImgURL" alt="movie_img" class="d-block w-100">
     </router-link>
   </div>
-
 </template>
 
 <script>

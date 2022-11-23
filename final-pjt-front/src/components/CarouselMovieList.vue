@@ -1,22 +1,23 @@
 <template>
   <!-- <h1>최신 인기 영화</h1> -->
-  <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-inner">
-      <CarouselMovieListItem
-        v-for="movie in movies.presented.slice(0, 7)"
-        :key="movie.id"
-        :movie="movie"/>
-    </div>
-  </div>
+  <carousel :autoplay="true" :nav="false" :dots="false" class="marginTop50">
+    <CarouselMovieListItem
+      v-for="movie in movies.presented.slice(0, 7)"
+      :key="movie.id"
+      :movie="movie"
+    />
+  </carousel>
 </template>
 
 <script>
+import carousel from 'vue-owl-carousel'
 import CarouselMovieListItem from '@/components/CarouselMovieListItem'
 
 export default {
   name: 'CarouselMovieList',
   components: {
     CarouselMovieListItem,
+    carousel
   },
   computed: {
     movies() {
