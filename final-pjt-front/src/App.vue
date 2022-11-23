@@ -67,7 +67,9 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: white;
-  background-color: black;
+  background-color: #1b1b1b;
+  width: 1240px;
+  margin: 0 auto;
 }
 
 button {
@@ -83,11 +85,11 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: black;
+  background-color: #1b1b1b;
 }
 
 body {
-  background-color: black;
+  background-color: #1b1b1b;
 }
 
 .wrap_padding {
