@@ -1,30 +1,27 @@
 <template>
   <div id="app">
-    <header class="wrap_padding">
-        <router-link :to="{ name: 'MovieView' }" class="home">
-        </router-link>
-        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">카테고리</a>
-        <ul class="dropdown-menu">
-          <li><router-link :to="{ name: 'CategoryGenreView' }"><a class="dropdown-item" href="#">Genre</a></router-link></li>
-          <li><router-link :to="{ name: 'CategoryLanguageView' }"><a class="dropdown-item" href="#">Language</a></router-link></li>
-        </ul>
-        <div class="headmenu">
-          <div v-if="isUserLogin">
-            <router-link :to="{ name: 'LogInView' }">LogInPage</router-link> |
-            <router-link :to="{ name: 'SignUpView' }">SignUpPage</router-link>
-          </div>
-          <div v-else class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <!-- <span @click="Logout()">로그아웃</span> -->
-            <!-- Face -->
-            <router-link :to="{ name: 'SelectFaceView' }">
-              <button class="nav-item">
-                <a class="nav-link" aria-current="page" href="#">Feeling</a>
-              </button>
-            </router-link>
-            <router-link :to="{ name: 'ProfileView', params: {username:username} }">{{username}}</router-link>님
-            <button @click="logoutUser" class="btn" style="background-color: black; color: white;">Logout</button>
-          </div>
+    <header>
+      <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">카테고리</a>
+      <ul class="dropdown-menu">
+        <li><router-link :to="{ name: 'CategoryGenreView' }"><a class="dropdown-item" href="#">Genre</a></router-link></li>
+        <li><router-link :to="{ name: 'CategoryLanguageView' }"><a class="dropdown-item" href="#">Language</a></router-link></li>
+      </ul>
+      <router-link :to="{ name: 'MovieView' }" class="home"></router-link>
+      <div class="headmenu d-flex justify-content-end">
+        <div v-if="isUserLogin">
+          <router-link :to="{ name: 'LogInView' }"><button class="btn" style="color: white; height: 45px">Login</button></router-link>
+          <router-link :to="{ name: 'SignUpView' }"><button class="btn" style="color: white; height: 45px">Signup</button></router-link>
         </div>
+        <div v-else class="wrap_padding2">
+          <!-- <span @click="Logout()">로그아웃</span> -->
+          <!-- Face -->
+          <router-link :to="{ name: 'SelectFaceView' }">
+            <button class="btn" style="color: white; height: 45px">🧐</button>
+          </router-link>
+          <router-link :to="{ name: 'ProfileView', params: {username:username} }"><img src="@/assets/profile.jpg" alt="" width="45px" style="border-radius: 10px"></router-link>
+          <button @click="logoutUser" class="btn" style="color: white;">Logout</button>
+        </div>
+      </div>
     </header>
     <main>
       <router-view/>
@@ -73,8 +70,24 @@ export default {
   background-color: black;
 }
 
+button {
+  margin-right: 2px;
+  margin-left: 2px;
+}
+
 header {
-  display: block;
+  height: 75px;
+  padding: 1rem;
+  color: white;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: black;
+}
+
+body {
+  background-color: black;
 }
 
 .wrap_padding {
@@ -87,14 +100,10 @@ header {
   right: 0;
   width: calc(100vw - var(--scrollbar-width));
   height: 5rem;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: start;
   -ms-flex-pack: start;
-  -webkit-justify-content: flex-start;
-  justify-content: flex-start;
+  justify-content: flex-end;
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -104,8 +113,13 @@ header {
   background-image: initial;
 }
 
+.wrap_padding2 {
+  display: flex;
+  justify-content: end;
+}
+
 .home {
-  width: 2.4rem;
+  width: 5.8rem;
   height: 100%;
   background-repeat: no-repeat;
   -webkit-background-position: 0 50%;
@@ -130,7 +144,8 @@ header {
 
 .dropdown-menu {
     margin-right: 2.333rem;
-    color: rgba(255,255,255,1);
+    color: white;
+    background-color: #475965;
     opacity: 0.87;
     font-size: 1rem;
     -webkit-transform: translate3d(0,0,0);
@@ -140,5 +155,6 @@ header {
     -webkit-transition: opacity 0.1s;
     transition: opacity 0.1s;
 }
+
 
 </style>
