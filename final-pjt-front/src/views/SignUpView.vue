@@ -1,27 +1,40 @@
 <template>
-  <div>
-    <h1>Sign Up Page</h1>
-    <form @submit.prevent="signUp">
-      <input type="text" id="username" v-model="username" placeholder="ID"><br>
-      <input type="email" id="email" v-model="email" placeholder="ssafy@example.com"><br>    
-      <p class="validation-text" v-if="!isEmailValid && email">
-        <!-- 이메일 형식 및 입력란 공백 확인 -->
-        <span class="warning" >
-          이메일 주소를 정확히 입력해주세요.
-        </span>
-      </p>
+  <div class="form-signup">
+    <form @submit.prevent="signUp" class="margin-top: 40%; text-center">
+      <h1 class="h3 mb-3 fw-normal">회원가입</h1>
 
-      <input type="password" id="password1" v-model="password1" placeholder="password"><br>
-      <!-- 비밀번호 형식 및 입력란 공백 확인 -->
-      <p class="warning" v-if="!isPasswordValid && password1">
-        영문, 숫자, 특수문자를 조합하여 8자 이상 입력해주세요.
-      </p>
-      <input type="password" id="password2" v-model="password2" placeholder="password confirmation"><br>
+      <div class="form-floating">
+        <input type="text" class="form-control" id="username" v-model="username" placeholder="ID">
+        <label for="username" style="color: black;">아이디</label>
+      </div>
+
+      <div class="form-floating">
+        <input type="email" class="form-control" id="email" v-model="email" placeholder="ssafy@example.com">
+        <label for="email" style="color: black;">이메일</label>
+        <p class="warning" v-if="!isEmailValid && email">
+          <!-- 이메일 형식 및 입력란 공백 확인 -->
+          이메일 주소를 정확히 입력해주세요.
+        </p>
+      </div>  
+
+      <div class="form-floating">
+        <input type="password" class="form-control" id="password1" v-model="password1" placeholder="password">
+        <label for="password1" style="color: black;">비밀번호</label>
+        <!-- 비밀번호 형식 및 입력란 공백 확인 -->
+        <p class="warning" v-if="!isPasswordValid && password1">
+          영문, 숫자, 특수문자를 조합하여 8자 이상 입력해주세요.
+        </p>
+      </div>
+      
+      <div class="form-floating">
+        <input type="password" class="form-control" id="password2" v-model="password2" placeholder="password confirmation">
+        <label for="password2" style="color: black;">비밀번호 확인</label>
+      </div>
+
       <br>
-      <h2>Interested Genre</h2>
-      <form>1순위: 
-        <select v-model="interested_genre1">
-          <option selected>=== 선택 ===</option>
+      <h4>관심장르를 골라주세요</h4>
+      <form>1순위:
+        <select v-model="interested_genre1" id="disabledSelect" class="form-select">
           <option value="Action">Action</option>
           <option value="Animation">Animation</option>
           <option value="Comedy">Comedy</option>
@@ -37,8 +50,7 @@
         </select>
       </form>
       <form>2순위: 
-        <select v-model="interested_genre2">
-          <option selected>=== 선택 ===</option>
+        <select v-model="interested_genre2" id="disabledSelect" class="form-select">
           <option value="Action">Action</option>
           <option value="Animation">Animation</option>
           <option value="Comedy">Comedy</option>
@@ -54,8 +66,7 @@
         </select>
       </form>
       <form>3순위: 
-        <select v-model="interested_genre3">
-          <option selected>=== 선택 ===</option>
+        <select v-model="interested_genre3" id="disabledSelect" class="form-select">
           <option value="Action">Action</option>
           <option value="Animation">Animation</option>
           <option value="Comedy">Comedy</option>
@@ -70,7 +81,17 @@
           <option value="War">War</option>
         </select>
       </form>
-      <br><input type="submit" value="SignUp">
+      <br>
+      <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" id="aggrement" required>
+        <label class="custom-control-label" for="aggrement">개인정보 수집 및 이용에 동의합니다.</label>
+        <p class="warning" v-if="!isPasswordValid && password1">
+          영문, 숫자, 특수문자를 조합하여 8자 이상 입력해주세요.
+        </p>
+      </div>
+      <br>
+      <input class="w-100 btn btn-lg btn-primary" type="submit" value="회원가입">
+      <p class="mt-5 mb-3 text-muted">&copy; CNM 2022</p>
     </form>
   </div>
 </template>
@@ -133,5 +154,36 @@ export default {
 </script>
 
 <style>
+  .form-signup {
+    height: 100%;
+    align-items: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    /* background-color: #f5f5f5; */
+    width: 100%;
+    max-width: 330px;
+    padding: 8px;
+    margin: auto;
+  }
 
+  p {
+    border-radius: 0;
+  }
+
+  .form-signup .form-floating:focus-within {
+    z-index: 2;
+    color: black;
+  }
+
+  .form-signup input[type="email"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  .form-signup input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
 </style>

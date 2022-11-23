@@ -4,7 +4,6 @@
     <button style="float:right">
       <router-link :to="{ name: 'EditProfileView' }">EditProfile</router-link>
     </button>
-    <h2>나의 리뷰 목록</h2>
     <UserCommentList/>
     
   </div>

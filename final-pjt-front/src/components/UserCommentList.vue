@@ -1,9 +1,7 @@
 <template>
   <div>
     <UserCommentListItem
-      v-for="comment in user_comments"
-      :key="comment.id"
-      :comment="comment"
+      :comment="user_comments"
     />
   </div>
 </template>
