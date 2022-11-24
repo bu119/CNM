@@ -291,7 +291,7 @@ ul{
 
 li{
   display: inline-block;
-  color: rgba(255,255,255,0.4);
+  color: rgba(255, 255, 255, 0.791);
   transition: color 0.3s;
   transition-delay: 0.15s;
   margin: 0 5px;

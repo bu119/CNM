@@ -6,7 +6,7 @@
           <img src="@/assets/profile.jpg" width="30px">
         </div>
           <span class="dot"></span>
-        <span class="name mb-1 fw-500" style="color: white;">{{ username }}</span>
+        <span class="name mb-1 fw-500" style="font-size: 20px; color: white;">{{ username }}</span>
 
         <form @submit.prevent="createComment">
           <input class="writereview" @click="checkLogin" type="text" v-model.trim="comment_content" placeholder="리뷰를 작성해주세요.">

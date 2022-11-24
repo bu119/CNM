@@ -44,14 +44,14 @@ const routes = [
     component: SelectFaceView
   },
   {
-    path: '/:username',
-    name: 'ProfileView',
-    component: ProfileView
-  },
-  {
     path: '/:id',
     name: 'DetailView',
     component: DetailView,
+  },
+  {
+    path: '/:username',
+    name: 'ProfileView',
+    component: ProfileView
   },
 ]
 

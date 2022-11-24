@@ -203,15 +203,15 @@ export default {
 	/* box-shadow: 10px 10px 5px #aaaaaa; */
 }
 .text1{
-	font-size: 15px;
+	font-size: 20;
   font-weight: 500;
-  color: #56575b;
+  color: #cacaca;
 }
 .text2{
-	font-size: 15px;
+	font-size: 20px;
     font-weight: 500;
     margin-left: 6px;
-    color: #56575b;
+    color: #cacaca;
 }
 
 .writereview{
