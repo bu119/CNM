@@ -4,13 +4,13 @@
       <CarouselMovieList/>
     </div>
     <div class="mainMovie">
-      <RecentPopularMovieList/>
-    </div>
-    <div class="mainMovie">
       <InterestedList/>
     </div>
     <div class="mainMovie">
       <RecentMovieList/>
+    </div>
+    <div class="mainMovie">
+      <RecentPopularMovieList/>
     </div>
     <div class="mainMovie">
       <SteadySellerList/>

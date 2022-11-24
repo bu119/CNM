@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- <h1>스테디셀러</h1> -->
-    <h2>한번 보면 추천하고 싶어지는 영화</h2>
+    <h2>다시 보고 싶어지는 영화</h2>
     <swiper ref="filterSwiper" :options="swiperOption" role="tablist">
       
       <SteadySellerListItem
