@@ -184,12 +184,6 @@ h2 {
 #movie_card:hover {
   transform: scale(1.1, 1.1);
   /* width: 110%; */
-
-}
-#movie_card:hover {
-  transform: scale(1.1, 1.1);
-  /* width: 110%; */
-
 }
 .box {
   margin: 20px;

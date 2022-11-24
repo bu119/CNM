@@ -2,7 +2,7 @@
   <!-- <h1>최신 인기 영화</h1> -->
   <carousel :autoplay="true" :nav="false" :dots="false" class="marginTop50">
     <CarouselMovieListItem
-      v-for="movie in movies.presented.slice(0, 7)"
+      v-for="movie in movies.presented.slice(0, 10)"
       :key="movie.id"
       :movie="movie"
     />

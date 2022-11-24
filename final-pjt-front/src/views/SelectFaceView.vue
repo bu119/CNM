@@ -39,19 +39,21 @@
           </div>
         </section>
 
-      <h2 class="ml-4 mb-2" style="font-size: 30px; text-align: left;"># 다른 추천 영화</h2>
-      <span
-        v-for="mov in movies['happy']"
-        :key="`hapyy-${mov.id}`">
-        <router-link
-          :to="{ 
-            name: 'DetailView',
-            params: { id: mov.id }
-          }"  
-        >
-          <img :src="movieImgURL+mov.poster_path" alt="..." width=250>
-        </router-link>
-      </span>
+      <h2 id="another_re" class="ml-4 mb-2" style="font-size: 30px; text-align: left;"># 추천 영화 더 보기</h2>
+      <div id="box">
+        <span
+          v-for="mov in movies['happy']"
+          :key="`hapyy-${mov.id}`">
+          <router-link
+            :to="{ 
+              name: 'DetailView',
+              params: { id: mov.id }
+            }"  
+          >
+            <img id="movie_card" :src="movieImgURL+mov.poster_path" alt="..." width=250 style="border-radius: 18px;">
+          </router-link>
+        </span>
+      </div>
     </div>
 
     <div
@@ -86,19 +88,21 @@
           </div>
         </section>
 
-      <h2 class="ml-4 mb-2" style="font-size: 30px; text-align: left;"># 다른 추천 영화</h2>
-      <span
-        v-for="mov in movies['angry']"
-        :key="`angry-${mov.id}`">
-        <router-link
-          :to="{ 
-            name: 'DetailView',
-            params: { id: mov.id }
-          }"  
-        >
-          <img :src="movieImgURL+mov.poster_path" alt="..." width=250>
-        </router-link>
-      </span>
+      <h2 id="another_re" class="ml-4 mb-2" style="font-size: 30px; text-align: left;"># 추천 영화 더 보기</h2>
+      <div id="box">
+        <span
+          v-for="mov in movies['angry']"
+          :key="`angry-${mov.id}`">
+          <router-link
+            :to="{ 
+              name: 'DetailView',
+              params: { id: mov.id }
+            }"  
+          >
+            <img id="movie_card" :src="movieImgURL+mov.poster_path" alt="..." width=250 style="border-radius: 18px;">
+          </router-link>
+        </span>
+      </div>
     </div>
 
     <div
@@ -133,19 +137,21 @@
           </div>
         </section>
 
-      <h2 class="ml-4 mb-2" style="font-size: 30px; text-align: left;"># 다른 추천 영화</h2>
-      <span
-        v-for="mov in movies['depressive']"
-        :key="`depressive-${mov.id}`">
-        <router-link
-          :to="{ 
-            name: 'DetailView',
-            params: { id: mov.id }
-          }"  
-        >
-          <img :src="movieImgURL+mov.poster_path" alt="..." width=250>
-        </router-link>
-      </span>
+      <h2 id="another_re" class="ml-4 mb-2" style="font-size: 30px; text-align: left;"># 추천 영화 더 보기</h2>
+      <div id="box">
+        <span
+          v-for="mov in movies['depressive']"
+          :key="`depressive-${mov.id}`">
+          <router-link
+            :to="{ 
+              name: 'DetailView',
+              params: { id: mov.id }
+            }"  
+          >
+            <img id="movie_card" :src="movieImgURL+mov.poster_path" alt="..." width=250 style="border-radius: 18px;">
+          </router-link>
+        </span>
+      </div>
     </div>
   </div>
 </template>
@@ -7476,4 +7482,20 @@ label.panel-block:hover {
   padding: 3rem 1.5rem 6rem;
 }
 /*# sourceMappingURL=bulma.css.map */
+#movie_card:hover {
+  transform: scale(1.1, 1.1);
+  /* width: 110%; */
+}
+#another_re {
+  padding-left: 20px;
+  text-align: left;
+  /* font-size: 24px; */
+  line-height: 36px;
+  display: block;
+  /* font-weight: bold; */
+  margin: 0 0 20px 10px;
+}
+#box {
+  margin: 20px;
+}
 </style>
