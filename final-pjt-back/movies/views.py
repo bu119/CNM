@@ -150,11 +150,11 @@ def feeling_movie_list(request):
         # 데이터 정제
         for movie in serializer.data:
             for genre in movie['genres']:
-                if (genre['name'] == 'Romance' or genre['name'] == 'Family' or genre['name'] == 'Fantasy') and len(feeling_movies['happy']) < 9 and movie not in feeling_movies['happy']:
+                if (genre['name'] == 'Romance' or genre['name'] == 'Family' or genre['name'] == 'Fantasy') and len(feeling_movies['happy']) < 10 and movie not in feeling_movies['happy']:
                     feeling_movies['happy'].append(movie)
-                elif (genre['name'] == 'Comedy' or genre['name'] == 'Animation') and len(feeling_movies['depressive']) < 9 and movie not in feeling_movies['depressive']:
+                elif (genre['name'] == 'Comedy' or genre['name'] == 'Animation') and len(feeling_movies['depressive']) < 10 and movie not in feeling_movies['depressive']:
                     feeling_movies['depressive'].append(movie)
-                elif (genre['name'] == 'Action' or genre['name'] == 'Science Fiction' or genre['name'] == 'War') and len(feeling_movies['angry']) < 9 and movie not in feeling_movies['angry']:
+                elif (genre['name'] == 'Action' or genre['name'] == 'Science Fiction' or genre['name'] == 'War') and len(feeling_movies['angry']) < 10 and movie not in feeling_movies['angry']:
                     feeling_movies['angry'].append(movie)
         
         return Response(feeling_movies)
