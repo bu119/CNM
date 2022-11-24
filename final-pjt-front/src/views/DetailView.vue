@@ -1,38 +1,41 @@
 <template>
   <div>
     <div class="movie_card" id="bright">
+      <!-- 제목 & 별점 -->
       <div class="info_section">
         <div class="movie_header">
-          <img class="locandina" :src="poster_path"/>
           <h1>{{ movie?.title }}</h1>
           <!-- <h4>{{ movie?.released_date.year }}</h4> -->
           <span class="minutes"> ⭐{{ movie?.vote_avg }}</span>
           <p class="type"><span 
-        v-for="(genre, idx) in movie.genres"
-        :key="idx"
-      >
-        {{ genre['name'] }}
-        <span
-          v-if="movie.genres.length !== (idx + 1)">
-          ,
-        </span>
-      </span></p>
-        </div>
-        <div class="movie_desc">
-          <p class="text">
-            {{ movie?.overview }}
-          </p>
-        </div>
-        <div class="movie_social">
-          <ul>
-            <li><i @click="btnShareTw" type="button" id="twitter" class="material-icons"><img src="./images/icon-twitter.png" alt=""></i></li>
-            <li><i @click="btnShareFb" type="button" id="facebook" class="material-icons"><img src="./images/icon-facebook.png" alt=""></i></li>
-            <li><i @click="btnShareKt" type="button" id="kakao" class="material-icons"><img src="./images/icon-kakao.png" alt=""></i></li>
-          </ul>
-        </div>
+            v-for="(genre, idx) in movie.genres"
+            :key="idx"
+            >
+            {{ genre['name'] }}
+            <span
+            v-if="movie.genres.length !== (idx + 1)">
+            ,
+          </span>
+        </span></p>
       </div>
-      <div class="blur_back bright_back"></div>
+      <!-- 포스터 & 줄거리 -->
+      <div class="movie_desc">
+        <img class="locandina" :src="poster_path"/>
+        <p class="text">
+          {{ movie?.overview }}
+        </p>
+      </div>
+      <div class="movie_social">
+        <ul>
+          <li><i @click="btnShareTw" type="button" id="twitter" class="material-icons"><img src="./images/icon-twitter.png" alt=""></i></li>
+          <li><i @click="btnShareFb" type="button" id="facebook" class="material-icons"><img src="./images/icon-facebook.png" alt=""></i></li>
+          <li><i @click="btnShareKt" type="button" id="kakao" class="material-icons"><img src="./images/icon-kakao.png" alt=""></i></li>
+        </ul>
+      </div>
     </div>
+    <!-- <div class="blur_back bright_back" :style="`background-image: linear-gradient(0deg, rgba(15,15,15,1), rgba(100, 100, 100, 0.2)),url(${backdrop_path}); background-size: cover; background-position: center;`" ></div> -->
+    <div class="blur_back" :style="`background-image: url(${backdrop_path}); background-size: cover; background-position: center;`" ></div>
+  </div>
 
     <div class="secondpart">
       <!-- 유투브 비디오 -->
@@ -90,7 +93,7 @@ export default {
         .then((res) => {
           this.movie = res.data
           this.poster_path = `https://image.tmdb.org/t/p/w600_and_h900_bestv2${res.data.poster_path}`
-          this.backdrop_path = `https://image.tmdb.org/t/p/w600_and_h900_bestv2${res.data.backdrop_path}`
+          this.backdrop_path = `https://image.tmdb.org/t/p/original${res.data.backdrop_path}`
           // this.$store.commit('GET_MOVIE_DETAIL', res.data)
 
           //  일단 무비 디테일 페이지 들고오는걸루---------------------------------------------------- 리스트에서 들고옴
@@ -183,7 +186,7 @@ export default {
   position: relative;
   display: block;
   width: 1200px;
-  height: 420;
+  height: 600px;
   margin: 100px auto; 
   overflow: hidden;
   border-radius: 10px;
@@ -233,7 +236,7 @@ h4{
   margin-left: 1
   0px;
   margin-right: 20px;
-  height: 150px;
+  height: 300px;
   box-shadow: 0 0 20px -10px rgba(0,0,0,0.5);
 }
 
@@ -345,9 +348,9 @@ i{
 }
 
 
-.bright_back{
+/* .bright_back{
   background: url("https://occ-0-2433-448.1.nflxso.net/art/cd5c9/3e192edf2027c536e25bb5d3b6ac93ced77cd5c9.jpg");
-}
+} */
 
 #tomb{
   box-shadow: 0px 0px 150px -45px rgba(19, 160, 134, 0.6);

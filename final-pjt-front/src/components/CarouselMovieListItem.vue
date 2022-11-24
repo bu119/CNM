@@ -19,7 +19,7 @@ export default {
   },
   computed: {
     movieImgURL() {
-      return `https://image.tmdb.org/t/p/w600_and_h900_bestv2${this.movie.backdrop_path}`
+      return `https://image.tmdb.org/t/p/original${this.movie.backdrop_path}`
     }
   }
 
