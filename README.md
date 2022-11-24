@@ -134,7 +134,7 @@
 
 <img width="776" alt="image" src="https://user-images.githubusercontent.com/109335452/203851263-8d0b8790-9999-4771-bf27-06316fe3397a.png">
 
-<img width="776" alt="main" src="https://user-images.githubusercontent.com/109335452/203854133-e4c81be3-f583-42bc-aff8-700393a2cd4b.png">
+<img width="755" alt="detail" src="https://user-images.githubusercontent.com/109335452/203860611-d7304e1f-d71d-4635-89a2-a5a59c573f1c.png">
 
 <img width="728" alt="prfile" src="https://user-images.githubusercontent.com/109335452/203854166-3190845e-d70d-4d76-8c3f-fa535681a4d1.png">
 
