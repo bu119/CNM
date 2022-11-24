@@ -118,7 +118,7 @@ export default {
       const content = this.update_comment_content
       // console./og(content)
       // const commentId = this.comment.id
-      // const score = this.update_comment_score
+      const score = this.update_comment_score
       // const payload = {
       //   content,
       //   commentId,
@@ -137,7 +137,7 @@ export default {
           url: `${API_URL}/movies/comments/${this.comment.id}/`,
           data: {
             content,
-            // score
+            score
           },
           headers: {
             Authorization: `Token ${this.$store.state.token}`
