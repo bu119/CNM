@@ -112,7 +112,7 @@ export default {
 	border-radius: 12px;
 }
 
-.circle-image img{
+/* .circle-image img{
   border: 6px solid #fff;
   border-radius: 100%;
   padding: 0px;
@@ -195,5 +195,5 @@ export default {
 
 .rating-submit:hover{
 	color: #fff;
-}
+} */
 </style>

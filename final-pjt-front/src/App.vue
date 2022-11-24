@@ -24,7 +24,7 @@
     </header>
     <hr class="mainHr">
     <main>
-      <router-view/>
+      <router-view :key="$route.fullPath"></router-view>
     </main>  
   </div>
 </template>

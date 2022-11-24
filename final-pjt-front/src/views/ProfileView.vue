@@ -2,7 +2,7 @@
   <div>
     <h3>{{ username }}님의 프로필 페이지</h3>
     <button style="float:right">
-      <router-link :to="{ name: 'EditProfileView' }">EditProfile</router-link>
+      <!-- <router-link :to="{ name: 'EditProfileView' }">EditProfile</router-link> -->
     </button>
     <UserCommentList/>
     

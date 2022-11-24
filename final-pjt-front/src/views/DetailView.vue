@@ -51,11 +51,11 @@
           frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen
         ></iframe>
       </div>
-
-      <CommentForm/>
-
-    </div><br><br><hr><br>
-      <CommentList/>
+      <div>
+        <CommentForm/>
+        <CommentList/>
+      </div>
+    </div>
   </div>
 </template>
 

@@ -18,7 +18,7 @@ export default {
     languagerecommend() {
       return this.$store.state.languagerecommend
     }
-  }
+  },
 }
 </script>
 

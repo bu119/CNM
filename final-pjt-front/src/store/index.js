@@ -413,28 +413,28 @@ export default new Vuex.Store({
         });
     },
 
-    updateComment(context, payload) {
-      axios({
-        method: "put",
-        url: `${API_URL}/movies/comments/${payload.commentId}/`,
-        data: {
-          content: payload.content,
-          score: payload.score,
-        },
-        headers: {
-          Authorization: `Token ${context.state.token}`
-        },
-      })
-        .then((res) => {
-          console.log(res)
-          context.commit('UPDATE_COMMENT', res.data)
-          alert('리뷰가 수정되었습니다.')
-        })
-        .catch((err) => {
-          alert('작성자가 아닙니다.')
-          console.error(err);
-        });
-    },
+    // updateComment(context, payload) {
+    //   axios({
+    //     method: "put",
+    //     url: `${API_URL}/movies/comments/${payload.commentId}/`,
+    //     data: {
+    //       content: payload.content,
+    //       score: payload.score,
+    //     },
+    //     headers: {
+    //       Authorization: `Token ${context.state.token}`
+    //     },
+    //   })
+    //     .then((res) => {
+    //       console.log(res)
+    //       context.commit('UPDATE_COMMENT', res.data)
+    //       alert('리뷰가 수정되었습니다.')
+    //     })
+    //     .catch((err) => {
+    //       alert('작성자가 아닙니다.')
+    //       console.error(err);
+    //     });
+    // },
     // 프로필 ----------------------------------------------------------
     getAllComments(context) {
       axios({

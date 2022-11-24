@@ -7,7 +7,7 @@ import DetailView from '@/views/DetailView'
 import ProfileView from '@/views/ProfileView'
 import CategoryLanguageView from '@/views/CategoryLanguageView'
 import CategoryGenreView from '@/views/CategoryGenreView'
-import EditProfileView from '@/views/EditProfileView'
+// import EditProfileView from '@/views/EditProfileView'
 import SelectFaceView from '@/views/SelectFaceView'
 
 Vue.use(VueRouter)
@@ -19,11 +19,6 @@ const routes = [
     component: MovieView
   },
   {
-    path: '/:id',
-    name: 'DetailView',
-    component: DetailView,
-  },
-  {
     path: '/signup',
     name: 'SignUpView',
     component: SignUpView
@@ -32,16 +27,6 @@ const routes = [
     path: '/',
     name: 'LogInView',
     component: LogInView
-  },
-  {
-    path: '/:username',
-    name: 'ProfileView',
-    component: ProfileView
-  },
-  {
-    path: '/:username',
-    name: 'EditProfileView',
-    component: EditProfileView
   },
   {
     path: '/language',
@@ -57,6 +42,16 @@ const routes = [
     path: '/feeling',
     name: 'SelectFaceView',
     component: SelectFaceView
+  },
+  {
+    path: '/:username',
+    name: 'ProfileView',
+    component: ProfileView
+  },
+  {
+    path: '/:id',
+    name: 'DetailView',
+    component: DetailView,
   },
 ]
 

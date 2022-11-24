@@ -1,86 +1,42 @@
 <template>
-    <div class="managecomment">
-      <div class="second py-2 px-2"> <span class="text1">{{ comment.content }}</span>
-        <div class="d-flex justify-content-between py-1 pt-2">
-          <div><img src="@/assets/profile.jpg" width="18"><span class="text2">{{ comment.username }}</span></div>
-          <div>
-            <span id="start">
-            <span v-if="comment.score === 5">
-              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-            </span>
+  <div class="managecomment">
 
-            <span v-else-if="comment.score === 4.5">
-              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i>
-            </span>
-
-            <span v-else-if="comment.score === 4">
-              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star"></i>
-            </span>
-
-            <span v-else-if="comment.score === 3.5">
-              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i><i class="bi bi-star"></i>
-            </span>
-
-            <span v-else-if="comment.score === 3">
-              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star"></i><i class="bi bi-star"></i>
-            </span>
-
-            <span v-else-if="comment.score === 2.5">
-              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i><i class="bi bi-star"></i><i class="bi bi-star"></i>
-            </span>
-
-            <span v-else-if="comment.score === 2">
-              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i>
-            </span>
-
-            <span v-else-if="comment.score === 1.5">
-              <i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i>
-            </span>
-
-            <span v-else-if="comment.score === 1">
-              <i class="bi bi-star-fill"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i>
-            </span>
-
-            <span v-else-if="comment.score === 0.5">
-              <i class="bi bi-star-half"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i>
-            </span>
-
-            <span v-else>
-              <i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i>
-            </span>
-          </span>
-          </div>
-        </div>
+    <div>
+      <img src="@/assets/profile.jpg" width="18">
+      <span class="text2">{{ comment.username }}</span>
+    </div>
+    <div v-if="update_mode">
+      <star-rating :increment="0.5" v-model="update_comment_score"></star-rating>
+      <form>
+        <input @click="checkLogin" type="text" v-model="update_comment_content" placeholder="리뷰를 수정해주세요.">
+        <button @click="updateComment" class="btn btn-warning" type="button">수정</button>
+      </form>
+    </div>
+    <div v-else>
+      <div class="second py-2 px-2">
+        <span class="text1">{{ comment.content }}</span>
       </div>
-    <br>
-    
-    <div class="btns">
+    </div>
+    <div v-if="comment.username===this.username">
       <img @click="deleteComment" src="@/assets/trash-bin.png" alt="" width="40px" height="40px">
-      <div v-if="comment.username===this.username">
-        <img src="@/assets/pen.png" alt="" @click="toggleBtn" width="40px" height="40px">
-        <div id='update_bnt'>
-          <star-rating :increment="0.5" v-model="update_comment_score"></star-rating>
-          <form>
-            <input @click="checkLogin" type="text" v-model="update_comment_content" placeholder="리뷰를 수정해주세요.">
-            <button @click="updateComment" class="btn btn-warning" type="button">수정</button>
-          </form>
-        </div>
-      </div>
+      <img src="@/assets/pen.png" alt="" @click="updatToggleBtn" width="40px" height="40px">
     </div>
   </div>
 </template>
 
 <script>
 import StarRating from 'vue-star-rating'
-// import axios from 'axios'
+import axios from 'axios'
 
-// const API_URL = 'http://127.0.0.1:8000'
+const API_URL = 'http://127.0.0.1:8000'
+
 export default {
   name: 'CommentListItem',
   data() {
     return {
-      update_comment_content: null,
+      update_comment_content: this.comment.content,
       update_comment_score: 0,
+      update_mode: false
     }
   },
   computed: {
@@ -98,6 +54,9 @@ export default {
     comment: Object,
   },
   methods: {
+    updatToggleBtn() {
+      this.update_mode = !this.update_mode
+    },
     checkLogin() {
       if (this.isLogin === false) { 
         alert('로그인이 필요한 서비스 입니다.')
@@ -113,13 +72,13 @@ export default {
       console.log(this.comment)
       const content = this.update_comment_content
       // console./og(content)
-      const commentId = this.comment.id
-      const score = this.update_comment_score
-      const payload = {
-        content,
-        commentId,
-        score,
-      }
+      // const commentId = this.comment.id
+      // const score = this.update_comment_score
+      // const payload = {
+      //   content,
+      //   commentId,
+      //   score,
+      // }
       // if (this.comment.username !== this.username) {
       //   alert('작성자가 아닙니다.')
       // } else 
@@ -127,31 +86,33 @@ export default {
         alert('내용을 입력해주세요.')
       } else {
         console.log(this.comment.id)
-        this.$store.dispatch('updateComment', payload)
-        // axios({
-        //   method: "put",
-        //   url: `${API_URL}/movies/comments/${this.comment.id}/`,
-        //   data: {
-        //     content,
-        //     // score
-        //   },
-        //   headers: {
-        //     Authorization: `Token ${this.$store.state.token}`
-        //   },
-        // })
-        //   .then((res) => {
-        //     // console.log(this.comment.id)
-        //     // console.log(res)
-        //     this.$store.commit('UPDATE_COMMENT', res.data)
-        //   })
-        //   .catch((err) => {
-        //     alert('작성자가 아닙니다.')
-        //     console.error(err);
-        //   })
+        // this.$store.dispatch('updateComment', payload)
+        axios({
+          method: "put",
+          url: `${API_URL}/movies/comments/${this.comment.id}/`,
+          data: {
+            content,
+            // score
+          },
+          headers: {
+            Authorization: `Token ${this.$store.state.token}`
+          },
+        })
+          .then((res) => {
+            // console.log(this.comment.id)
+            // console.log(res)
+            this.$store.commit('UPDATE_COMMENT', res.data)
+            this.update_mode = !this.update_mode
+            alert('리뷰가 수정되었습니다.')
+          })
+          .catch((err) => {
+            alert('작성자가 아닙니다.')
+            console.error(err);
+          })
       }
-      this.update_comment_content = null
+    
     },
-    toggleBtn() {
+    updateToggleBtn() {
       // 토글 할 버튼 선택 (update_bnt)
       const update_bnt = document.getElementById('update_bnt');
       
@@ -170,9 +131,9 @@ export default {
 </script>
 
 <style>
-#update_bnt {
+/* #update_bnt {
   display: none;
-}
+} */
 
 #start {
     color: rgb(253, 215, 0);
@@ -205,8 +166,8 @@ export default {
     color: #56575b;
 }
 
-.btns {
+/* .btns {
   display: flex;
   justify-content: right;
-}
+} */
 </style>
