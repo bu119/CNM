@@ -47,12 +47,14 @@
     <div class="secondpart">
       <!-- 유투브 비디오 -->
       <div v-if="YouTubeUrl">
-        <iframe width="560" height="315" :src='YouTubeUrl' title="YouTube video player" 
+        <iframe width="370" height="310" :src='YouTubeUrl' title="YouTube video player" 
           frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen
         ></iframe>
       </div>
       <div>
         <CommentForm/>
+      </div>
+      <div>
         <CommentList/>
       </div>
     </div>
@@ -315,7 +317,10 @@ i{
 
 .secondpart {
   display: flex;
-  justify-content: space-evenly;
+  text-align: center;
+  justify-content: space-between;
+  float: center;
+  padding-left: 20px;
 }
 
 @media screen and (min-width: 768px) {

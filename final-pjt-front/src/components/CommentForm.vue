@@ -3,15 +3,15 @@
     <div class="container d-flex justify-content-center">
       <div class="card text-center mb-5">
         <div class="circle-image">
-          <img src="@/assets/profile.jpg" width="50">
+          <img src="@/assets/profile.jpg" width="30px">
         </div>
           <span class="dot"></span>
-        <span class="name mb-1 fw-500" style="color: black;">{{ username }}</span>
+        <span class="name mb-1 fw-500" style="color: white;">{{ username }}</span>
 
         <form @submit.prevent="createComment">
           <input class="writereview" @click="checkLogin" type="text" v-model.trim="comment_content" placeholder="리뷰를 작성해주세요.">
           <div class="rate mt-3">
-            <div class="rating"><star-rating :increment="0.5" v-model="comment_score"></star-rating></div>
+            <div class="rating"><star-rating :increment="0.5" v-model="comment_score" style="font-size: 10px"></star-rating></div>
             <div class="buttons px-0">
             <button class="btn btn-primary btn-block rating-submit">Submit</button>
           </div>
@@ -103,16 +103,17 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
 .card{
 	width: 350px;
-	border: none;
+	border: 3px solid rgb(62, 61, 61);
 	/* box-shadow: 5px 6px 6px 2px #e9ecef; */
 	border-radius: 12px;
+  background-color: transparent;
 }
 
-/* .circle-image img{
+.circle-image img{
   border: 6px solid #fff;
   border-radius: 100%;
   padding: 0px;
@@ -156,7 +157,7 @@ export default {
   border-radius: 15px;
   outline: none;
   padding-left: 10px;
-  background-color: rgb(233, 233, 233);
+  background-color: rgba(233, 233, 233, 0.679);
 }
 
 .rate{
@@ -189,11 +190,13 @@ export default {
 
 .rating-submit{
 	border-radius: 15px;
+  border-color: transparent;
 	color: #fff;
-  height: 49px;
+  height: 35px;
+  background-color: rgba(0, 47, 255, 0.863);
 }
 
 .rating-submit:hover{
 	color: #fff;
-} */
+}
 </style>

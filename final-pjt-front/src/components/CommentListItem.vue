@@ -8,8 +8,8 @@
     <div v-if="update_mode">
       <star-rating :increment="0.5" v-model="update_comment_score"></star-rating>
       <form>
-        <input @click="checkLogin" type="text" v-model="update_comment_content" placeholder="리뷰를 수정해주세요.">
-        <button @click="updateComment" class="btn btn-warning" type="button">수정</button>
+        <input class="writereview" @click="checkLogin" type="text" v-model="update_comment_content" placeholder="리뷰를 수정해주세요.">
+        <button class="writereview2" @click="updateComment" type="button">수정</button>
       </form>
     </div>
     <div v-else>
@@ -175,7 +175,8 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+
 /* #update_bnt {
   display: none;
 } */
@@ -211,6 +212,29 @@ export default {
     font-weight: 500;
     margin-left: 6px;
     color: #56575b;
+}
+
+.writereview{
+  width: 300px;
+  height: 40px;
+  font-size: 15px;
+  border: 0;
+  border-radius: 9px;
+  outline: none;
+  padding-left: 10px;
+  padding-top: 5px;
+  background-color: rgba(233, 233, 233, 0.679);
+}
+
+.writereview2{
+  width: 60px;
+  height: 40px;
+  font-size: 15px;
+  border: 0;
+  border-radius: 9px;
+  outline: none;
+  padding-top: 5px;
+  background-color: #F7E600;
 }
 
 /* .btns {
