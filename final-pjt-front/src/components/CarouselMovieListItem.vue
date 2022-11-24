@@ -1,12 +1,12 @@
 <template>
-  <div>
+  <div class="box">
     <router-link
       :to="{ 
         name: 'DetailView',
         params: { id: movie.id }
       }"  
     >
-      <img :src="movieImgURL" alt="movie_img" class="d-block w-100">
+      <img id="movie_card" :src="movieImgURL" alt="movie_img" class="d-block w-100" style="border-radius: 10px;">
     </router-link>
   </div>
 </template>
@@ -26,6 +26,12 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+#movie_card:hover {
+  transform: scale(1.15, 1.15);
+  /* width: 110%; */
+}
+.box {
+  margin: 15px;
+}
 </style>

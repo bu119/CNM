@@ -2,7 +2,7 @@
   <div>
     <h2># 액션</h2>
     <swiper ref="filterSwiper" :options="swiperOption" role="tablist">
-      <swiper-slide role="tab">
+      <swiper-slide role="tab" class="box">
         <span
           v-for="mov in movie.Action"
           :key="mov.id">
@@ -12,7 +12,7 @@
               params: { id: mov.id }
             }"  
             >
-              <img :src="movieImgURL+mov.poster_path" alt="..." width=250 style="border-radius: 18px;">
+              <img id="movie_card" :src="movieImgURL+mov.poster_path" alt="..." width=250 style="border-radius: 18px;">
             </router-link>
         </span>
       </swiper-slide>
@@ -22,7 +22,7 @@
     <br>
     <h2># 애니메이션</h2>
     <swiper ref="filterSwiper" :options="swiperOption" role="tablist">
-      <swiper-slide role="tab">
+      <swiper-slide role="tab" class="box">
         <span
           v-for="mov in movie.Animation"
           :key="mov.id">
@@ -32,7 +32,7 @@
               params: { id: mov.id }
             }"  
             >
-              <img :src="movieImgURL+mov.poster_path" alt="..." width=250 style="border-radius: 18px;">
+              <img id="movie_card" :src="movieImgURL+mov.poster_path" alt="..." width=250 style="border-radius: 18px;">
             </router-link>
         </span>
       </swiper-slide>
@@ -42,7 +42,7 @@
     <br>
     <h2># 호러</h2>
     <swiper ref="filterSwiper" :options="swiperOption" role="tablist">
-      <swiper-slide role="tab">
+      <swiper-slide role="tab" class="box">
         <span
           v-for="mov in movie.Horror"
           :key="mov.id">
@@ -52,7 +52,7 @@
               params: { id: mov.id }
             }"  
             >
-              <img :src="movieImgURL+mov.poster_path" alt="..." width=250 style="border-radius: 18px;">
+              <img id="movie_card" :src="movieImgURL+mov.poster_path" alt="..." width=250 style="border-radius: 18px;">
             </router-link>
         </span>
       </swiper-slide>
@@ -62,7 +62,7 @@
     <br>
     <h2># 로맨스</h2>
     <swiper ref="filterSwiper" :options="swiperOption" role="tablist">
-      <swiper-slide role="tab">
+      <swiper-slide role="tab" class="box">
         <span
           v-for="mov in movie.Romance"
           :key="mov.id">
@@ -72,7 +72,7 @@
               params: { id: mov.id }
             }"  
             >
-              <img :src="movieImgURL+mov.poster_path" alt="..." width=250 style="border-radius: 18px;">
+              <img id="movie_card" :src="movieImgURL+mov.poster_path" alt="..." width=250 style="border-radius: 18px;">
             </router-link>
         </span>
       </swiper-slide>
@@ -82,7 +82,7 @@
     <br>  
     <h2># 판타지</h2>
     <swiper ref="filterSwiper" :options="swiperOption" role="tablist">
-      <swiper-slide role="tab">
+      <swiper-slide role="tab" class="box">
         <span
           v-for="mov in movie.Fantasy"
           :key="mov.id">
@@ -92,7 +92,7 @@
               params: { id: mov.id }
             }"  
             >
-              <img :src="movieImgURL+mov.poster_path" alt="..." width=250 style="border-radius: 18px;">
+              <img id="movie_card" :src="movieImgURL+mov.poster_path" alt="..." width=250 style="border-radius: 18px;">
             </router-link>
         </span>
       </swiper-slide>
@@ -102,7 +102,7 @@
     <br>
     <h2># 미스터리</h2>
      <swiper ref="filterSwiper" :options="swiperOption" role="tablist">
-      <swiper-slide role="tab">
+      <swiper-slide role="tab" class="box">
         <span
           v-for="mov in movie.Mystery"
           :key="mov.id">
@@ -112,7 +112,7 @@
               params: { id: mov.id }
             }"  
             >
-              <img :src="movieImgURL+mov.poster_path" alt="..." width=250 style="border-radius: 18px;">
+              <img id="movie_card" :src="movieImgURL+mov.poster_path" alt="..." width=250 style="border-radius: 18px;">
             </router-link>
         </span>
       </swiper-slide>
@@ -122,7 +122,7 @@
     <br>
     <h2># 코미디</h2>
      <swiper ref="filterSwiper" :options="swiperOption" role="tablist">
-      <swiper-slide role="tab">
+      <swiper-slide role="tab" class="box">
         <span
           v-for="mov in movie.Comedy"
           :key="mov.id">
@@ -132,7 +132,7 @@
               params: { id: mov.id }
             }"  
             >
-              <img :src="movieImgURL+mov.poster_path" alt="..." width=250 style="border-radius: 18px;">
+              <img id="movie_card" :src="movieImgURL+mov.poster_path" alt="..." width=250 style="border-radius: 18px;">
             </router-link>
         </span>
       </swiper-slide>
@@ -142,7 +142,7 @@
     <br>
     <h2># SF</h2>
      <swiper ref="filterSwiper" :options="swiperOption" role="tablist">
-      <swiper-slide role="tab">
+      <swiper-slide role="tab" class="box">
         <span
           v-for="mov in movie.SF"
           :key="mov.id">
@@ -152,7 +152,7 @@
               params: { id: mov.id }
             }"  
             >
-              <img :src="movieImgURL+mov.poster_path" alt="..." width=250 style="border-radius: 18px;">
+              <img id="movie_card" :src="movieImgURL+mov.poster_path" alt="..." width=250 style="border-radius: 18px;">
             </router-link>
         </span>
       </swiper-slide>
@@ -240,5 +240,15 @@ h2 {
   display: block;
   /* font-weight: bold; */
   margin: 0 0 20px;
+}
+
+#movie_card:hover {
+  transform: scale(1.1, 1.1);
+  /* width: 110%; */
+
+}
+
+.box {
+  margin: 20px;
 }
 </style>

@@ -53,6 +53,6 @@ h2 {
   line-height: 36px;
   display: block;
   /* font-weight: bold; */
-  margin: 0 0 20px;
+  /* margin: 0 0 20px; */
 }
 </style>

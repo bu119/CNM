@@ -2,7 +2,7 @@
   <div>
     <h2># 한국</h2>
     <swiper ref="filterSwiper" :options="swiperOption" role="tablist">
-      <swiper-slide role="tab">
+      <swiper-slide role="tab" class="box">
         <span
           v-for="mov in movie.ko"
           :key="mov.id">
@@ -12,7 +12,7 @@
               params: { id: mov.id }
             }"  
             >
-            <img :src="movieImgURL+mov.poster_path" alt="..." width=250 style="border-radius: 18px;">
+            <img id="movie_card" :src="movieImgURL+mov.poster_path" alt="..." width=250 style="border-radius: 18px;">
           </router-link>
         </span>
       </swiper-slide>
@@ -22,7 +22,7 @@
     <br>
     <h2># 중국</h2>
     <swiper ref="filterSwiper" :options="swiperOption" role="tablist">
-      <swiper-slide role="tab">
+      <swiper-slide role="tab" class="box">
         <span
           v-for="mov in movie.zh"
           :key="mov.id">
@@ -32,7 +32,7 @@
               params: { id: mov.id }
             }"  
             >
-              <img :src="movieImgURL+mov.poster_path" alt="..." width=250 style="border-radius: 18px;">
+              <img id="movie_card" :src="movieImgURL+mov.poster_path" alt="..." width=250 style="border-radius: 18px;">
             </router-link>
         </span>
       </swiper-slide>
@@ -42,7 +42,7 @@
     <br>  
     <h2># 일본</h2>
     <swiper ref="filterSwiper" :options="swiperOption" role="tablist">
-      <swiper-slide role="tab">
+      <swiper-slide role="tab" class="box">
         <span
           v-for="mov in movie.ja"
           :key="mov.id">
@@ -52,7 +52,7 @@
               params: { id: mov.id }
             }"  
             >
-              <img :src="movieImgURL+mov.poster_path" alt="..." width=250 style="border-radius: 18px;">
+              <img id="movie_card" :src="movieImgURL+mov.poster_path" alt="..." width=250 style="border-radius: 18px;">
             </router-link>
         </span>
       </swiper-slide>
@@ -62,7 +62,7 @@
     <br>
     <h2># 프랑스</h2>
     <swiper ref="filterSwiper" :options="swiperOption" role="tablist">
-      <swiper-slide role="tab">
+      <swiper-slide role="tab" class="box">
         <span
           v-for="mov in movie.fr"
           :key="mov.id">
@@ -72,7 +72,7 @@
               params: { id: mov.id }
             }"  
             >
-              <img :src="movieImgURL+mov.poster_path" alt="..." width=250 style="border-radius: 18px;">
+              <img id="movie_card" :src="movieImgURL+mov.poster_path" alt="..." width=250 style="border-radius: 18px;">
             </router-link>
         </span>
       </swiper-slide>
@@ -82,7 +82,7 @@
     <br>
     <h2># 스페인</h2>
     <swiper ref="filterSwiper" :options="swiperOption" role="tablist">
-      <swiper-slide role="tab">
+      <swiper-slide role="tab" class="box">
         <span
           v-for="mov in movie.es"
           :key="mov.id">
@@ -92,7 +92,7 @@
               params: { id: mov.id }
             }"  
             >
-              <img :src="movieImgURL+mov.poster_path" alt="..." width=250 style="border-radius: 18px;">
+              <img id="movie_card" :src="movieImgURL+mov.poster_path" alt="..." width=250 style="border-radius: 18px;">
             </router-link>
         </span>
       </swiper-slide>
@@ -102,7 +102,7 @@
     <br>
     <h2># 영어</h2>
     <swiper ref="filterSwiper" :options="swiperOption" role="tablist">
-      <swiper-slide role="tab">
+      <swiper-slide role="tab" class="box">
         <span
           v-for="mov in movie.en"
           :key="mov.id">
@@ -112,7 +112,7 @@
               params: { id: mov.id }
             }"  
             >
-              <img :src="movieImgURL+mov.poster_path" alt="..." width=250 style="border-radius: 18px;">
+              <img id="movie_card" :src="movieImgURL+mov.poster_path" alt="..." width=250 style="border-radius: 18px;">
             </router-link>
         </span>
       </swiper-slide>
@@ -180,5 +180,18 @@ h2 {
   display: block;
   /* font-weight: bold; */
   margin: 0 0 20px;
+}
+#movie_card:hover {
+  transform: scale(1.1, 1.1);
+  /* width: 110%; */
+
+}
+#movie_card:hover {
+  transform: scale(1.1, 1.1);
+  /* width: 110%; */
+
+}
+.box {
+  margin: 20px;
 }
 </style>

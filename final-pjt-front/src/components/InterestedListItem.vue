@@ -1,7 +1,7 @@
 <template>
   <!-- <swiper-slide role="tab"> -->
   
-  <div class="col">
+  <div class="col" id="movie_card">
     <span>
       <router-link
         :to="{ 
@@ -44,6 +44,11 @@ p {
   padding: 0.327em 0 0 0.05em;
   padding-left: 20px;
   text-align: left;
+}
+#movie_card:hover {
+  transform: scale(1.1, 1.1);
+  /* width: 110%; */
+
 }
 
 // .swiper-slide {
