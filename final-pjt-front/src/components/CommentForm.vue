@@ -13,7 +13,7 @@
           <div class="rate mt-3">
             <div class="rating"><star-rating :increment="0.5" v-model="comment_score" style="font-size: 10px"></star-rating></div>
             <div class="buttons px-0">
-            <button class="btn btn-primary btn-block rating-submit">Submit</button>
+            <button class="btn btn-primary btn-block rating-submit">작성하기</button>
           </div>
         </div>          
         </form>
