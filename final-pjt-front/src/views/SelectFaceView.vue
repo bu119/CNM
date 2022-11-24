@@ -7,105 +7,146 @@
       <img @click="sadMovie" src="@/assets/sad.png" alt="">
     </span>
 
-          <!-- <div class="column">
-            <div class="columns is-multiline">
-              <div class="column is-half">
-                <div class="field">
-                  
+    <div
+      v-if="feeling === '행복'">
+        <section class="hero is-dark">
+          <div class="hero-body">
+            <div class="container">
+              <h3 class="subtitle">나는 오늘 행복해😁</h3><br>
+              <h1 class="title">
+                기분 좋은 날엔...
+              </h1>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="container" id="app">
+            <div class="columns">
+              <div class="column">
+                <div class="columns is-centered">
+                  <input type="button" class="button is-dark" style="width: 300px" value="너의 손가락에 맡긴다" id='spin' v-on:click="spin"/>  
                 </div>
-              </div>
-              <div class="column is-half">
-                <button class="button is-primary" v-on:click="addOptions">Add Prize</button>
-              </div>
-              <div class="column is-one-quarter" v-for="option in options" :key="option">
-                <button class="button is-danger" v-on:click="removeOptions(option)">x</button>
-                <span> {{option}} </span>
-              </div>
-            </div>
-          </div> -->
-
-      <div
-        v-if="feeling === '행복'">
-          <section class="hero is-dark">
-            <div class="hero-body">
-              <div class="container">
-                <h3 class="subtitle">나는 오늘 행복해😁</h3><br>
-                <h1 class="title">
-                  기분 좋은 날엔...
-                </h1>
-              </div>
-            </div>
-          </section>
-
-          <section class="section">
-            <div class="container" id="app">
-              <div class="columns">
-                <div class="column">
-                  <div class="columns is-centered">
-                    <input type="button" class="button is-dark" style="width: 300px" value="너의 손가락에 맡긴다" id='spin' v-on:click="spin"/>  
-                  </div>
-                  <div class="columns is-centered">
-                    <canvas id="canvas" width="500" height="500"></canvas>
-                  </div>
-                  <div
-                    v-if="!text">
-                    <input type="button" class="button is-dark" style="width: 300px" value="한번 더" id='spin' v-on:click="spin"/>  
-                  </div>
+                <div class="columns is-centered">
+                  <canvas id="canvas" width="500" height="500"></canvas>
+                </div>
+                <div
+                  v-if="!text">
+                  <input type="button" class="button is-dark" style="width: 300px" value="한번 더" id='spin' v-on:click="spin"/>  
                 </div>
               </div>
             </div>
-          </section>
+          </div>
+        </section>
 
-        <h2 class="ml-4 mb-2" style="font-size: 30px; text-align: left;"># 다른 추천 영화</h2>
-        <span
-          v-for="mov in movies['happy']"
-          :key="`hapyy-${mov.id}`">
-          <router-link
-            :to="{ 
-              name: 'DetailView',
-              params: { id: mov.id }
-            }"  
-          >
-            <img :src="movieImgURL+mov.poster_path" alt="..." width=250>
-          </router-link>
-        </span>
+      <h2 class="ml-4 mb-2" style="font-size: 30px; text-align: left;"># 다른 추천 영화</h2>
+      <span
+        v-for="mov in movies['happy']"
+        :key="`hapyy-${mov.id}`">
+        <router-link
+          :to="{ 
+            name: 'DetailView',
+            params: { id: mov.id }
+          }"  
+        >
+          <img :src="movieImgURL+mov.poster_path" alt="..." width=250>
+        </router-link>
+      </span>
+    </div>
 
+    <div
+      v-if="feeling === '화남'">
+        <section class="hero is-dark">
+          <div class="hero-body">
+            <div class="container">
+              <h3 class="subtitle">나는 오늘 기분이 별로 좋지 않아🤨</h3><br>
+              <h1 class="title">
+                기분이 언짢은 날엔...
+              </h1>
+            </div>
+          </div>
+        </section>
 
-      </div>
+        <section class="section">
+          <div class="container" id="app">
+            <div class="columns">
+              <div class="column">
+                <div class="columns is-centered">
+                  <input type="button" class="button is-dark" style="width: 300px" value="너의 손가락에 맡긴다" id='spin' v-on:click="spin"/>  
+                </div>
+                <div class="columns is-centered">
+                  <canvas id="canvas" width="500" height="500"></canvas>
+                </div>
+                <div
+                  v-if="!text">
+                  <input type="button" class="button is-dark" style="width: 300px" value="한번 더" id='spin' v-on:click="spin"/>  
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
 
-      <!-- <div
-        v-if="feeling === '화남'">
-        <h3>나는 오늘 기분이 별로 좋지 않아🤨</h3>
-        <span
-          v-for="mov in movies['angry']"
-          :key="`angry-${mov.id}`">
-          <router-link
-            :to="{ 
-              name: 'DetailView',
-              params: { id: mov.id }
-            }"  
-          >
-            <img :src="movieImgURL+mov.poster_path" alt="..." width=250>
-          </router-link>
-        </span>
-      </div>
+      <h2 class="ml-4 mb-2" style="font-size: 30px; text-align: left;"># 다른 추천 영화</h2>
+      <span
+        v-for="mov in movies['angry']"
+        :key="`angry-${mov.id}`">
+        <router-link
+          :to="{ 
+            name: 'DetailView',
+            params: { id: mov.id }
+          }"  
+        >
+          <img :src="movieImgURL+mov.poster_path" alt="..." width=250>
+        </router-link>
+      </span>
+    </div>
 
-      <div
-        v-if="feeling === '우울'">
-        <h3>나는 오늘 굉장히 우울해😥</h3>
-        <span
-          v-for="mov in movies['depressive']"
-          :key="`depressive-${mov.id}`">
-          <router-link
-            :to="{ 
-              name: 'DetailView',
-              params: { id: mov.id }
-            }"  
-          >
-            <img :src="movieImgURL+mov.poster_path" alt="..." width=250>
-          </router-link>
-        </span>
-      </div> -->
+    <div
+      v-if="feeling === '우울'">
+        <section class="hero is-dark">
+          <div class="hero-body">
+            <div class="container">
+              <h3 class="subtitle">나는 오늘 굉장히 우울해😥</h3><br>
+              <h1 class="title">
+                기분이 축 처지는 날엔...
+              </h1>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="container" id="app">
+            <div class="columns">
+              <div class="column">
+                <div class="columns is-centered">
+                  <input type="button" class="button is-dark" style="width: 300px" value="너의 손가락에 맡긴다" id='spin' v-on:click="spin"/>  
+                </div>
+                <div class="columns is-centered">
+                  <canvas id="canvas" width="500" height="500"></canvas>
+                </div>
+                <div
+                  v-if="!text">
+                  <input type="button" class="button is-dark" style="width: 300px" value="한번 더" id='spin' v-on:click="spin"/>  
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      <h2 class="ml-4 mb-2" style="font-size: 30px; text-align: left;"># 다른 추천 영화</h2>
+      <span
+        v-for="mov in movies['depressive']"
+        :key="`depressive-${mov.id}`">
+        <router-link
+          :to="{ 
+            name: 'DetailView',
+            params: { id: mov.id }
+          }"  
+        >
+          <img :src="movieImgURL+mov.poster_path" alt="..." width=250>
+        </router-link>
+      </span>
+    </div>
   </div>
 </template>
 
@@ -144,6 +185,7 @@ export default {
   methods: {
     happyMovie() {
       this.feeling = '행복'
+      this.options = [];
       console.log(this.movies['happy']['title'])
       for (let i=0; i < 6; i++) {
         console.log(this.movies['happy'][i]['title'])
@@ -152,6 +194,7 @@ export default {
     },
     angryMovie() {
       this.feeling = '화남'
+      this.options = [];
       for (let i=0; i < 6; i++) {
         console.log(this.movies['angry'][i]['title'])
         this.options.push(this.movies['angry'][i]['title'])
@@ -159,6 +202,7 @@ export default {
     },
     sadMovie() {
       this.feeling = '우울'
+      this.options = [];
       for (let i=0; i < 6; i++) {
         console.log(this.movies['depressive'][i]['title'])
         this.options.push(this.movies['depressive'][i]['title'])
