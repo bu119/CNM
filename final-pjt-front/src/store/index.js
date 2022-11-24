@@ -31,7 +31,8 @@ export default new Vuex.Store({
     comments: [],
     // movie_detail: [],
     // all_comments: [],
-    user_comments: []
+    user_comments: [],
+    top_other_comments: []
   },
 
   getters: {
@@ -73,6 +74,10 @@ export default new Vuex.Store({
     },
 
     // 프로필 -----------------------------------
+    top_other_comments(state) {
+      return state.top_other_comments
+    },
+
     user_comments(state) {
       return state.user_comments
       // state.user_comments = state.all_comments.filter((comment) => {
@@ -146,6 +151,21 @@ export default new Vuex.Store({
           return comment
         }
       })
+    },
+
+    GET_OTHER_COMMENTS(state, comments) {
+      // state.all_comments = comments,
+      const other_comments = comments.filter((comment) => {
+        if (comment.username != state.username) {
+          return comment
+        }
+      })
+      console.log(other_comments)
+      state.top_other_comments = other_comments.filter((comment) => {
+        if (comment.score > 4) {
+          return comment
+        }
+      }) 
     },
 
 
@@ -446,8 +466,25 @@ export default new Vuex.Store({
       })
         .then((res) => {
           console.log('겟 all 프로필')
-          console.log(res)
+          // console.log(res)
           context.commit('GET_All_COMMENTS', res.data)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    },
+    getOtherComments(context) {
+      axios({
+        method: 'get',
+        url: `${API_URL}/movies/comments/`,
+        headers: {
+          Authorization: `Token ${context.state.token}`
+        }
+      })
+        .then((res) => {
+          console.log('겟 another 프로필')
+          // console.log(res)
+          context.commit('GET_OTHER_COMMENTS', res.data)
         })
         .catch((err) => {
           console.log(err)

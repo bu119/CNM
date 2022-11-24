@@ -31,9 +31,10 @@
         <div class="py-4 px-4"> 
           <div class="d-flex align-items-left justify-content-left mb-3"> 
             <h3 class="mb-0 text-center" style="float: left; color: black; width: 600px">My Review</h3>+
-            <h3 class="mb-0 pl-3 text-center" style="float: left; color: black; width: 600px">다른 유저가 추천하는 영화</h3>+
+            <h4 class="mb-0 pl-3 text-center" style="float: left; color: black; width: 600px">다른 유저가 높이 평가한 영화</h4>+
           </div> 
-            <UserCommentList/>
+          <UserCommentList/>
+          <OtherUserCommentList/>
         </div>
       </div>
       </div>
@@ -43,11 +44,13 @@
 
 <script>
 import UserCommentList from '@/components/UserCommentList'
+import OtherUserCommentList from '@/components/OtherUserCommentList'
 
 export default {
   name: 'ProfileView',
   components: {
-    UserCommentList
+    UserCommentList,
+    OtherUserCommentList
   },
   computed: {
     username() {

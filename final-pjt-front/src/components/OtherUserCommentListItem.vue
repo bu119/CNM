@@ -1,12 +1,12 @@
 <template>
   <div>
-    <div class="bg-light p-4 text-center " style="float: left; color: black; width: 600px"> 
+   <div class="bg-light p-4 text-center " style="float: left; color: black; width: 600px"> 
       <table class="table">
         <thead>
           <tr>
             <th scope="col"></th>
+            <th scope="col">User</th>
             <th scope="col">Title</th>
-            <th scope="col">Comment</th>
             <th scope="col">Score</th>
           </tr>
         </thead>
@@ -15,8 +15,9 @@
             v-for="(com, idx) in comment"
             :key="idx">
             <th scope="row">{{ idx+1 }}</th>
+            <td>{{ com.username }}</td>
             <td><router-link :to="{ name: 'DetailView', params: { id: com.movie } }">{{ com.moviename }}</router-link></td>
-            <td>{{ com.content }}</td>
+            <!-- <td>{{ com.content }}</td> -->
             <td>
               <div id="star">
               <span v-if="com.score === 5">
@@ -73,7 +74,7 @@
 
 <script>
 export default {
-  name: 'UserCommentListItem',
+  name: 'OtherUserCommentListItem',
   props: {
     comment: Object
   },
@@ -81,21 +82,5 @@ export default {
 </script>
 
 <style>
-  #star {
-    color: rgb(253, 215, 0);
-  }
 
-  .table {
-    background-color: whitesmoke;
-    height: 100%;
-    align-items: center;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    /* background-color: #f5f5f5; */
-    width: 100%;
-    max-width: 750px;
-    padding: 8px;
-    margin: auto;
-    border-radius: 4px;
-  }
 </style>
