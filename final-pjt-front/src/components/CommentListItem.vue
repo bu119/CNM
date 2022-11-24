@@ -1,64 +1,70 @@
 <template>
-  <div>
-    {{ comment.username }}
+    <div class="managecomment">
+      <div class="second py-2 px-2"> <span class="text1">{{ comment.content }}</span>
+        <div class="d-flex justify-content-between py-1 pt-2">
+          <div><img src="@/assets/profile.jpg" width="18"><span class="text2">{{ comment.username }}</span></div>
+          <div>
+            <span id="start">
+            <span v-if="comment.score === 5">
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            </span>
+
+            <span v-else-if="comment.score === 4.5">
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i>
+            </span>
+
+            <span v-else-if="comment.score === 4">
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star"></i>
+            </span>
+
+            <span v-else-if="comment.score === 3.5">
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i><i class="bi bi-star"></i>
+            </span>
+
+            <span v-else-if="comment.score === 3">
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star"></i><i class="bi bi-star"></i>
+            </span>
+
+            <span v-else-if="comment.score === 2.5">
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i><i class="bi bi-star"></i><i class="bi bi-star"></i>
+            </span>
+
+            <span v-else-if="comment.score === 2">
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i>
+            </span>
+
+            <span v-else-if="comment.score === 1.5">
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i>
+            </span>
+
+            <span v-else-if="comment.score === 1">
+              <i class="bi bi-star-fill"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i>
+            </span>
+
+            <span v-else-if="comment.score === 0.5">
+              <i class="bi bi-star-half"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i>
+            </span>
+
+            <span v-else>
+              <i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i>
+            </span>
+          </span>
+          </div>
+        </div>
+      </div>
     <br>
-
-    {{ comment.content }}
-    <!-- : {{ comment.score }} -->
-    <span id="start">
-      <span v-if="comment.score === 5">
-        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-      </span>
-
-      <span v-else-if="comment.score === 4.5">
-        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i>
-      </span>
-
-      <span v-else-if="comment.score === 4">
-        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star"></i>
-      </span>
-
-      <span v-else-if="comment.score === 3.5">
-        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i><i class="bi bi-star"></i>
-      </span>
-
-      <span v-else-if="comment.score === 3">
-        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star"></i><i class="bi bi-star"></i>
-      </span>
-
-      <span v-else-if="comment.score === 2.5">
-        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i><i class="bi bi-star"></i><i class="bi bi-star"></i>
-      </span>
-
-      <span v-else-if="comment.score === 2">
-        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i>
-      </span>
-
-      <span v-else-if="comment.score === 1.5">
-        <i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i>
-      </span>
-
-      <span v-else-if="comment.score === 1">
-        <i class="bi bi-star-fill"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i>
-      </span>
-
-      <span v-else-if="comment.score === 0.5">
-        <i class="bi bi-star-half"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i>
-      </span>
-
-      <span v-else>
-        <i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i>
-      </span>
-    </span>
-    <button @click="deleteComment" class="btn btn-primary" type="button">Delete</button>
-    <div v-if="comment.username===this.username">
-      <button @click="toggleBtn" class="btn btn-warning" >수정하기</button>
-      <div id='update_bnt'>
-        <star-rating :increment="0.5" v-model="update_comment_score"></star-rating>
-        <form>
-          <input @click="checkLogin" type="text" v-model="update_comment_content" placeholder="리뷰를 수정해주세요.">
-          <button @click="updateComment" class="btn btn-warning" type="button">수정</button>
-        </form>
+    
+    <div class="btns">
+      <img @click="deleteComment" src="@/assets/trash-bin.png" alt="" width="40px" height="40px">
+      <div v-if="comment.username===this.username">
+        <img src="@/assets/pen.png" alt="" @click="toggleBtn" width="40px" height="40px">
+        <div id='update_bnt'>
+          <star-rating :increment="0.5" v-model="update_comment_score"></star-rating>
+          <form>
+            <input @click="checkLogin" type="text" v-model="update_comment_content" placeholder="리뷰를 수정해주세요.">
+            <button @click="updateComment" class="btn btn-warning" type="button">수정</button>
+          </form>
+        </div>
       </div>
     </div>
   </div>
@@ -171,4 +177,36 @@ export default {
 #start {
     color: rgb(253, 215, 0);
   }
+
+.managecomment {
+  display: flex;
+  flex-wrap: wrap;
+  
+}
+
+.second{
+	width: 350px;
+	background-color: transparent;
+  border-bottom: 1px solid;
+  border-bottom-color: 1px #56575b;
+	border-radius: 4px;
+  color: white;
+	/* box-shadow: 10px 10px 5px #aaaaaa; */
+}
+.text1{
+	font-size: 15px;
+  font-weight: 500;
+  color: #56575b;
+}
+.text2{
+	font-size: 15px;
+    font-weight: 500;
+    margin-left: 6px;
+    color: #56575b;
+}
+
+.btns {
+  display: flex;
+  justify-content: right;
+}
 </style>

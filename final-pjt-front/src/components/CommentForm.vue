@@ -1,11 +1,32 @@
 <template>
   <div>
-    <h2>평점</h2>
-    <star-rating :increment="0.5" v-model="comment_score"></star-rating>
+    <div class="container d-flex justify-content-center">
+      <div class="card text-center mb-5">
+        <div class="circle-image">
+          <img src="@/assets/profile.jpg" width="50">
+        </div>
+          <span class="dot"></span>
+        <span class="name mb-1 fw-500" style="color: black;">{{ username }}</span>
+
+        <form @submit.prevent="createComment">
+          <input class="writereview" @click="checkLogin" type="text" v-model.trim="comment_content" placeholder="리뷰를 작성해주세요.">
+          <div class="rate mt-3">
+            <div class="rating"><star-rating :increment="0.5" v-model="comment_score"></star-rating></div>
+            <div class="buttons px-0">
+            <button class="btn btn-primary btn-block rating-submit">Submit</button>
+          </div>
+        </div>          
+        </form>
+      </div>
+    </div>
+
+    <!-- 여기가 찐 -->
+    <!-- <h2>평점</h2> -->
+    <!-- <star-rating :increment="0.5" v-model="comment_score"></star-rating>
     <form @submit.prevent="createComment">
       <input @click="checkLogin" type="text" v-model.trim="comment_content" placeholder="리뷰를 작성해주세요.">
       <button>작성하기</button>
-    </form>
+    </form> -->
   </div>
 </template>
 
@@ -84,4 +105,95 @@ export default {
 
 <style>
 
+.card{
+	width: 350px;
+	border: none;
+	/* box-shadow: 5px 6px 6px 2px #e9ecef; */
+	border-radius: 12px;
+}
+
+.circle-image img{
+  border: 6px solid #fff;
+  border-radius: 100%;
+  padding: 0px;
+  top: -28px;
+  position: relative;
+  width: 70px;
+  height: 70px;
+  border-radius: 100%;
+  z-index: 1;
+  background: #e7d184;
+  cursor: pointer;
+}
+
+.dot {
+  height: 18px;
+  width: 18px;
+  background-color: blue;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  border: 3px solid #fff;
+  top: -48px;
+  left: 186px;
+  z-index: 1000;
+}
+
+.name{
+	margin-top: -21px;
+	font-size: 18px;
+}
+
+.fw-500{
+	font-weight: 500 !important;
+}
+
+.writereview{
+  width: 300px;
+  height: 100px;
+  font-size: 15px;
+  border: 0;
+  border-radius: 15px;
+  outline: none;
+  padding-left: 10px;
+  background-color: rgb(233, 233, 233);
+}
+
+.rate{
+	border-bottom-right-radius: 12px;
+	border-bottom-left-radius: 12px;
+}
+
+.rating {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center
+}
+
+.rating>input {
+  display: none
+}
+
+.rating>input:checked~label:before {
+  opacity: 1
+}
+
+.rating:hover>input:checked~label:before {
+  opacity: 0.4
+}
+
+.buttons{
+	top: 26px;
+  position: relative;
+}
+
+.rating-submit{
+	border-radius: 15px;
+	color: #fff;
+  height: 49px;
+}
+
+.rating-submit:hover{
+	color: #fff;
+}
 </style>

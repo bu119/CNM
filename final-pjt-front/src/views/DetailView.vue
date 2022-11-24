@@ -1,10 +1,13 @@
 <template>
   <div>
-    <h1>영화 상세 페이지</h1>
-    <p>제목: {{ movie?.title }}</p>
-    <img :src="poster_path" alt="..." width=250>
-    <p>장르: 
-      <span 
+    <div class="movie_card" id="bright">
+      <div class="info_section">
+        <div class="movie_header">
+          <img class="locandina" :src="poster_path"/>
+          <h1>{{ movie?.title }}</h1>
+          <!-- <h4>{{ movie?.released_date.year }}</h4> -->
+          <span class="minutes"> ⭐{{ movie?.vote_avg }}</span>
+          <p class="type"><span 
         v-for="(genre, idx) in movie.genres"
         :key="idx"
       >
@@ -13,28 +16,36 @@
           v-if="movie.genres.length !== (idx + 1)">
           ,
         </span>
-      </span>
-      <!-- {{ movie.genres[0] }} -->
-    </p>
-    <p>줄거리: {{ movie?.overview }}</p>
-    <p>개봉일: {{ movie?.released_date }}</p>
-    <p>평점: {{ movie?.vote_avg }}</p>
-
-    <!-- 유투브 비디오 -->
-    <div v-if="YouTubeUrl">
-      <iframe width="560" height="315" :src='YouTubeUrl' title="YouTube video player" 
-        frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen
-      ></iframe>
+      </span></p>
+        </div>
+        <div class="movie_desc">
+          <p class="text">
+            {{ movie?.overview }}
+          </p>
+        </div>
+        <div class="movie_social">
+          <ul>
+            <li><i @click="btnShareTw" type="button" id="twitter" class="material-icons"><img src="./images/icon-twitter.png" alt=""></i></li>
+            <li><i @click="btnShareFb" type="button" id="facebook" class="material-icons"><img src="./images/icon-facebook.png" alt=""></i></li>
+            <li><i @click="btnShareKt" type="button" id="kakao" class="material-icons"><img src="./images/icon-kakao.png" alt=""></i></li>
+          </ul>
+        </div>
+      </div>
+      <div class="blur_back bright_back"></div>
     </div>
 
-    <!-- SNS 공유 버튼 -->
-    <button @click="btnShareTw" type="button" id="twitter" class="btn_comm"><img src="./images/icon-twitter.png" alt=""></button>
-    <button @click="btnShareFb" type="button" id="facebook" class="btn_comm"><img src="./images/icon-facebook.png" alt=""></button>
-    <button @click="btnShareKt" type="button" id="kakao" class="btn_comm"><img src="./images/icon-kakao.png" alt=""></button>
+    <div class="secondpart">
+      <!-- 유투브 비디오 -->
+      <div v-if="YouTubeUrl">
+        <iframe width="560" height="315" :src='YouTubeUrl' title="YouTube video player" 
+          frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen
+        ></iframe>
+      </div>
 
-    <h1>Comment List</h1>
-    <CommentForm/>
-    <CommentList/>
+      <CommentForm/>
+
+    </div><br><br><hr><br>
+      <CommentList/>
   </div>
 </template>
 
@@ -149,8 +160,215 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .twitter { background-image: url(./images/icon-twitter.png); background-repeat: no-repeat; }
 .facebook { background-image: url(./images/icon-facebook.png); background-repeat: no-repeat; } 
 .kakao { background-image: url(./images/icon-kakao.png); background-repeat: no-repeat; }
+
+
+*{
+  box-sizing: border-box;
+  margin: 0;
+}
+
+/* body{
+  margin: 0;
+  background: black;
+  font-family: 'Montserrat', helvetica, arial, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+} */
+
+.movie_card{
+  position: relative;
+  display: block;
+  width: 1200px;
+  height: 420;
+  margin: 100px auto; 
+  overflow: hidden;
+  border-radius: 10px;
+  transition: all 0.4s;
+  /* &:hover{
+    transform: scale(1.02);
+    transition: all 0.4s;
+  } */
+}
+.info_section{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-blend-mode: multiply;
+  z-index: 2;
+  border-radius: 10px;
+}
+.movie_header{
+  position: relative;
+  padding: 25px;
+  height: 40%;
+}
+h1{
+  color: #fff;
+  font-weight: 400;
+}
+h4{
+  color: #9ac7fa;
+  font-weight: 400;
+}
+.minutes{
+  display: inline-block;
+  margin-top: 10px;
+  color: #fff;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid rgba(255,255,255,0.13);
+}
+.type{
+  display: inline-block;
+  color: #cee4fd;
+  margin-left: 10px;
+}
+.locandina{
+  position: relative;
+  float: left;
+  margin-left: 1
+  0px;
+  margin-right: 20px;
+  height: 150px;
+  box-shadow: 0 0 20px -10px rgba(0,0,0,0.5);
+}
+
+.movie_desc{
+  padding: 25px;
+  height: 50%;
+}
+.text{
+  color: #cfd6e1;
+}
+
+.movie_social{
+  height: 10%;
+  padding-left: 15px;
+  padding-bottom: 20px;
+}
+
+ul{
+  list-style: none;
+  padding: 0;
+  margin-left: 208px;
+  display: flex;
+  justify-content: start;
+}
+
+li{
+  display: inline-block;
+  color: rgba(255,255,255,0.4);
+  transition: color 0.3s;
+  transition-delay: 0.15s;
+  margin: 0 5px;
+  /* &:hover{
+    transition: color 0.3s;
+    color: rgba(255,255,255,0.8);
+  } */
+}
+
+i{
+  font-size: 19px;
+  cursor: pointer;
+}
+
+.blur_back{
+  position: absolute;
+  top: 0;
+  z-index: 1;
+  height: 100%; right: 0;
+  background-size: cover;
+  border-radius: 11px;
+}
+
+.secondpart {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+@media screen and (min-width: 768px) {
+  .movie_header{
+    width: 60%;
+  }
+  
+  .movie_desc{
+    width: 50%;
+  }
+  
+  .info_section{
+    background: linear-gradient(to right, #0d0d0c 50%, transparent 100%);
+  }
+  
+  .blur_back{
+    width: 80%;
+    background-position: -100% 10% !important;  
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .movie_card{
+    width: 95%;
+    margin: 70px auto; 
+    min-height: 350px;
+    height: auto;
+  }
+  
+  .blur_back{
+    width: 100%;
+    background-position: 50% 50% !important;  
+  }
+  
+  .movie_header{
+    width: 100%;
+    margin-top: 85px;
+  }
+  
+  .movie_desc{
+    width: 100%;
+  }
+  
+  .info_section{
+    background: linear-gradient(to top, rgb(20, 20, 19) 50%, transparent 100%);
+    display: inline-grid;
+  }
+}
+
+
+#bright{
+  box-shadow: 0px 0px 100px -45px rgba(255, 51, 0, 0.5);
+  /* &:hover{
+    box-shadow: 0px 0px 120px -55px rgba(255, 51, 0, 0.5); */
+}
+
+
+.bright_back{
+  background: url("https://occ-0-2433-448.1.nflxso.net/art/cd5c9/3e192edf2027c536e25bb5d3b6ac93ced77cd5c9.jpg");
+}
+
+#tomb{
+  box-shadow: 0px 0px 150px -45px rgba(19, 160, 134, 0.6);
+  /* &:hover{
+    box-shadow: 0px 0px 120px -55px rgba(19, 160, 134, 0.6);
+  } */
+}
+
+.tomb_back{
+  background: url("https://fsmedia.imgix.net/cd/c9/5e/ba/4817/4d9a/93f0/c776ec32ecbc/lara-crofts-neck-looks-unnatural-in-the-new-poster-for-tomb-raider.png");
+}
+
+#ave{
+  box-shadow: 0px 0px 150px -45px rgba(199,147,75, 0.7);
+  margin-bottom: 200px;
+  /* &:hover{
+    box-shadow: 0px 0px 120px -55px rgba(199,147,75, 0.7);
+  } */
+}
+
+.ave_back{
+    background: url("https://www.gannett-cdn.com/-mm-/c03fd140debe8ad4c05cf81a5cad7ad61a12ce52/c=0-1580-2985-3266&r=x803&c=1600x800/local/-/media/2017/06/09/USATODAY/USATODAY/636326272873599176-Black-Panther-Teaser.jpg");
+}
 </style>

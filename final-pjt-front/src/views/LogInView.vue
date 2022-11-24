@@ -67,12 +67,10 @@ export default {
   }
   
   #username {
-    padding: 3px;
     margin-bottom: 7px;
   }
   
   #password {
-    padding: 3px;
     margin-bottom: 30px;
   }
 
