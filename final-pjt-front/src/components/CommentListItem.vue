@@ -15,6 +15,51 @@
     <div v-else>
       <div class="second py-2 px-2">
         <span class="text1">{{ comment.content }}</span>
+        <div id="star">
+          <span v-if="comment.score === 5">
+            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+          </span>
+
+          <span v-else-if="comment.score === 4.5">
+            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i>
+          </span>
+
+          <span v-else-if="comment.score === 4">
+            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star"></i>
+          </span>
+
+          <span v-else-if="comment.score === 3.5">
+            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i><i class="bi bi-star"></i>
+          </span>
+
+          <span v-else-if="comment.score === 3">
+            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star"></i><i class="bi bi-star"></i>
+          </span>
+
+          <span v-else-if="comment.score === 2.5">
+            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i><i class="bi bi-star"></i><i class="bi bi-star"></i>
+          </span>
+
+          <span v-else-if="comment.score === 2">
+            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i>
+          </span>
+
+          <span v-else-if="comment.score === 1.5">
+            <i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i>
+          </span>
+
+          <span v-else-if="comment.score === 1">
+            <i class="bi bi-star-fill"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i>
+          </span>
+
+          <span v-else-if="comment.score === 0.5">
+            <i class="bi bi-star-half"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i>
+          </span>
+
+          <span v-else>
+            <i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i>
+          </span>
+        </div>  
       </div>
     </div>
     <div v-if="comment.username===this.username">
@@ -151,6 +196,8 @@ export default {
   border-bottom: 1px solid;
   border-bottom-color: 1px #56575b;
 	border-radius: 4px;
+  display: flex;
+  justify-content: space-evenly;
   color: white;
 	/* box-shadow: 10px 10px 5px #aaaaaa; */
 }

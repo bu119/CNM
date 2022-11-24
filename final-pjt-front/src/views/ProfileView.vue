@@ -7,7 +7,7 @@
           <div class="px-4 pt-0 pb-4 cover"> 
             <div class="media align-items-end profile-head"> 
               <div class="profile mr-2 ml-4">
-                <img src="@/assets/nurung.png" alt="..." width="250" class="rounded mb-2 img-thumbnail">
+                <img src="@/assets/chadoll.jpg" alt="..." width="250" class="rounded mb-2 img-thumbnail">
               </div> 
             <div class="media-body mb-5 text-white">
             <h4 class="mt-0 mb-0" style="font-size: 30px">{{ username }}님</h4> 
