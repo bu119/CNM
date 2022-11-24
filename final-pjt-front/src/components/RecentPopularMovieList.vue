@@ -23,7 +23,7 @@ export default {
     RecentPopularMovieListItem,
     swiper,
   },
-   data () {
+  data () {
     return {
       swiperOption: {
         slidesPerView: 'auto',

@@ -7,29 +7,36 @@
           <h1>{{ movie?.title }}</h1>
           <!-- <h4>{{ movie?.released_date.year }}</h4> -->
           <span class="minutes"> ⭐{{ movie?.vote_avg }}</span>
-          <p class="type"><span 
-            v-for="(genre, idx) in movie.genres"
-            :key="idx"
-            >
-            {{ genre['name'] }}
-            <span
-            v-if="movie.genres.length !== (idx + 1)">
-            ,
-          </span>
-        </span></p>
-      </div>
-      <!-- 포스터 & 줄거리 -->
-      <div class="movie_desc">
-        <img class="locandina" :src="poster_path"/>
-        <p class="text">
-          {{ movie?.overview }}
-        </p>
-      </div>
-      <div class="movie_social">
-        <ul>
-          <li><i @click="btnShareTw" type="button" id="twitter" class="material-icons"><img src="./images/icon-twitter.png" alt=""></i></li>
-          <li><i @click="btnShareFb" type="button" id="facebook" class="material-icons"><img src="./images/icon-facebook.png" alt=""></i></li>
-          <li><i @click="btnShareKt" type="button" id="kakao" class="material-icons"><img src="./images/icon-kakao.png" alt=""></i></li>
+          <p class="type">
+            <span 
+              v-for="(genre, idx) in movie.genres"
+              :key="idx"
+              >
+              {{ genre['name'] }}
+              <span
+                v-if="movie.genres.length !== (idx + 1)">
+                ,
+              </span>
+            </span>
+          </p>
+          <hr id="title_hr">
+        </div>
+        
+        <!-- 포스터 & 줄거리 -->
+        <div class="movie_desc">
+          <img class="locandina" :src="poster_path"/>
+          <p class="text">
+            {{ movie?.overview }}
+          </p>
+        </div>
+        
+        <span class="movie_date">🗓️ {{ movie?.released_date }}</span>
+
+        <div class="movie_social">
+          <ul>
+            <li><i @click="btnShareTw" type="button" id="twitter" class="material-icons"><img src="./images/icon-twitter.png" alt=""></i></li>
+            <li><i @click="btnShareFb" type="button" id="facebook" class="material-icons"><img src="./images/icon-facebook.png" alt=""></i></li>
+            <li><i @click="btnShareKt" type="button" id="kakao" class="material-icons"><img src="./images/icon-kakao.png" alt=""></i></li>
         </ul>
       </div>
     </div>
@@ -174,6 +181,9 @@ export default {
   margin: 0;
 }
 
+#title_hr {
+  margin-top: 15px;
+}
 /* body{
   margin: 0;
   background: black;
@@ -181,6 +191,19 @@ export default {
   font-size: 14px;
   font-weight: 400;
 } */
+
+.movie_date {
+  text-align: left;
+  margin-right: 920px;
+  display: inline-block;
+  /* margin-top: 10px; */
+  color: #fff;
+  padding: 5px 15px 5px 15px;
+  /* padding-left: 10px;
+  padding-right: 10px; */
+  border-radius: 5px;
+  border: 1px solid rgba(255,255,255,0.13);
+}
 
 .movie_card{
   position: relative;
@@ -207,7 +230,7 @@ export default {
 .movie_header{
   position: relative;
   padding: 25px;
-  height: 40%;
+  height: 25%;
 }
 h1{
   color: #fff;
@@ -233,24 +256,26 @@ h4{
 .locandina{
   position: relative;
   float: left;
-  margin-left: 1
-  0px;
-  margin-right: 20px;
+  /* margin-left: 10px; */
+  margin-right:40px;
   height: 300px;
   box-shadow: 0 0 20px -10px rgba(0,0,0,0.5);
 }
 
 .movie_desc{
+  margin-left: 15px;
   padding: 25px;
-  height: 50%;
+  height: 56%;
 }
 .text{
+  text-align: left;
   color: #cfd6e1;
 }
 
 .movie_social{
   height: 10%;
   padding-left: 15px;
+  margin-left: 100px ;
   padding-bottom: 20px;
 }
 
@@ -299,7 +324,7 @@ i{
   }
   
   .movie_desc{
-    width: 50%;
+    width: 55%;
   }
   
   .info_section{
