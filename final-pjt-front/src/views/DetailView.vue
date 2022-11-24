@@ -34,7 +34,7 @@
 
         <div class="movie_social">
           <ul>
-            <li><i @click="btnShareTw" type="button" id="twitter" class="material-icons"><img src="./images/icon-twitter.png" alt=""></i></li>
+            <!-- <li><i @click="btnShareTw" type="button" id="twitter" class="material-icons"><img src="./images/icon-twitter.png" alt=""></i></li> -->
             <li><i @click="btnShareFb" type="button" id="facebook" class="material-icons"><img src="./images/icon-facebook.png" alt=""></i></li>
             <li><i @click="btnShareKt" type="button" id="kakao" class="material-icons"><img src="./images/icon-kakao.png" alt=""></i></li>
         </ul>
